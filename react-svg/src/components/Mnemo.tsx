@@ -2,6 +2,8 @@ import MainSupplyView from "../units/main_supply/MainSupplyView";
 import MotorView from "../units/motor/MotorView";
 import AppCompose from "../units/app/AppCompose";
 import PaletteGrid from "./PaletteGrid";
+import { Belt } from "../views/belt";
+import VibroTray from "../views/vibro_tray/vibro_tray";
 
 export type MnemoState = {
   app_model: AppCompose;
@@ -36,11 +38,16 @@ export default function Mnemo({ app_model }: MnemoState) {
   // }, []);
 
   return (
-    <svg viewBox="0 0 300 300" width={300} height={300}>
+    <svg viewBox="0 0 600 500" width={600} height={500}>
       <MainSupplyView x={100} y={100} vm={app_model.main_supply} />
       <MotorView x={160} y={150} vm={app_model.motor} />
 
-      <PaletteGrid x={0} y={0} />
+      {/* <PaletteGrid x={0} y={0} /> */}
+
+      <Belt x={100} y={200} />
+      {/* <Belt x={100} y={250} />
+      <Belt x={100} y={300} /> */}
+      <VibroTray x={100} y={250} />
     </svg>
   );
 }
