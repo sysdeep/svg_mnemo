@@ -2,8 +2,8 @@
     <!-- <circle :cx=x :cy=y :r="size / 2" :fill=color onMouseDown={()=> onClick()} -->
     <g>
 
-        <circle :cx=x :cy=y :r="r_main" fill="gray" />
-        <circle :cx=x :cy=y :r="r_inner" :fill=color />
+        <circle :cx=x :cy=y :r="r_main" :fill=color_bg />
+        <circle :cx=x :cy=y :r="r_inner" :fill=color_fg />
     </g>
 </template>
 
@@ -11,11 +11,14 @@
 import { computed } from 'vue';
 
 
+
 type Props = {
     x: number;
     y: number;
-    color: string;
+    color_fg: string;
+    color_bg: string;
     size: number;
+    // state: boolean
     // onClick: () => void;
 }
 
