@@ -10,13 +10,13 @@ type Props = {
 export default function Belt({ x, y }: Props) {
   const [angle, setAngle] = useState<number>(0);
 
-  useEffect(() => {
-    let int = setInterval(() => {
-      setAngle((a) => a + 30);
-    }, 300);
+  // useEffect(() => {
+  //   let int = setInterval(() => {
+  //     setAngle((a) => a + 30);
+  //   }, 300);
 
-    return () => clearInterval(int);
-  }, []);
+  //   return () => clearInterval(int);
+  // }, []);
 
   const max_chunks = 16;
 

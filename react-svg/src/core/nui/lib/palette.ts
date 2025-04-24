@@ -18,7 +18,7 @@
 	Olive, Brown
 */
 
-export const BlueGray = {
+export const BlueGray: { [key: string]: string } = {
   p50: "#F8FAFC",
   p100: "#F1F5F9",
   p200: "#E2E8F0",
@@ -31,7 +31,7 @@ export const BlueGray = {
   p900: "#0F172A",
 };
 
-export const CoolGray = {
+export const CoolGray: { [key: string]: string } = {
   p50: "#F9FAFB",
   p100: "#F3F4F6",
   p200: "#E5E7EB",
@@ -43,7 +43,7 @@ export const CoolGray = {
   p800: "#1F2937",
   p900: "#111827",
 };
-export const Gray = {
+export const Gray: { [key: string]: string } = {
   p50: "#FAFAFA",
   p100: "#F4F4F5",
   p200: "#E4E4E7",
@@ -55,7 +55,7 @@ export const Gray = {
   p800: "#27272A",
   p900: "#18181B",
 };
-export const TrueGray = {
+export const TrueGray: { [key: string]: string } = {
   p50: "#FAFAFA",
   p100: "#F5F5F5",
   p200: "#E5E5E5",
@@ -67,7 +67,7 @@ export const TrueGray = {
   p800: "#262626",
   p900: "#171717",
 };
-export const WarmGray = {
+export const WarmGray: { [key: string]: string } = {
   p50: "#FAFAF9",
   p100: "#F5F5F4",
   p200: "#E7E5E4",
@@ -80,7 +80,7 @@ export const WarmGray = {
   p900: "#1C1917",
 };
 
-export const Red = {
+export const Red: { [key: string]: string } = {
   p50: "#FEF2F2",
   p100: "#FEE2E2",
   p200: "#FECACA",
@@ -92,7 +92,7 @@ export const Red = {
   p800: "#991B1B",
   p900: "#7F1D1D",
 };
-export const Orange = {
+export const Orange: { [key: string]: string } = {
   p50: "#FFF7ED",
   p100: "#FFEDD5",
   p200: "#FED7AA",
@@ -104,7 +104,7 @@ export const Orange = {
   p800: "#9A3412",
   p900: "#7C2D12",
 };
-export const Amber = {
+export const Amber: { [key: string]: string } = {
   p50: "#FFFBEB",
   p100: "#FEF3C7",
   p200: "#FDE68A",
@@ -116,7 +116,7 @@ export const Amber = {
   p800: "#92400E",
   p900: "#78350F",
 };
-export const Yellow = {
+export const Yellow: { [key: string]: string } = {
   p50: "#FEFCE8",
   p100: "#FEF9C3",
   p200: "#FEF08A",
@@ -128,7 +128,7 @@ export const Yellow = {
   p800: "#854D0E",
   p900: "#713F12",
 };
-export const Lime = {
+export const Lime: { [key: string]: string } = {
   p50: "#F7FEE7",
   p100: "#ECFCCB",
   p200: "#D9F99D",
@@ -140,7 +140,7 @@ export const Lime = {
   p800: "#3F6212",
   p900: "#365314",
 };
-export const Green = {
+export const Green: { [key: string]: string } = {
   p50: "#F0FDF4",
   p100: "#DCFCE7",
   p200: "#BBF7D0",
@@ -152,7 +152,7 @@ export const Green = {
   p800: "#166534",
   p900: "#14532D",
 };
-export const Emerald = {
+export const Emerald: { [key: string]: string } = {
   p50: "#ECFDF5",
   p100: "#D1FAE5",
   p200: "#A7F3D0",
@@ -164,7 +164,7 @@ export const Emerald = {
   p800: "#065F46",
   p900: "#064E3B",
 };
-export const Teal = {
+export const Teal: { [key: string]: string } = {
   p50: "#F0FDFA",
   p100: "#CCFBF1",
   p200: "#99F6E4",
@@ -176,7 +176,7 @@ export const Teal = {
   p800: "#115E59",
   p900: "#134E4A",
 };
-export const Cyan = {
+export const Cyan: { [key: string]: string } = {
   p50: "#ECFEFF",
   p100: "#CFFAFE",
   p200: "#A5F3FC",
@@ -188,7 +188,7 @@ export const Cyan = {
   p800: "#155E75",
   p900: "#164E63",
 };
-export const LightBlue = {
+export const LightBlue: { [key: string]: string } = {
   p50: "#F0F9FF",
   p100: "#E0F2FE",
   p200: "#BAE6FD",
@@ -200,7 +200,7 @@ export const LightBlue = {
   p800: "#075985",
   p900: "#0C4A6E",
 };
-export const Blue = {
+export const Blue: { [key: string]: string } = {
   p50: "#EFF6FF",
   p100: "#DBEAFE",
   p200: "#BFDBFE",
@@ -212,7 +212,7 @@ export const Blue = {
   p800: "#1E40AF",
   p900: "#1E3A8A",
 };
-export const Indigo = {
+export const Indigo: { [key: string]: string } = {
   p50: "#EEF2FF",
   p100: "#E0E7FF",
   p200: "#C7D2FE",
@@ -224,7 +224,7 @@ export const Indigo = {
   p800: "#3730A3",
   p900: "#312E81",
 };
-export const Violet = {
+export const Violet: { [key: string]: string } = {
   p50: "#F5F3FF",
   p100: "#EDE9FE",
   p200: "#DDD6FE",
@@ -236,7 +236,7 @@ export const Violet = {
   p800: "#5B21B6",
   p900: "#4C1D95",
 };
-export const Purple = {
+export const Purple: { [key: string]: string } = {
   p50: "#FAF5FF",
   p100: "#F3E8FF",
   p200: "#E9D5FF",
@@ -248,7 +248,7 @@ export const Purple = {
   p800: "#6B21A8",
   p900: "#581C87",
 };
-export const Fuchsia = {
+export const Fuchsia: { [key: string]: string } = {
   p50: "#FDF4FF",
   p100: "#FAE8FF",
   p200: "#F5D0FE",
@@ -260,7 +260,7 @@ export const Fuchsia = {
   p800: "#86198F",
   p900: "#701A75",
 };
-export const Pink = {
+export const Pink: { [key: string]: string } = {
   p50: "#FDF2F8",
   p100: "#FCE7F3",
   p200: "#FBCFE8",
@@ -272,7 +272,7 @@ export const Pink = {
   p800: "#9D174D",
   p900: "#831843",
 };
-export const Rose = {
+export const Rose: { [key: string]: string } = {
   p50: "#FFF1F2",
   p100: "#FFE4E6",
   p200: "#FECDD3",
@@ -286,7 +286,7 @@ export const Rose = {
 };
 
 // #--- material design
-export const Olive = {
+export const Olive: { [key: string]: string } = {
   p50: "#F9FBE7",
   p100: "#F0F4C3",
   p200: "#E6EE9C",
@@ -298,7 +298,7 @@ export const Olive = {
   p800: "#9E9D24",
   p900: "#827717",
 };
-export const Brown = {
+export const Brown: { [key: string]: string } = {
   p50: "#EFEBE9",
   p100: "#D7CCC8",
   p200: "#BCAAA4",
@@ -310,6 +310,8 @@ export const Brown = {
   p800: "#4E342E",
   p900: "#3E2723",
 };
+
+// console.log(Brown.p100);
 
 export const colors = [
   "BlueGray",
@@ -351,7 +353,7 @@ export const tones = [
   "p900",
 ];
 
-export const palette = {
+export const palette: { [key: string]: { [key: string]: string } } = {
   BlueGray: BlueGray,
   CoolGray: CoolGray,
   Gray: Gray,
@@ -378,47 +380,46 @@ export const palette = {
   Brown: Brown,
 };
 
-export enum ColorEnum {
-  BlueGray = "BlueGray",
-  CoolGray = "CoolGray",
-  Gray = "Gray",
-  TrueGray = "TrueGray",
-  WarmGray = "WarmGray",
-  Red = "Red",
-  Orange = "Orange",
-  Amber = "Amber",
-  Yellow = "Yellow",
-  Lime = "Lime",
-  Green = "Green",
-  Emerald = "Emerald",
-  Teal = "Teal",
-  Cyan = "Cyan",
-  LightBlue = "LightBlue",
-  Blue = "Blue",
-  Indigo = "Indigo",
-  Violet = "Violet",
-  Purple = "Purple",
-  Fuchsia = "Fuchsia",
-  Pink = "Pink",
-  Rose = "Rose",
-  Olive = "Olive",
-  Brown = "Brown",
-}
+export const ColorEnum = {
+  BlueGray: "BlueGray",
+  CoolGray: "CoolGray",
+  Gray: "Gray",
+  TrueGray: "TrueGray",
+  WarmGray: "WarmGray",
+  Red: "Red",
+  Orange: "Orange",
+  Amber: "Amber",
+  Yellow: "Yellow",
+  Lime: "Lime",
+  Green: "Green",
+  Emerald: "Emerald",
+  Teal: "Teal",
+  Cyan: "Cyan",
+  LightBlue: "LightBlue",
+  Blue: "Blue",
+  Indigo: "Indigo",
+  Violet: "Violet",
+  Purple: "Purple",
+  Fuchsia: "Fuchsia",
+  Pink: "Pink",
+  Rose: "Rose",
+  Olive: "Olive",
+  Brown: "Brown",
+};
 
-export enum ToneEnum {
-  p50 = "p50",
-  p100 = "p100",
-  p200 = "p200",
-  p300 = "p300",
-  p400 = "p400",
-  p500 = "p500",
-  p600 = "p600",
-  p700 = "p700",
-  p800 = "p800",
-  p900 = "p900",
-}
+export const ToneEnum = {
+  p50: "p50",
+  p100: "p100",
+  p200: "p200",
+  p300: "p300",
+  p400: "p400",
+  p500: "p500",
+  p600: "p600",
+  p700: "p700",
+  p800: "p800",
+  p900: "p900",
+};
 
-// export function get_color(color: ColorEnum, tone: ToneEnum): string {
 export function get_color(color: string, tone: string): string {
   return palette[color][tone];
 }

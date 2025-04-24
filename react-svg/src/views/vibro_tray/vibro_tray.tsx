@@ -18,15 +18,15 @@ export default function VibroTray({ x, y }: Props) {
 
   const [aindex, setAindex] = useState<number>(-1);
 
-  useEffect(() => {
-    let int = setInterval(() => {
-      setAindex((i) => {
-        return (i + 1) % paddings.length;
-      });
-    }, 300);
+  // useEffect(() => {
+  //   let int = setInterval(() => {
+  //     setAindex((i) => {
+  //       return (i + 1) % paddings.length;
+  //     });
+  //   }, 300);
 
-    return () => clearInterval(int);
-  }, []);
+  //   return () => clearInterval(int);
+  // }, []);
 
   return (
     <g>

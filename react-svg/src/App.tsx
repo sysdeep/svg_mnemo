@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import Mnemo from "./components/Mnemo";
 import AppCompose from "./units/app/AppCompose";
+import SpbUPLMnemo from "./projects/spb_upl/SpbUPLMnemo";
 
 const state = new AppCompose();
 
@@ -72,7 +73,8 @@ function App() {
         </div>
       </div>
 
-      <Mnemo app_model={state} />
+      {/* <Mnemo app_model={state} /> */}
+      <SpbUPLMnemo />
     </>
   );
 }
