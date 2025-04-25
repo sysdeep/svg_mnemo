@@ -1,6 +1,8 @@
 // type Props = {};
 
+import { useState } from "react";
 import { BlueGray } from "../../core/nui/lib/palette";
+import Lamp, { LampColor } from "../../views/Lamp";
 import WarehouseArea from "./nui/warehouse_area/WarehouseArea";
 
 export default function SpbUPLMnemo() {
@@ -18,6 +20,28 @@ export default function SpbUPLMnemo() {
           <Belt x={100} y={300} /> */}
       {/* <VibroTray x={100} y={250} /> */}
       <WarehouseArea x={20} y={20} />
+
+      <ComplexLamp x={100} y={60} color={LampColor.green} />
+      <ComplexLamp x={140} y={60} color={LampColor.blue} />
+      <ComplexLamp x={180} y={60} color={LampColor.red} />
+      <ComplexLamp x={220} y={60} color={LampColor.yellow} />
     </svg>
+  );
+}
+
+function ComplexLamp({
+  x,
+  y,
+  color,
+}: {
+  x: number;
+  y: number;
+  color: LampColor;
+}) {
+  const [st, setSt] = useState<boolean>(false);
+  return (
+    <g onClick={() => setSt(!st)}>
+      <Lamp x={x} y={y} color={color} size={36} state={st} />
+    </g>
   );
 }
