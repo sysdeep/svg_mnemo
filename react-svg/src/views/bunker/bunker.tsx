@@ -15,9 +15,9 @@ export default function Bunker({ x, y, geometry }: Props) {
   return (
     <g>
       <linearGradient id="main-bunker-gradient">
-        <stop offset="0%" stop-color={Red.p900} />
-        <stop offset="50%" stop-color={Amber.p700} />
-        <stop offset="100%" stop-color={Red.p900} />
+        <stop offset="0%" stopColor={Red.p900} />
+        <stop offset="50%" stopColor={Amber.p700} />
+        <stop offset="100%" stopColor={Red.p900} />
       </linearGradient>
 
       {/* top frame */}
