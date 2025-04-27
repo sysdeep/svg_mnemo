@@ -1,10 +1,12 @@
 import WarehouseBunker, {
   WarehouseBunkerRect,
 } from "../warehouse_bunker/WarehouseBunker";
+import WarehouseBunkersAreaCompose from "./WarehouseBunkersAreaCompose";
 
 type Props = {
   x: number;
   y: number;
+  ctrl: WarehouseBunkersAreaCompose;
 };
 
 export const WarehouseBunkersAreaRect = {
@@ -12,7 +14,7 @@ export const WarehouseBunkersAreaRect = {
   height: WarehouseBunkerRect.height + 4,
 };
 
-export default function WarehouseBunkersArea({ x, y }: Props) {
+export default function WarehouseBunkersArea({ x, y, ctrl }: Props) {
   return (
     <g>
       {/* <rect

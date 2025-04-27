@@ -1,40 +1,50 @@
 import { useEffect, useState } from "react";
 import Sensor from "../../views/Sensor";
 import DSensorCompose, { DSensorState } from "./DSensorCompose";
+import Lamp from "../../views/lamp/Lamp";
+import { LampColor } from "../../views/lamp/lamp_color";
 
 export type DSensorProps = {
   x: number;
   y: number;
-  vm: DSensorCompose;
-  default_color?: string;
+  ctrl: DSensorCompose;
+  default_color?: LampColor;
   size?: number;
 };
 
 export default function DSensorView({
   x,
   y,
-  vm,
+  ctrl,
   size = 12,
-  default_color = "green",
+  default_color = LampColor.green,
 }: DSensorProps) {
-  const [state, setState] = useState<DSensorState>(vm.value);
+  const [state, setState] = useState<DSensorState>(ctrl.value);
 
   useEffect(() => {
-    vm.connect(() => {
-      setState(vm.value);
+    ctrl.connect(() => {
+      setState(ctrl.value);
     });
   }, []);
 
   console.log("dsv render");
-  const color = get_color(state, default_color);
+  // const color = get_color(state, default_color);
   return (
-    <Sensor
+    <Lamp
       x={x}
       y={y}
       size={size}
-      color={color}
-      onClick={() => vm.on_click()}
+      color={default_color}
+      state={state.is_state}
     />
+
+    // <Sensor
+    //   x={x}
+    //   y={y}
+    //   size={size}
+    //   color={color}
+    //   onClick={() => ctrl.on_click()}
+    // />
   );
 }
 

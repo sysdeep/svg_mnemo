@@ -1,18 +1,27 @@
+import { LampColor } from "../../views/lamp/lamp_color";
 import DSensorCompose from "./DSensorCompose";
 import DSensorView from "./DSensorView";
 
 export type DSensorNormalProps = {
   x: number;
   y: number;
-  vm: DSensorCompose;
+  ctrl: DSensorCompose;
   size?: number;
 };
 
 export default function DSensorNormalView({
   x,
   y,
-  vm,
+  ctrl,
   size = 12,
 }: DSensorNormalProps) {
-  return <DSensorView x={x} y={y} size={size} default_color="green" vm={vm} />;
+  return (
+    <DSensorView
+      x={x}
+      y={y}
+      size={size}
+      default_color={LampColor.green}
+      ctrl={ctrl}
+    />
+  );
 }

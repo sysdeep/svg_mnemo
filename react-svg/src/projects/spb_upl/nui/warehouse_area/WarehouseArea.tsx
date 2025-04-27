@@ -1,25 +1,21 @@
 import WarehouseLine from "../warehouse_line/WarehouseLine";
+import WarehouseAreaCompose from "./WarehouseAreaCompose";
 
 type Props = {
   x: number;
   y: number;
+  ctrl: WarehouseAreaCompose;
 };
 
-export default function WarehouseArea({ x, y }: Props) {
+export default function WarehouseArea({ x, y, ctrl }: Props) {
   return (
     <g>
-      {/* <rect
-        x={x}
-        y={y}
-        width={400}
-        height={400}
-        stroke="black"
-        strokeWidth={1}
-        fill="none"
-      /> */}
+      {/* self */}
+      {/* <WarehouseAreaVM x={x} y={y} ctrl={ctrl} /> */}
 
-      {[...Array(3)].map((_, i) => {
-        return <WarehouseLine x={x} y={y + 200 * i} key={i} />;
+      {/* compose */}
+      {ctrl.lines.map((line_ctrl, i) => {
+        return <WarehouseLine x={x} y={y + 200 * i} ctrl={line_ctrl} key={i} />;
       })}
     </g>
   );
@@ -41,4 +37,18 @@ export default function WarehouseArea({ x, y }: Props) {
   //   this.add(line);
   //   line_y += line.max_height;
   // }
+}
+
+function WarehouseAreaVM({ x, y, ctrl }: Props) {
+  return (
+    <rect
+      x={x}
+      y={y}
+      width={400}
+      height={400}
+      stroke="black"
+      strokeWidth={1}
+      fill="none"
+    />
+  );
 }

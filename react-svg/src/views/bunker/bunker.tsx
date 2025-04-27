@@ -1,5 +1,9 @@
-import { Amber, Red } from "../../core/nui/lib/palette";
+import { main_gradient_id } from "../common/MainGradient";
 import BunkerGeometry from "./bunker_geometry";
+import {
+  middle_line_gradient_id,
+  out_line_gradient_id,
+} from "./BunkerGradients";
 
 type Props = {
   x: number;
@@ -12,67 +16,56 @@ type Props = {
  * http://css.yoksel.ru/svg-gradients/
  */
 export default function Bunker({ x, y, geometry }: Props) {
+  const gradient_url = `url(#${main_gradient_id})`;
+  const out_line_gradient_url = `url(#${out_line_gradient_id})`;
+  const middle_line_gradient_url = `url(#${middle_line_gradient_id})`;
+
+  const conus_points = [
+    [x + 0, y + geometry.top_height + 0],
+    [x + geometry.max_width, y + geometry.top_height + 0],
+    [
+      x + geometry.max_width / 2 + geometry.out_width / 2,
+      y + geometry.top_height + geometry.conus_height,
+    ],
+    [
+      x + geometry.max_width / 2 - geometry.out_width / 2,
+      y + geometry.top_height + geometry.conus_height,
+    ],
+  ]
+    .map((pair) => pair.join(","))
+    .join(" ");
+
   return (
     <g>
-      <linearGradient id="main-bunker-gradient">
-        <stop offset="0%" stopColor={Red.p900} />
-        <stop offset="50%" stopColor={Amber.p700} />
-        <stop offset="100%" stopColor={Red.p900} />
-      </linearGradient>
-
       {/* top frame */}
       <rect
         width={geometry.max_width}
         height={geometry.top_height}
         x={x}
         y={y}
-        fill="url(#main-bunker-gradient)"
+        fill={gradient_url}
+      />
+
+      {/* conus */}
+      <polygon points={conus_points} fill={gradient_url} />
+
+      {/* out line */}
+      <rect
+        x={x + (geometry.max_width - geometry.out_width) / 2}
+        y={y + geometry.top_height + geometry.conus_height - 2}
+        width={geometry.out_width}
+        height={2}
+        fill={out_line_gradient_url}
+      />
+
+      {/* middle line */}
+      <rect
+        x={x}
+        y={y + geometry.top_height - 2}
+        width={geometry.max_width}
+        height={2}
+        fill={middle_line_gradient_url}
       />
     </g>
   );
 }
-
-// this._top_frame = new Rect({
-//   width: bunker_geometry.max_width,
-//   height: bunker_geometry.top_height,
-//   //   fill: "brown",
-//   fillLinearGradientStartPoint: { x: 0, y: bunker_geometry.top_height / 2 },
-//   fillLinearGradientEndPoint: {
-//     x: bunker_geometry.max_width,
-//     y: bunker_geometry.top_height / 2,
-//   },
-//   fillLinearGradientColorStops: [...body_gradient],
-// });
-
-// this._conus = new Shape({
-//   //   width: bunker_geometry.max_width,
-//   //   height: bunker_geometry.conus_height,
-//   x: 0,
-//   y: 0,
-//   //   fill: "brown",
-//   fillLinearGradientStartPoint: { x: 0, y: 0 },
-//   fillLinearGradientEndPoint: {
-//     x: bunker_geometry.max_width,
-//     y: 0,
-//   },
-//   fillLinearGradientColorStops: [...body_gradient],
-//   sceneFunc(context, shape) {
-//     // console.log("sahpe!!");
-//     context.beginPath();
-//     context.moveTo(0, 0);
-//     context.lineTo(bunker_geometry.max_width, 0);
-//     context.lineTo(
-//       bunker_geometry.max_width / 2 + bunker_geometry.out_width / 2,
-//       bunker_geometry.conus_height
-//     );
-//     context.lineTo(
-//       bunker_geometry.max_width / 2 - bunker_geometry.out_width / 2,
-//       bunker_geometry.conus_height
-//     );
-//     context.lineTo(0, 0);
-//     context.closePath();
-//     // Konva specific method
-//     context.fillStrokeShape(shape);
-//   },
-// });
-// this._conus.setPosition({ x: 0, y: bunker_geometry.top_height });

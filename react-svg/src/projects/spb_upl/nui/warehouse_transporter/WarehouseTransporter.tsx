@@ -1,12 +1,14 @@
 import { Belt } from "../../../../views/belt";
-import WarehouseBunkersArea from "../warehouse_bunkers_area/WarehouseBunkersArea";
+import TransporterMotor from "../transporter_motor/TransporterMotor";
+import WarehouseTransporterCompose from "./WarehouseTransporterCompose";
 
 type Props = {
   x: number;
   y: number;
+  ctrl: WarehouseTransporterCompose;
 };
 
-export default function WarehouseTransporter({ x, y }: Props) {
+export default function WarehouseTransporter({ x, y, ctrl }: Props) {
   return (
     <g>
       {/* <rect
@@ -20,6 +22,7 @@ export default function WarehouseTransporter({ x, y }: Props) {
       /> */}
 
       <Belt x={x} y={y} />
+      <TransporterMotor x={x + 40} y={y + 8} ctrl={ctrl.motor} />
     </g>
   );
 }
