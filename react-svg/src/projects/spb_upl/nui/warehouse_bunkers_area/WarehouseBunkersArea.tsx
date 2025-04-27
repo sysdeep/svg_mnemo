@@ -28,11 +28,12 @@ export default function WarehouseBunkersArea({ x, y, ctrl }: Props) {
       /> */}
 
       {/* bunkers */}
-      {[...Array(4)].map((_, i) => {
+      {ctrl.bunkers.map((bm, i) => {
         return (
           <WarehouseBunker
             x={x + i * WarehouseBunkerRect.width}
             y={y}
+            ctrl={bm}
             key={i}
           />
         );

@@ -1,3 +1,4 @@
+import ModelInterface from "../../../../core/models/ModelInterface";
 import BaseCompose from "../../../../core/nui/BaseCompose";
 import WarehouseLineCompose from "../warehouse_line/WarehouseLineCompose";
 
@@ -9,9 +10,8 @@ export type WarehouseAreaState = {
 
 export default class WarehouseAreaCompose extends BaseCompose<WarehouseAreaState> {
   lines: WarehouseLineCompose[];
-  constructor() {
-    super({});
-
-    this.lines = [...Array(3)].map((_) => new WarehouseLineCompose());
+  constructor(model: ModelInterface, lines: WarehouseLineCompose[]) {
+    super(model, {});
+    this.lines = lines;
   }
 }

@@ -1,3 +1,4 @@
+import ModelInterface from "../../core/models/ModelInterface";
 import BaseCompose from "../../core/nui/BaseCompose";
 
 export type DSensorState = {
@@ -7,11 +8,11 @@ export type DSensorState = {
 };
 
 export default class DSensorCompose extends BaseCompose<DSensorState> {
-  constructor() {
-    super({ is_block: false, is_error: false, is_state: false });
+  constructor(model: ModelInterface) {
+    super(model, { is_block: false, is_error: false, is_state: false });
   }
 
   public on_click() {
-    this.set_state({ ...this.value, is_error: !this.value.is_error });
+    this.set_state({ ...this.value, is_state: !this.value.is_state });
   }
 }

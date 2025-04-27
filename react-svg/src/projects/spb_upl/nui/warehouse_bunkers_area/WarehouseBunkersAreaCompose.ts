@@ -1,4 +1,6 @@
+import ModelInterface from "../../../../core/models/ModelInterface";
 import BaseCompose from "../../../../core/nui/BaseCompose";
+import WarehouseBunkerCtrl from "../warehouse_bunker/WarehouseBunkerCtrl";
 
 export type WarehouseBunkersAreaState = {
   //   is_block: boolean;
@@ -7,10 +9,10 @@ export type WarehouseBunkersAreaState = {
 };
 
 export default class WarehouseBunkersAreaCompose extends BaseCompose<WarehouseBunkersAreaState> {
-  //   sensors: DSensorCompose[];
-  constructor() {
-    super({});
+  bunkers: WarehouseBunkerCtrl[];
+  constructor(model: ModelInterface, bunkers: WarehouseBunkerCtrl[]) {
+    super(model, {});
 
-    // this.sensors = [new DSensorCompose(), new DSensorCompose()];
+    this.bunkers = bunkers;
   }
 }

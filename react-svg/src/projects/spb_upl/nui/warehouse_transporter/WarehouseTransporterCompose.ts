@@ -1,3 +1,4 @@
+import ModelInterface from "../../../../core/models/ModelInterface";
 import BaseCompose from "../../../../core/nui/BaseCompose";
 import TransporterMotorCompose from "../transporter_motor/TransporterMotorCompose";
 
@@ -9,9 +10,9 @@ export type WarehouseTransporterState = {
 
 export default class WarehouseTransporterCompose extends BaseCompose<WarehouseTransporterState> {
   motor: TransporterMotorCompose;
-  constructor() {
-    super({});
+  constructor(model: ModelInterface, motor: TransporterMotorCompose) {
+    super(model, {});
 
-    this.motor = new TransporterMotorCompose();
+    this.motor = motor;
   }
 }

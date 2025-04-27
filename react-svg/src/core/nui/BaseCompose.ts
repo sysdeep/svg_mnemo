@@ -1,11 +1,15 @@
+import ModelInterface from "../models/ModelInterface";
+
 export type Listener = () => void;
 
 export default class BaseCompose<Type> {
   private listeners: Listener[];
   value: Type;
+  model: ModelInterface;
 
-  constructor(default_value: Type) {
+  constructor(model: ModelInterface, default_value: Type) {
     this.listeners = [];
+    this.model = model;
     this.value = default_value;
   }
 
