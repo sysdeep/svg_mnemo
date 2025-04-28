@@ -15,7 +15,7 @@ export default function WarehouseArea({ x, y, ctrl }: Props) {
 
       {/* compose */}
       {ctrl.lines.map((line_ctrl, i) => {
-        return <WarehouseLine x={x} y={y + 200 * i} ctrl={line_ctrl} key={i} />;
+        return <WarehouseLine x={x} y={y + 260 * i} ctrl={line_ctrl} key={i} />;
       })}
     </g>
   );

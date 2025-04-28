@@ -26,7 +26,7 @@ export default function WarehouseLine({ x, y, ctrl }: Props) {
 
       <WarehouseTransporter
         x={x + 40}
-        y={y + 200 - 46}
+        y={y + 240 - 46}
         ctrl={ctrl.transporter}
       />
     </g>

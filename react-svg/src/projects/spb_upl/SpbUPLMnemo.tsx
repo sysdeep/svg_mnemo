@@ -10,6 +10,7 @@ import MainGradient from "../../views/common/MainGradient";
 import BunkerGradients from "../../views/bunker/BunkerGradients";
 import warehouse_area_composer from "./composers/warehouse_area_composer";
 import BaseModel from "../../core/models/BaseModel";
+import MainColorizeFilters from "../../views/common/MainColorizeFilters";
 
 export default function SpbUPLMnemo() {
   const max_width = 1280;
@@ -26,6 +27,8 @@ export default function SpbUPLMnemo() {
         <MainGradient />
         <BunkerGradients />
         <LampGradients />
+
+        <MainColorizeFilters />
       </defs>
 
       <rect width={max_width} height={max_height} fill={BlueGray.p200} />
@@ -38,9 +41,9 @@ export default function SpbUPLMnemo() {
 
       <WarehouseArea x={20} y={20} ctrl={wh_area_ctrl} />
 
-      {[...colors_list].map((c, i) => {
+      {/* {[...colors_list].map((c, i) => {
         return <ComplexLamp x={100 + i * 40} y={70} color={c} key={i} />;
-      })}
+      })} */}
     </svg>
   );
 }

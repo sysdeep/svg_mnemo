@@ -9,30 +9,36 @@ type Props = {
   ctrl: WarehouseBunkersAreaCompose;
 };
 
+const x_padding = 8;
+const y_padding = 2;
+
 export const WarehouseBunkersAreaRect = {
-  width: WarehouseBunkerRect.width * 4 + 4,
-  height: WarehouseBunkerRect.height + 4,
+  width: WarehouseBunkerRect.width * 3 + (4 + x_padding) + x_padding * 2,
+  height: WarehouseBunkerRect.height + y_padding * 2,
 };
 
 export default function WarehouseBunkersArea({ x, y, ctrl }: Props) {
+  const debug_rect = true;
   return (
     <g>
-      {/* <rect
-        x={x}
-        y={y}
-        width={WarehouseBunkersAreaRect.width}
-        height={WarehouseBunkersAreaRect.height}
-        stroke="green"
-        strokeWidth={1}
-        fill="none"
-      /> */}
+      {debug_rect && (
+        <rect
+          x={x}
+          y={y}
+          width={WarehouseBunkersAreaRect.width}
+          height={WarehouseBunkersAreaRect.height}
+          stroke="green"
+          strokeWidth={1}
+          fill="none"
+        />
+      )}
 
       {/* bunkers */}
       {ctrl.bunkers.map((bm, i) => {
         return (
           <WarehouseBunker
-            x={x + i * WarehouseBunkerRect.width}
-            y={y}
+            x={x + x_padding + i * (WarehouseBunkerRect.width + x_padding)}
+            y={y + y_padding}
             ctrl={bm}
             key={i}
           />

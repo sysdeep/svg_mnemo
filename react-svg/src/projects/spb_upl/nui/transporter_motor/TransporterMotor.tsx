@@ -12,7 +12,7 @@ export type Props = {
 export default function TransporterMotor({ x, y, ctrl }: Props) {
   const sensors_view = ctrl.sensors.map((sc, i) => {
     const sx = x + i * 14;
-    const sy = y;
+    const sy = y - 10;
     return <DSensorNormalView x={sx} y={sy} ctrl={sc} key={i} size={8} />;
   });
 

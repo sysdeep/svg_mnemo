@@ -1,6 +1,11 @@
 import useCtrl from "../../../../units/useCtrl";
 import Bunker from "../../../../views/bunker/bunker";
 import BunkerGeometry from "../../../../views/bunker/bunker_geometry";
+import {
+  filter_block_colorize_id,
+  filter_error_colorize_id,
+  filter_none_colorize_id,
+} from "../../../../views/common/MainColorizeFilters";
 import BunkerVibroTray from "../bunker_vibro_tray/BunkerVibroTray";
 import WarehouseBunkerCtrl, {
   WarehouseBunkerState,
@@ -14,7 +19,7 @@ type Props = {
 
 export const WarehouseBunkerRect = {
   width: 3 * 28 + 2 * 4,
-  height: 120,
+  height: 160,
 };
 
 export default function WarehouseBunker({ x, y, ctrl }: Props) {
@@ -26,17 +31,22 @@ export default function WarehouseBunker({ x, y, ctrl }: Props) {
     }
   );
 
+  const debug_rect = true;
+
   return (
     <g>
-      <rect
-        x={x}
-        y={y}
-        width={WarehouseBunkerRect.width}
-        height={WarehouseBunkerRect.height}
-        stroke="blue"
-        strokeWidth={1}
-        fill="none"
-      />
+      {/* debug */}
+      {debug_rect && (
+        <rect
+          x={x}
+          y={y}
+          width={WarehouseBunkerRect.width}
+          height={WarehouseBunkerRect.height}
+          stroke="blue"
+          strokeWidth={1}
+          fill="none"
+        />
+      )}
 
       <WarehouseBunkerVM x={x} y={y} ctrl={ctrl} />
 
@@ -64,11 +74,13 @@ function WarehouseBunkerVM({ x, y, ctrl }: Props) {
     max_width: WarehouseBunkerRect.width,
     conus_height: 30,
     out_width: 30,
-    top_height: 90,
+    top_height: 120,
   };
 
+  const filter = get_filter(state);
+
   return (
-    <g onClick={() => ctrl.t_on_click()}>
+    <g onClick={() => ctrl.t_on_click()} filter={`url(#${filter})`}>
       <Bunker x={x} y={y} geometry={geo} />
 
       {/* error effect */}
@@ -84,4 +96,11 @@ function WarehouseBunkerVM({ x, y, ctrl }: Props) {
       )}
     </g>
   );
+}
+
+function get_filter(state: WarehouseBunkerState): string {
+  if (state.is_block) return filter_block_colorize_id;
+  if (state.is_error) return filter_error_colorize_id;
+
+  return filter_none_colorize_id;
 }
