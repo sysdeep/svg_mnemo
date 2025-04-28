@@ -47,7 +47,7 @@ function TransporterMotorVM({ x, y, ctrl }: Props) {
 
   return (
     <g>
-      <Motor x={x} y={y} />
+      <Motor x={x} y={y} is_active={true} />
     </g>
   );
 }

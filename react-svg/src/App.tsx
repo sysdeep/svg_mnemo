@@ -54,6 +54,13 @@ function App() {
   return (
     <>
       <div>
+        <ul>
+          <li>
+            <a href="index_dev">Dev</a>
+          </li>
+        </ul>
+      </div>
+      <div>
         {/* <a href="https://vite.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
         </a>
