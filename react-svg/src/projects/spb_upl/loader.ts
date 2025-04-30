@@ -1,44 +1,39 @@
-import BaseModel from "../../core/models/BaseModel";
 import ModelInterface from "../../core/models/ModelInterface";
+import { ObjectDef } from "../../core/project/object_def";
 import Project from "../../core/project/project";
 import ProjectInterface from "../../core/project/project_interface";
-import { ModelInterfaceConstructor } from "./all_models";
+import { Prototype } from "../../core/project/prototype";
+import { models_map } from "./all_models";
 
-export function load(): ProjectInterface {
-  const pro = new Project();
+export function load(project_data: any): ProjectInterface {
+  // load protos
+  const protos_list = load_protos(project_data["protos"]);
+  const protos_map = map_protos(protos_list);
+
+  // load objects
+  const raw_objects = read_objects(project_data["objects"], protos_map);
+
+  // make project
+  const pro = new Project(protos_map);
+
+  const objects = load_objects(pro, raw_objects);
+  pro.set_objects(objects);
 
   return pro;
 }
 
 function load_objects(
-  objects: any[],
-  protos: ModelInterfaceConstructor[]
+  project: ProjectInterface,
+  objects: ObjectDef[]
 ): ModelInterface[] {
-  //
-  //   const protos_map = protos.reduce((map, p) => {
-  //     map[p.PROTO_NAME] = p;
-  //     return map;
-  //   }, {});
+  return objects
+    .filter((obj_data) => obj_data["name"] !== "root")
+    .map((obj_data) => {
+      const model = create_obj(project, obj_data);
+      return model;
+    });
 
-  const protos_map = new Map(protos.map((i) => [i.PROTO_NAME, i]));
-  // const protos_map: {[key: string], typeof BaseModel} = {};
-  //   for (let proto_class of protos) {
-  //     protos_map[proto_class.PROTO_NAME] = proto_class;
-  // }
-
-  //   return objects
-  //     .filter((obj_data) => obj_data["name"] !== "root")
-  //     .map((obj_data) => {
-  //       //   const sys_id = obj_data["sys_id"]; // sys_id
-  //       const proto_code = obj_data["proto_code"]; // proto code
-  //       // obj_model 	= None
-  //       const proto_class = protos_map.get(proto_code);
-  //       //   let pcls = protos.filter((p) => p.PROTO_NAME === proto_code);
-  //       //   let ppp = pcls[0];
-  //       // new ppp(Project, )
-  //     });
-
-  return [];
+  //   return [];
   /*
     #--- список неиспользованных классов прототипов - для отслеживания лишних
     full_protos_list = list(proto_models_dict.keys())
@@ -179,4 +174,81 @@ function load_objects(
 
 
     */
+}
+
+function load_protos(raw_protos: any[]): Prototype[] {
+  return raw_protos.map((proto: any) => {
+    return {
+      proto_id: proto["proto_id"],
+      name: proto["name"],
+      description: proto["description"],
+      icon: proto["icon"],
+      attrs: proto["attrs"].map((pattr: any) => {
+        return {
+          attr_id: pattr["attr_id"],
+          name: pattr["name"],
+          sname: pattr["sname"],
+          vtype: pattr["vtype"],
+          description: pattr["description"],
+        };
+      }),
+    };
+  });
+}
+
+function map_protos(protos_list: Prototype[]): { [key: string]: Prototype } {
+  return protos_list.reduce(
+    (map: { [key: string]: Prototype }, proto: Prototype) => {
+      map[proto.proto_id] = proto;
+      return map;
+    },
+    {}
+  );
+}
+
+function read_objects(
+  raw_objects: any[],
+  protos_map: { [key: string]: Prototype }
+): ObjectDef[] {
+  return raw_objects.map((robj) => {
+    const proto_name = protos_map[robj["proto_code"]]?.name || "";
+
+    let attrs_values = Object.keys(robj["attrs_values"]).reduce(
+      (map: { [key: number]: any }, str_attr_id: string) => {
+        map[parseInt(str_attr_id)] = robj["attrs_values"][str_attr_id];
+        return map;
+      },
+      {}
+    );
+
+    return {
+      description: robj["description"],
+      name: robj["name"],
+      obj_id: robj["obj_id"],
+      plc_id: robj["plc_id"],
+      proto_code: robj["proto_code"],
+      proto_name,
+      sname: robj["sname"],
+      sys_id: robj["sys_id"],
+      tree_level: robj["tree_level"],
+      tree_lk: robj["tree_lk"],
+      tree_rk: robj["tree_rk"],
+      //   possible_values: [];
+      //   plc_observers: [];
+      attrs_values,
+    };
+  });
+}
+
+function create_obj(
+  project: ProjectInterface,
+  obj_def: ObjectDef
+): ModelInterface {
+  const ModelCls = models_map[obj_def.proto_name];
+
+  if (!ModelCls) {
+    throw new Error("no class for proto: " + obj_def.proto_name);
+  }
+
+  return new ModelCls(project, obj_def.sys_id);
 }
