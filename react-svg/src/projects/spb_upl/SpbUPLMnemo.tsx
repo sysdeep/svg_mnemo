@@ -5,20 +5,21 @@ import { BlueGray } from "../../core/nui/lib/palette";
 import Lamp from "../../views/lamp/Lamp";
 import WarehouseArea from "./nui/warehouse_area/WarehouseArea";
 import LampGradients from "../../views/lamp/LampGradients";
-import { colors_list, LampColor } from "../../views/lamp/lamp_color";
+import { LampColor } from "../../views/lamp/lamp_color";
 import MainGradient from "../../views/common/MainGradient";
 import BunkerGradients from "../../views/bunker/BunkerGradients";
 import warehouse_area_composer from "./composers/warehouse_area_composer";
-import BaseModel from "../../core/models/BaseModel";
 import MainColorizeFilters from "../../views/common/MainColorizeFilters";
+import AbstractObjectModel from "../../core/models/AbstractObjectModel";
+import Project from "../../core/project/project";
 
 export default function SpbUPLMnemo() {
   const max_width = 1280;
   const max_height = 960;
 
-  const root_model = new BaseModel([]);
-
-  const wh_area_ctrl = warehouse_area_composer(root_model);
+  const project = new Project();
+  const warehouse_node = new AbstractObjectModel(project, "warehouse_area");
+  const wh_area_ctrl = warehouse_area_composer(warehouse_node);
 
   return (
     // <svg viewBox="0 0 800 600" width={800} height={600} fill="gray">
