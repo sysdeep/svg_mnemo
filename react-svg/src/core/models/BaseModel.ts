@@ -6,7 +6,7 @@ import ModelInterface from "./ModelInterface";
 type AttrChangeEventHandler = (attr_id: number) => void;
 
 export default class BaseModel implements ModelInterface, AttrModelInterface {
-  protected project: ProjectInterface;
+  protected project: ProjectInterface | null;
   public sys_id: string;
   public static PROTO_NAME = "Base";
   private attr_handlers: AttrChangeEventHandler[];
@@ -15,11 +15,12 @@ export default class BaseModel implements ModelInterface, AttrModelInterface {
   private top_nodes: { [key: string]: string };
 
   constructor(
-    project: ProjectInterface,
+    // project: ProjectInterface,
     sys_id: string,
     attrs_list: Attr<any>[]
   ) {
-    this.project = project;
+    // this.project = project;
+    this.project = null;
     this.sys_id = sys_id;
 
     // init attrs
@@ -36,6 +37,8 @@ export default class BaseModel implements ModelInterface, AttrModelInterface {
   }
 
   public get_node(node_path: string): ModelInterface | null {
+    if (!this.project) return null;
+
     // try get in cache -----------------------------------
     let node_sys_id = this.cache_nodes[node_path];
     if (node_sys_id) return this.project.get_object(node_sys_id);

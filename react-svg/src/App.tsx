@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import "./App.css";
 import Mnemo from "./components/Mnemo";
 import AppCompose from "./units/app/AppCompose";
 import SpbUPLMnemo from "./projects/spb_upl/SpbUPLMnemo";
+import { ProjectContext } from "./ProjectContext";
 
 const state = new AppCompose();
 
@@ -23,6 +24,32 @@ console.log(Math.random() < 0.9); //90% probability of getting true
 */
 
 function App() {
+  // const pro = useContext(ProjectContext);
+
+  return (
+    <>
+      {/* <code>{JSON.stringify(pro)}</code> */}
+      {/* <ProjectLoader /> */}
+      <MnemoApp />
+    </>
+  );
+}
+
+export default App;
+
+// function ProjectLoader() {
+//   useEffect(() => {
+//     console.log("app render");
+//     // fetch("/project.json").then((resp) => {
+//     //   resp.json().then((data) => {
+//     //     console.log(data);
+//     //   });
+//     // });
+//   }, []);
+//   return <h4>Pro</h4>;
+// }
+
+function MnemoApp() {
   useEffect(() => {
     let int = setInterval(() => {
       for (let s of state.main_supply.sensors) {
@@ -85,5 +112,3 @@ function App() {
     </>
   );
 }
-
-export default App;

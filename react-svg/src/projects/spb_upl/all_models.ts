@@ -1,5 +1,7 @@
 import AbstractObjectModel from "../../core/models/AbstractObjectModel";
+import Attr from "../../core/models/attrs/Attr";
 import DSensorModel from "../../core/models/DSensorModel";
+import GenericModel from "../../core/models/GenericModel";
 import ModelInterface from "../../core/models/ModelInterface";
 import ProjectInterface from "../../core/project/project_interface";
 
@@ -9,7 +11,7 @@ import ProjectInterface from "../../core/project/project_interface";
 // export const all_models: (typeof BaseModel)[] = [
 
 export interface ModelInterfaceConstructor {
-  new (project: ProjectInterface, sys_id: string): ModelInterface;
+  new (sys_id: string, attrs_list: Attr<any>[]): ModelInterface;
 }
 
 // export const all_models: (typeof ModelInterface)[] = [
@@ -21,6 +23,7 @@ export interface ModelInterfaceConstructor {
 export type ProtosMap = { [key: string]: ModelInterfaceConstructor };
 
 export const models_map: ProtosMap = {
+  [GenericModel.PROTO_NAME]: GenericModel,
   [DSensorModel.PROTO_NAME]: DSensorModel,
   [AbstractObjectModel.PROTO_NAME]: AbstractObjectModel,
 };
