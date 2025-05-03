@@ -1,6 +1,7 @@
 import { createContext } from "react";
+import ProjectInterface from "./core/project/project_interface";
 
-export const ProjectContext = createContext({});
+export const ProjectContext = createContext<ProjectInterface | null>(null);
 
 // export function useProjectContext() {
 //   const get_project = () => {

@@ -1,6 +1,6 @@
 // type Props = {};
 
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { BlueGray } from "../../core/nui/lib/palette";
 import Lamp from "../../views/lamp/Lamp";
 import WarehouseArea from "./nui/warehouse_area/WarehouseArea";
@@ -12,13 +12,28 @@ import warehouse_area_composer from "./composers/warehouse_area_composer";
 import MainColorizeFilters from "../../views/common/MainColorizeFilters";
 import AbstractObjectModel from "../../core/models/AbstractObjectModel";
 import Project from "../../core/project/project";
+import { ProjectContext } from "../../ProjectContext";
 
 export default function SpbUPLMnemo() {
   const max_width = 1280;
   const max_height = 960;
 
-  const project = new Project();
-  const warehouse_node = new AbstractObjectModel(project, "warehouse_area");
+  const project = useContext(ProjectContext);
+
+  if (!project) {
+    return <h2>No Project</h2>;
+  }
+
+  // const project = new Project();
+  // const warehouse_node = new AbstractObjectModel(project, "warehouse_area");
+  const warehouse_node = project.get_node(
+    "raw_materials_warehouse_control_system.inertUploadSystem.stuffWarehouseArea"
+  );
+
+  if (!warehouse_node) {
+    return <h2>No Node</h2>;
+  }
+
   const wh_area_ctrl = warehouse_area_composer(warehouse_node);
 
   return (

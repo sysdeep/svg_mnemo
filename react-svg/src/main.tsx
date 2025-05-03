@@ -19,11 +19,11 @@ main().then((project_data) => {
   console.log(project);
 
   // draw
-  // createRoot(document.getElementById("root")!).render(
-  //   <StrictMode>
-  //     <ProjectContext.Provider value={project_data}>
-  //       <App />
-  //     </ProjectContext.Provider>
-  //   </StrictMode>
-  // );
+  createRoot(document.getElementById("root")!).render(
+    <StrictMode>
+      <ProjectContext.Provider value={project}>
+        <App />
+      </ProjectContext.Provider>
+    </StrictMode>
+  );
 });

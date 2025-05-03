@@ -1,9 +1,9 @@
 import AbstractObjectModel from "../../core/models/AbstractObjectModel";
-import Attr from "../../core/models/attrs/Attr";
 import DSensorModel from "../../core/models/DSensorModel";
 import GenericModel from "../../core/models/GenericModel";
 import ModelInterface from "../../core/models/ModelInterface";
 import ProjectInterface from "../../core/project/project_interface";
+import { ObjectSpec, ProtoSpec } from "../../core/project/project_spec";
 
 // export const all_models = [DSensorModel, AbstractObjectModel];
 
@@ -11,7 +11,11 @@ import ProjectInterface from "../../core/project/project_interface";
 // export const all_models: (typeof BaseModel)[] = [
 
 export interface ModelInterfaceConstructor {
-  new (sys_id: string, attrs_list: Attr<any>[]): ModelInterface;
+  new (
+    project: ProjectInterface,
+    proto_spec: ProtoSpec,
+    object_spec: ObjectSpec
+  ): ModelInterface;
 }
 
 // export const all_models: (typeof ModelInterface)[] = [

@@ -6,7 +6,15 @@ import warehouse_transporter_composer from "./warehouse_transporter_composer";
 export default function warehouse_line_composer(
   node: ModelInterface
 ): WarehouseLineCompose {
-  const bunkers_area = warehouse_bunkers_area_composer(node);
+  const bunkers_area = warehouse_bunkers_area_composer(
+    node.must_node("bunkerArray")
+  );
+
+  // TODO: проблема... в интерфейсе нельзя указать static а без него нельзя сослаться в классе...
+  // let transporter_model = node
+  //   .get_childrens()
+  //   .find((model) => model.name === "qqq");
+
   const transporter = warehouse_transporter_composer(node);
   return new WarehouseLineCompose(node, bunkers_area, transporter);
 }

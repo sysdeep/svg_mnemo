@@ -1,4 +1,4 @@
-export type ProtoAttr = {
+export type ProtoSpecAttr = {
   attr_id: number;
   name: string;
   sname: string;
@@ -7,15 +7,15 @@ export type ProtoAttr = {
   value: any;
 };
 
-export type Proto = {
+export type ProtoSpec = {
   proto_id: string;
   name: string;
   description: string;
   icon: string;
-  attrs: ProtoAttr[];
+  attrs: ProtoSpecAttr[];
 };
 
-export type Object = {
+export type ObjectSpec = {
   description: string;
   name: string;
   obj_id: string;
@@ -32,11 +32,19 @@ export type Object = {
   attrs_values: { [key: string]: any };
 };
 
-type Body = {
-  objects: Object[];
+export type LinkSpec = {
+  from: string;
+  to: string;
 };
 
-export type ProjectFile = {
-  protos: Proto[];
+type Body = {
+  objects: ObjectSpec[];
+  links: LinkSpec[];
+};
+
+export type ProjectSpec = {
+  name: string;
+  description: string;
+  protos: ProtoSpec[];
   body: Body;
 };

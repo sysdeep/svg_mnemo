@@ -1,4 +1,5 @@
 import ProjectInterface from "../project/project_interface";
+import { ObjectSpec, ProtoSpec, ProtoSpecAttr } from "../project/project_spec";
 import Attr from "./attrs/Attr";
 import AttrModelInterface from "./attrs/AttrModelInterface";
 import ModelInterface from "./ModelInterface";
@@ -6,29 +7,40 @@ import ModelInterface from "./ModelInterface";
 type AttrChangeEventHandler = (attr_id: number) => void;
 
 export default class BaseModel implements ModelInterface, AttrModelInterface {
-  protected project: ProjectInterface | null;
+  protected project: ProjectInterface;
   public sys_id: string;
+  public name: string;
+  public tree_level: number;
+  public tree_lk: number;
+  public tree_rk: number;
   public static PROTO_NAME = "Base";
   private attr_handlers: AttrChangeEventHandler[];
-  private attrs: { [key: number]: Attr<any> };
+  private attrs_map: { [key: number]: Attr<any> };
   private cache_nodes: { [key: string]: string };
   private top_nodes: { [key: string]: string };
 
   constructor(
+    project: ProjectInterface,
+    proto_spec: ProtoSpec,
+    object_spec: ObjectSpec
     // project: ProjectInterface,
-    sys_id: string,
-    attrs_list: Attr<any>[]
+    // sys_id: string,
+    // attrs_list: Attr<any>[]
   ) {
-    // this.project = project;
-    this.project = null;
-    this.sys_id = sys_id;
+    this.project = project;
+    this.sys_id = object_spec.sys_id;
+    this.tree_level = object_spec.tree_level;
+    this.tree_lk = object_spec.tree_lk;
+    this.tree_rk = object_spec.tree_rk;
+    this.name = object_spec.name;
 
     // init attrs
-    this.attrs = {};
-    for (let attr of attrs_list) {
-      this.attrs[attr.id] = attr;
-      attr.connect_listener(this);
-    }
+    // this.attrs = {};
+    // for (let attr of attrs_list) {
+    //   this.attrs[attr.id] = attr;
+    //   attr.connect_listener(this);
+    // }
+    this.attrs_map = this._make_attrs_map(proto_spec, object_spec);
 
     this.attr_handlers = [];
 
@@ -76,13 +88,21 @@ export default class BaseModel implements ModelInterface, AttrModelInterface {
     return next_node;
   }
 
+  public must_node(node_path: string): ModelInterface {
+    let node = this.get_node(node_path);
+    if (!node) {
+      throw new Error(`node ${this.name} no children path - ${node_path}`);
+    }
+    return node;
+  }
+
   public connect_changed(handler: AttrChangeEventHandler) {
     if (this.attr_handlers.includes(handler)) return;
     this.attr_handlers.push(handler);
   }
 
   public get_attr(attr_id: number): Attr<any> {
-    let attr = this.attrs[attr_id];
+    let attr = this.attrs_map[attr_id];
     if (!attr) {
       throw new Error(`no attr with id: ${attr_id} found`);
     }
@@ -90,8 +110,39 @@ export default class BaseModel implements ModelInterface, AttrModelInterface {
   }
 
   public has_attr(attr_id: number): boolean {
-    let attr = this.attrs[attr_id];
+    let attr = this.attrs_map[attr_id];
     return !!attr;
+  }
+
+  get_childrens(): ModelInterface[] {
+    let childrens = this.project.get_objects().filter((obj) => {
+      return (
+        obj.tree_lk > this.tree_lk &&
+        obj.tree_rk < this.tree_rk &&
+        obj.tree_level - 1 === this.tree_level
+      );
+    });
+
+    // TODO
+    //     #--- сортировка
+    //     childrens.sort(key=lambda item: item.tree_lk)
+
+    // TODO
+    //     if links:
+    //         for litem in self.parent.links:
+    //             if litem["from"] == self.sys_id:
+    //                 childrens.append(self.parent.objects[litem["to"]])
+
+    //     if back_links:
+    //         for litem in self.parent.links:
+    //             if litem["to"] == self.sys_id:
+    //                 childrens.append(self.parent.objects[litem["from"]])
+
+    return childrens;
+  }
+
+  append_top_node(node: ModelInterface) {
+    this.top_nodes[node.name] = node.sys_id;
   }
 
   // private ------------------------------------------------------------------
@@ -99,5 +150,41 @@ export default class BaseModel implements ModelInterface, AttrModelInterface {
     for (let h of this.attr_handlers) {
       h(attr_id);
     }
+  }
+
+  _make_attrs_map(proto_spec: ProtoSpec, object_spec: ObjectSpec) {
+    // attrs
+    const attrs_list = proto_spec.attrs.map((proto_attr) => {
+      const obj_value = object_spec.attrs_values
+        ? object_spec.attrs_values[String(proto_attr.attr_id)]
+        : undefined;
+      return this._make_attr(proto_attr, obj_value);
+    });
+
+    return attrs_list.reduce(
+      (map: { [key: number]: Attr<any> }, attr: Attr<any>) => {
+        map[attr.id] = attr;
+        return map;
+      },
+      {}
+    );
+  }
+
+  _make_attr(proto_attr: ProtoSpecAttr, obj_value: any | undefined): Attr<any> {
+    let need_value = obj_value === undefined ? proto_attr.value : obj_value;
+
+    if (proto_attr.vtype === "int") {
+      return new Attr<number>(proto_attr.attr_id, parseInt(need_value));
+    }
+
+    if (proto_attr.vtype === "float") {
+      return new Attr<number>(proto_attr.attr_id, parseFloat(need_value));
+    }
+
+    if (proto_attr.vtype === "string") {
+      return new Attr<string>(proto_attr.attr_id, String(need_value));
+    }
+
+    return new Attr<any>(proto_attr.attr_id, need_value);
   }
 }
