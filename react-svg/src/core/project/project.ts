@@ -1,7 +1,7 @@
 import { Children } from "react";
 import { models_map } from "../../projects/spb_upl/all_models";
 import Attr from "../models/attrs/Attr";
-import GenericModel from "../models/GenericModel";
+import GenericModel, { GenericModelProtoName } from "../models/GenericModel";
 import ModelInterface from "../models/ModelInterface";
 import ProjectInterface from "./project_interface";
 import {
@@ -39,8 +39,8 @@ export default class Project implements ProjectInterface {
     // objects_list: ModelInterface[]
     project_spec: ProjectSpec
   ) {
-    this.name = project_spec.name;
-    this.description = project_spec.description;
+    this.name = project_spec.body.name;
+    this.description = project_spec.body.description;
     this.protos_map = this._make_protos_map(project_spec.protos);
     this.objects_map = this._make_objects_map(
       this._make_models_list(project_spec.body.objects, this.protos_map)
@@ -149,7 +149,7 @@ export default class Project implements ProjectInterface {
     if (!ModelCls) {
       // throw new Error("no class for proto: " + proto.name);
       // console.log("undefined proto name - use generic");
-      ModelCls = models_map[GenericModel.PROTO_NAME];
+      ModelCls = models_map[GenericModelProtoName];
     }
 
     return new ModelCls(this, proto, obj);

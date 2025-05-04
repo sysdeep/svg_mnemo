@@ -1,4 +1,3 @@
-import Attr from "../../core/models/attrs/Attr";
 import BaseModel from "../../core/models/BaseModel";
 import ProjectInterface from "../project/project_interface";
 import { ObjectSpec, ProtoSpec } from "../project/project_spec";
@@ -14,9 +13,11 @@ enum Attrs {
   block = 3,
 }
 
+export const DSensorModelProtoName = "DSensor";
+
 export default class DSensorModel extends BaseModel {
+  proto_name: string = DSensorModelProtoName;
   public static Attrs = Attrs;
-  public static PROTO_NAME = "DSensor";
 
   constructor(
     project: ProjectInterface,

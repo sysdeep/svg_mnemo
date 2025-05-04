@@ -38,13 +38,13 @@ export type LinkSpec = {
 };
 
 type Body = {
+  name: string;
+  description: string;
   objects: ObjectSpec[];
   links: LinkSpec[];
 };
 
 export type ProjectSpec = {
-  name: string;
-  description: string;
   protos: ProtoSpec[];
   body: Body;
 };

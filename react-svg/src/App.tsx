@@ -4,6 +4,7 @@ import Mnemo from "./components/Mnemo";
 import AppCompose from "./units/app/AppCompose";
 import SpbUPLMnemo from "./projects/spb_upl/SpbUPLMnemo";
 import { ProjectContext } from "./ProjectContext";
+import ProjectModal from "./projects/spb_upl/project_modal/ProjectModal";
 
 const state = new AppCompose();
 
@@ -28,6 +29,7 @@ function App() {
 
   return (
     <>
+      <ProjectModal />
       {/* <code>{JSON.stringify(pro)}</code> */}
       {/* <ProjectLoader /> */}
       <MnemoApp />

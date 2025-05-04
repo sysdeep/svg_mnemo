@@ -2,18 +2,19 @@ import ProjectInterface from "../project/project_interface";
 import { ObjectSpec, ProtoSpec, ProtoSpecAttr } from "../project/project_spec";
 import Attr from "./attrs/Attr";
 import AttrModelInterface from "./attrs/AttrModelInterface";
-import ModelInterface from "./ModelInterface";
+import ModelInterface, { AttrChangeEventHandler } from "./ModelInterface";
 
-type AttrChangeEventHandler = (attr_id: number) => void;
+export const BaseModelProtoName = "Base";
 
 export default class BaseModel implements ModelInterface, AttrModelInterface {
+  proto_name: string = BaseModelProtoName;
+  proto_id: string;
   protected project: ProjectInterface;
   public sys_id: string;
   public name: string;
   public tree_level: number;
   public tree_lk: number;
   public tree_rk: number;
-  public static PROTO_NAME = "Base";
   private attr_handlers: AttrChangeEventHandler[];
   private attrs_map: { [key: number]: Attr<any> };
   private cache_nodes: { [key: string]: string };
@@ -33,6 +34,7 @@ export default class BaseModel implements ModelInterface, AttrModelInterface {
     this.tree_lk = object_spec.tree_lk;
     this.tree_rk = object_spec.tree_rk;
     this.name = object_spec.name;
+    this.proto_id = proto_spec.proto_id;
 
     // init attrs
     // this.attrs = {};
@@ -100,6 +102,10 @@ export default class BaseModel implements ModelInterface, AttrModelInterface {
     if (this.attr_handlers.includes(handler)) return;
     this.attr_handlers.push(handler);
   }
+  public disconnect_changed(handler: AttrChangeEventHandler) {
+    if (!this.attr_handlers.includes(handler)) return;
+    this.attr_handlers = this.attr_handlers.filter((h) => h !== handler);
+  }
 
   public get_attr(attr_id: number): Attr<any> {
     let attr = this.attrs_map[attr_id];
@@ -145,6 +151,33 @@ export default class BaseModel implements ModelInterface, AttrModelInterface {
     this.top_nodes[node.name] = node.sys_id;
   }
 
+  get_proto(): ProtoSpec {
+    const proto = this.project.get_proto(this.proto_id);
+    if (!proto) {
+      throw new Error("No proto with id: " + this.proto_id);
+    }
+    return proto;
+  }
+
+  set_attr_value(attr_id: number, value: any) {
+    console.log(`set attr value: ${attr_id} - ${value}`);
+    const attr = this.attrs_map[attr_id];
+    if (!attr) {
+      throw new Error(`${this.name} - no attr with id: ${attr_id}`);
+    }
+
+    const need_value = Attr.convert(attr.vtype, value);
+    attr.set_value(need_value);
+  }
+
+  get_attr_value(attr_id: number): any {
+    return this.get_attr(attr_id).get_value();
+  }
+
+  get_attrs(): Attr<any>[] {
+    return Object.values(this.attrs_map);
+  }
+
   // private ------------------------------------------------------------------
   on_attr_changed(attr_id: number): void {
     for (let h of this.attr_handlers) {
@@ -158,7 +191,8 @@ export default class BaseModel implements ModelInterface, AttrModelInterface {
       const obj_value = object_spec.attrs_values
         ? object_spec.attrs_values[String(proto_attr.attr_id)]
         : undefined;
-      return this._make_attr(proto_attr, obj_value);
+      let attr = this._make_attr(proto_attr, obj_value);
+      return attr;
     });
 
     return attrs_list.reduce(
@@ -170,21 +204,22 @@ export default class BaseModel implements ModelInterface, AttrModelInterface {
     );
   }
 
+  // TODO: use Attr.convert
   _make_attr(proto_attr: ProtoSpecAttr, obj_value: any | undefined): Attr<any> {
     let need_value = obj_value === undefined ? proto_attr.value : obj_value;
 
     if (proto_attr.vtype === "int") {
-      return new Attr<number>(proto_attr.attr_id, parseInt(need_value));
+      return new Attr<number>(this, proto_attr, parseInt(need_value));
     }
 
     if (proto_attr.vtype === "float") {
-      return new Attr<number>(proto_attr.attr_id, parseFloat(need_value));
+      return new Attr<number>(this, proto_attr, parseFloat(need_value));
     }
 
     if (proto_attr.vtype === "string") {
-      return new Attr<string>(proto_attr.attr_id, String(need_value));
+      return new Attr<string>(this, proto_attr, String(need_value));
     }
 
-    return new Attr<any>(proto_attr.attr_id, need_value);
+    return new Attr<any>(this, proto_attr, need_value);
   }
 }

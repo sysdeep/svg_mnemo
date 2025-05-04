@@ -1,6 +1,12 @@
-import AbstractObjectModel from "../../core/models/AbstractObjectModel";
-import DSensorModel from "../../core/models/DSensorModel";
-import GenericModel from "../../core/models/GenericModel";
+import AbstractObjectModel, {
+  AbstractObjectModelProtoName,
+} from "../../core/models/AbstractObjectModel";
+import DSensorModel, {
+  DSensorModelProtoName,
+} from "../../core/models/DSensorModel";
+import GenericModel, {
+  GenericModelProtoName,
+} from "../../core/models/GenericModel";
 import ModelInterface from "../../core/models/ModelInterface";
 import ProjectInterface from "../../core/project/project_interface";
 import { ObjectSpec, ProtoSpec } from "../../core/project/project_spec";
@@ -27,9 +33,9 @@ export interface ModelInterfaceConstructor {
 export type ProtosMap = { [key: string]: ModelInterfaceConstructor };
 
 export const models_map: ProtosMap = {
-  [GenericModel.PROTO_NAME]: GenericModel,
-  [DSensorModel.PROTO_NAME]: DSensorModel,
-  [AbstractObjectModel.PROTO_NAME]: AbstractObjectModel,
+  [GenericModelProtoName]: GenericModel,
+  [DSensorModelProtoName]: DSensorModel,
+  [AbstractObjectModelProtoName]: AbstractObjectModel,
 };
 
 /**

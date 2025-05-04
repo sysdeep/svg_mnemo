@@ -1,13 +1,14 @@
-import Attr from "../../core/models/attrs/Attr";
 import BaseModel from "../../core/models/BaseModel";
 import ProjectInterface from "../project/project_interface";
 import { ObjectSpec, ProtoSpec } from "../project/project_spec";
 
 enum Attrs {}
 
+export const GenericModelProtoName = "Generic";
+
 export default class GenericModel extends BaseModel {
+  proto_name: string = GenericModelProtoName;
   public static Attrs = Attrs;
-  public static PROTO_NAME = "Generic";
 
   constructor(
     project: ProjectInterface,

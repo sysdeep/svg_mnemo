@@ -1,9 +1,15 @@
+// vendors
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import "./index.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "winbox/dist/css/winbox.min.css"; // required
+import "winbox/dist/css/themes/modern.min.css"; // optional
+
+// import "./index.css";
 import App from "./App.tsx";
 import { ProjectContext } from "./ProjectContext.ts";
 import { make_project } from "./projects/spb_upl/loader.ts";
+import "./bootstrap_tree.css";
 
 async function main(): Promise<any> {
   const resp = await fetch("/project.json");
