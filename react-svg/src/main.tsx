@@ -10,6 +10,11 @@ import App from "./App.tsx";
 import { ProjectContext } from "./ProjectContext.ts";
 import { make_project } from "./projects/spb_upl/loader.ts";
 import "./bootstrap_tree.css";
+import {
+  ObjectsModalContext,
+  ObjectsModalContextProvider,
+} from "./contexts/ObjectsModalContext";
+import ObjectsModalManager from "./projects/spb_upl/ObjectsModalManager.tsx";
 
 async function main(): Promise<any> {
   const resp = await fetch("/project.json");
@@ -28,7 +33,10 @@ main().then((project_data) => {
   createRoot(document.getElementById("root")!).render(
     <StrictMode>
       <ProjectContext.Provider value={project}>
-        <App />
+        <ObjectsModalContextProvider>
+          <App />
+          <ObjectsModalManager />
+        </ObjectsModalContextProvider>
       </ProjectContext.Provider>
     </StrictMode>
   );

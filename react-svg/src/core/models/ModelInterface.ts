@@ -7,6 +7,7 @@ export default interface ModelInterface {
   proto_name: string;
   sys_id: string;
   name: string;
+  sname: string;
 
   tree_level: number;
   tree_lk: number;

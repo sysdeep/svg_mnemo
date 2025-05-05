@@ -12,6 +12,7 @@ export default class BaseModel implements ModelInterface, AttrModelInterface {
   protected project: ProjectInterface;
   public sys_id: string;
   public name: string;
+  public sname: string;
   public tree_level: number;
   public tree_lk: number;
   public tree_rk: number;
@@ -34,6 +35,7 @@ export default class BaseModel implements ModelInterface, AttrModelInterface {
     this.tree_lk = object_spec.tree_lk;
     this.tree_rk = object_spec.tree_rk;
     this.name = object_spec.name;
+    this.sname = object_spec.sname;
     this.proto_id = proto_spec.proto_id;
 
     // init attrs

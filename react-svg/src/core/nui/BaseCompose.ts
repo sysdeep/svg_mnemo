@@ -19,6 +19,12 @@ export default class BaseCompose<Type> {
     }
   }
 
+  public disconnect(handler: Listener) {
+    if (this.listeners.includes(handler)) {
+      this.listeners = this.listeners.filter((l) => l !== handler);
+    }
+  }
+
   public set_state(st: Type) {
     this.value = st;
     this.emit();

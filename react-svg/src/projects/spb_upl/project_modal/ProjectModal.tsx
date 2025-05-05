@@ -4,7 +4,7 @@ import ProjectFrame from "./ProjectFrame";
 import { ProjectContext } from "../../../ProjectContext";
 
 export default function ProjectModal() {
-  const [isOpen, setIsOpen] = useState<boolean>(true);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   const project = useContext(ProjectContext);
 
   return (

@@ -1,0 +1,55 @@
+import { useEffect, useState } from "react";
+
+export default function useContextMenu() {
+  const [clicked, setClicked] = useState(false);
+  const [points, setPoints] = useState({
+    x: 0,
+    y: 0,
+  });
+
+  useEffect(() => {
+    const handleClick = () => setClicked(false);
+    document.addEventListener("click", handleClick);
+    return () => {
+      document.removeEventListener("click", handleClick);
+    };
+  }, []);
+
+  const onContextMenu = (e: any) => {
+    e.preventDefault();
+    // console.log("wh cm called", e.pageX, e.pageY);
+    setClicked(true);
+    setPoints({ x: e.pageX, y: e.pageY });
+  };
+
+  return {
+    clicked,
+    // setClicked,
+    points,
+    // setPoints,
+    onContextMenu,
+  };
+}
+
+// export default function useContextMenu() {
+//   const [clicked, setClicked] = useState(false);
+//   const [points, setPoints] = useState({
+//     x: 0,
+//     y: 0,
+//   });
+
+//   useEffect(() => {
+//     const handleClick = () => setClicked(false);
+//     document.addEventListener("click", handleClick);
+//     return () => {
+//       document.removeEventListener("click", handleClick);
+//     };
+//   }, []);
+
+//   return {
+//     clicked,
+//     setClicked,
+//     points,
+//     setPoints,
+//   };
+// }

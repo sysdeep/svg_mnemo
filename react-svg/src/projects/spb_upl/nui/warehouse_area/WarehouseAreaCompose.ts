@@ -3,7 +3,7 @@ import BaseCompose from "../../../../core/nui/BaseCompose";
 import WarehouseLineCompose from "../warehouse_line/WarehouseLineCompose";
 
 export type WarehouseAreaState = {
-  //   is_block: boolean;
+  // is_block: boolean;
   //   is_error: boolean;
   //   logic: number;
 };

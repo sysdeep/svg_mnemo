@@ -30,6 +30,7 @@ function App() {
   return (
     <>
       <ProjectModal />
+
       {/* <code>{JSON.stringify(pro)}</code> */}
       {/* <ProjectLoader /> */}
       <MnemoApp />
