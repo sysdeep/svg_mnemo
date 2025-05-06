@@ -1,16 +1,14 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import WarehouseLine from "../warehouse_line/WarehouseLine";
 import WarehouseAreaCompose, {
   WarehouseAreaState,
 } from "./WarehouseAreaCompose";
-import { createPortal } from "react-dom";
 import useContextMenu from "../../../../core/components/context_menu/useContextMenu";
 import ContextMenu from "../../../../core/components/context_menu/ContextMenu";
 import ContextMenuAction from "../../../../core/components/context_menu/ContextMenuAction";
-import ContextMenuText from "../../../../core/components/context_menu/ContextMenuText";
 import ContextMenuDivider from "../../../../core/components/context_menu/ContextMenuDivider";
 import ContextMenuHeader from "../../../../core/components/context_menu/ContextMenuHeader";
-import { ObjectsModalContext } from "../../../../contexts/ObjectsModalContext";
+import useObjectsModalsStore from "../../../../stores/objects_modals_store";
 
 type Props = {
   x: number;
@@ -56,7 +54,7 @@ function WarehouseAreaVM({ x, y, ctrl }: Props) {
   const [color, setColor] = useState<string>("black");
   const [st, setSt] = useState<WarehouseAreaState>({ ...ctrl.value });
 
-  const { show_modal } = useContext(ObjectsModalContext);
+  const { open_modal } = useObjectsModalsStore();
 
   useEffect(() => {
     const on_state = () => {
@@ -69,11 +67,6 @@ function WarehouseAreaVM({ x, y, ctrl }: Props) {
   }, []);
 
   const { clicked, points, onContextMenu } = useContextMenu();
-
-  const onSettings = () => {
-    console.log("show settings");
-    show_modal(ctrl.model);
-  };
 
   return (
     <rect
@@ -99,7 +92,9 @@ function WarehouseAreaVM({ x, y, ctrl }: Props) {
 
         <ContextMenuDivider />
 
-        <ContextMenuAction onClick={onSettings}>Settings</ContextMenuAction>
+        <ContextMenuAction onClick={() => open_modal(ctrl.model)}>
+          Settings
+        </ContextMenuAction>
       </ContextMenu>
     </rect>
   );

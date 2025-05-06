@@ -1,13 +1,12 @@
-import { useContext } from "react";
 import WarehouseBunkersArea from "../warehouse_bunkers_area/WarehouseBunkersArea";
 import WarehouseTransporter from "../warehouse_transporter/WarehouseTransporter";
 import WarehouseLineCompose from "./WarehouseLineCompose";
-import { ObjectsModalContext } from "../../../../contexts/ObjectsModalContext";
 import ContextMenu from "../../../../core/components/context_menu/ContextMenu";
 import useContextMenu from "../../../../core/components/context_menu/useContextMenu";
 import ContextMenuHeader from "../../../../core/components/context_menu/ContextMenuHeader";
 import ContextMenuAction from "../../../../core/components/context_menu/ContextMenuAction";
 import ContextMenuDivider from "../../../../core/components/context_menu/ContextMenuDivider";
+import useObjectsModalsStore from "../../../../stores/objects_modals_store";
 
 type Props = {
   x: number;
@@ -34,8 +33,8 @@ export default function WarehouseLine({ x, y, ctrl }: Props) {
 }
 
 function WarehouseLineVM({ x, y, ctrl }: Props) {
-  const { show_modal } = useContext(ObjectsModalContext);
   const { clicked, points, onContextMenu } = useContextMenu();
+  const { open_modal } = useObjectsModalsStore();
 
   return (
     <rect
@@ -59,7 +58,7 @@ function WarehouseLineVM({ x, y, ctrl }: Props) {
 
         <ContextMenuDivider />
 
-        <ContextMenuAction onClick={() => show_modal(ctrl.model)}>
+        <ContextMenuAction onClick={() => open_modal(ctrl.model)}>
           Settings
         </ContextMenuAction>
       </ContextMenu>

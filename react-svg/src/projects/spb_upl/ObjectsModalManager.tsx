@@ -1,10 +1,9 @@
-import { useContext } from "react";
-import { ObjectsModalContext } from "../../contexts/ObjectsModalContext";
 import WinBox from "react-winbox";
 import ModelInterface from "../../core/models/ModelInterface";
+import useObjectsModalsStore from "../../stores/objects_modals_store";
 
 export default function ObjectsModalManager() {
-  const { modals, hide_modal } = useContext(ObjectsModalContext);
+  const { modals, close_modal } = useObjectsModalsStore();
 
   // TODO: тут какая то проблема с закрытием
   // при закрытии первого, событие приходит к последующему но с флагом force=true
@@ -19,23 +18,22 @@ export default function ObjectsModalManager() {
     console.log("on close: " + obj.sname, " " + `${force}`);
     if (force) return true;
 
-    setTimeout(() => hide_modal(obj)); // to change winbox showing state while `onclose`, MUST wrap it within `setTimeout`
+    setTimeout(() => close_modal(obj)); // to change winbox showing state while `onclose`, MUST wrap it within `setTimeout`
   };
 
   return (
     <div>
-      <p>{modals.length}</p>
+      <p>store modals: {modals.length}</p>
 
       <div>
-        {/* <button onClick={() => setWindows([...windows, 1])}>add window</button> */}
-        {modals.map((info, i) => (
+        {modals.map((info) => (
           <WinBox
-            key={i}
-            id={info.model.sys_id}
-            onClose={(force) => handleClose(force, info.model)}
-            title={info.model.sname}
+            key={info.obj.sys_id}
+            id={info.obj.sys_id}
+            onClose={(force) => handleClose(force, info.obj)}
+            title={info.obj.sname}
           >
-            <div>Some children: {info.model.sname}</div>
+            <div>Some children: {info.obj.sname}</div>
           </WinBox>
         ))}
       </div>
