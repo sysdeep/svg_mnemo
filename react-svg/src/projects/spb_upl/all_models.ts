@@ -1,6 +1,12 @@
+import AbstractActionObjModel, {
+  AbstractActionObjModelProtoName,
+} from "../../core/models/AbstractActionObjModel";
 import AbstractObjectModel, {
   AbstractObjectModelProtoName,
 } from "../../core/models/AbstractObjectModel";
+import BeltTransporterModel, {
+  BeltTransporterModelProtoName,
+} from "../../core/models/BeltTransporterModel";
 import DSensorModel, {
   DSensorModelProtoName,
 } from "../../core/models/DSensorModel";
@@ -11,11 +17,6 @@ import ModelInterface from "../../core/models/ModelInterface";
 import ProjectInterface from "../../core/project/project_interface";
 import { ObjectSpec, ProtoSpec } from "../../core/project/project_spec";
 
-// export const all_models = [DSensorModel, AbstractObjectModel];
-
-// export const all_models_2: Array<typeof BaseModel> = [
-// export const all_models: (typeof BaseModel)[] = [
-
 export interface ModelInterfaceConstructor {
   new (
     project: ProjectInterface,
@@ -24,18 +25,17 @@ export interface ModelInterfaceConstructor {
   ): ModelInterface;
 }
 
-// export const all_models: (typeof ModelInterface)[] = [
-// export const all_models: ModelInterfaceConstructor[] = [
-//   DSensorModel,
-//   AbstractObjectModel,
-// ];
-
 export type ProtosMap = { [key: string]: ModelInterfaceConstructor };
 
+/**
+ * карта всех классов моделей используемых в проекте
+ */
 export const models_map: ProtosMap = {
   [GenericModelProtoName]: GenericModel,
   [DSensorModelProtoName]: DSensorModel,
   [AbstractObjectModelProtoName]: AbstractObjectModel,
+  [BeltTransporterModelProtoName]: BeltTransporterModel,
+  [AbstractActionObjModelProtoName]: AbstractActionObjModel,
 };
 
 /**

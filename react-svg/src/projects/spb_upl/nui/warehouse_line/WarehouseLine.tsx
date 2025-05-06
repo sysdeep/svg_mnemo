@@ -42,9 +42,9 @@ function WarehouseLineVM({ x, y, ctrl }: Props) {
       y={y}
       width={400}
       height={200}
-      stroke="red"
-      strokeWidth={1}
-      // fill="none"
+      // stroke="red"
+      // strokeWidth={1}
+      fillOpacity={0}
       onContextMenu={onContextMenu}
     >
       <title>{ctrl.model.sname}</title>

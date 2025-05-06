@@ -1,5 +1,5 @@
 import { useState } from "react";
-import ModelInterface from "../../../../core/models/ModelInterface";
+import ModelInterface from "../../models/ModelInterface";
 import EmuFrame from "./emu_frame/EmuFrame";
 import InfoFrame from "./info_frame/InfoFrame";
 import PackagesFrame from "./packages_frame/PackagesFrame";
@@ -48,30 +48,32 @@ export default function ObjectFrame({ obj }: Props) {
   };
 
   return (
-    <div>
-      <div>
-        <ul className="nav nav-tabs">
-          {pages.map((page, i) => {
-            const a_class = i === index ? "nav-link active" : "nav-link";
-            return (
-              <li className="nav-item" key={i}>
-                {/* TODO */}
-                {/* <a className="nav-link active" aria-current="page" href="#"></a> */}
-                <a
-                  className={a_class}
-                  aria-current="page"
-                  href="#"
-                  onClick={(e) => on_select(e, i)}
-                >
-                  {page.name}
-                </a>
-              </li>
-            );
-          })}
-        </ul>
-      </div>
+    <div className="row">
+      <div className="col-12">
+        <div>
+          <ul className="nav nav-tabs">
+            {pages.map((page, i) => {
+              const a_class = i === index ? "nav-link active" : "nav-link";
+              return (
+                <li className="nav-item" key={i}>
+                  {/* TODO */}
+                  {/* <a className="nav-link active" aria-current="page" href="#"></a> */}
+                  <a
+                    className={a_class}
+                    aria-current="page"
+                    href="#"
+                    onClick={(e) => on_select(e, i)}
+                  >
+                    {page.name}
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
 
-      <div>{pages[index].component(obj)}</div>
+        <div>{pages[index].component(obj)}</div>
+      </div>
     </div>
   );
 }

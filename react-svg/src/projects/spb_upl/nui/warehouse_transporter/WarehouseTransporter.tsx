@@ -1,6 +1,16 @@
+import { useEffect, useState } from "react";
+import ContextMenu from "../../../../core/components/context_menu/ContextMenu";
+import ContextMenuAction from "../../../../core/components/context_menu/ContextMenuAction";
+import ContextMenuDivider from "../../../../core/components/context_menu/ContextMenuDivider";
+import ContextMenuHeader from "../../../../core/components/context_menu/ContextMenuHeader";
+import useContextMenu from "../../../../core/components/context_menu/useContextMenu";
+import useObjectsModalsStore from "../../../../stores/objects_modals_store";
 import { Belt } from "../../../../views/belt";
+import ObjectContextMenu from "../components/ObjectContextMenu";
 import TransporterMotor from "../transporter_motor/TransporterMotor";
-import WarehouseTransporterCompose from "./WarehouseTransporterCompose";
+import WarehouseTransporterCompose, {
+  WarehouseTransporterState,
+} from "./WarehouseTransporterCompose";
 
 type Props = {
   x: number;
@@ -11,18 +21,70 @@ type Props = {
 export default function WarehouseTransporter({ x, y, ctrl }: Props) {
   return (
     <g>
-      {/* <rect
+      {/* self */}
+      <WarehouseTransporterVM x={x} y={y} ctrl={ctrl} />
+
+      <TransporterMotor x={x + 40} y={y + 8} ctrl={ctrl.motor} />
+    </g>
+  );
+}
+
+function WarehouseTransporterVM({ x, y, ctrl }: Props) {
+  const { clicked, points, onContextMenu } = useContextMenu();
+  const [st, setSt] = useState<WarehouseTransporterState>({ ...ctrl.value });
+
+  useEffect(() => {
+    const on_change = () => setSt({ ...ctrl.value });
+
+    ctrl.connect(on_change);
+
+    return () => ctrl.disconnect(on_change);
+  }, []);
+
+  return (
+    <g>
+      <rect
         x={x}
         y={y}
         width={380}
         height={40}
         stroke="green"
         strokeWidth={1}
-        fill="none"
-      /> */}
+        // fill="none"
+        fillOpacity={0}
+        onContextMenu={onContextMenu}
+      >
+        <title>{ctrl.model.sname}</title>
 
+        {/* ----------------------------- */}
+        <ObjectContextMenu
+          model={ctrl.model}
+          top={points.y}
+          left={points.x}
+          active={clicked}
+        >
+          {/* <ContextMenuAction onClick={() => console.log("menu click, aaaa")}>
+            test aaaaa
+          </ContextMenuAction> */}
+        </ObjectContextMenu>
+        {/* ----------------------------- */}
+      </rect>
+
+      {st.is_block && (
+        <text x={x} y={y}>
+          BLOCK!!!
+        </text>
+      )}
+
+      {st.is_error && (
+        <text x={x} y={y + 16} stroke="red">
+          ERROR!!!
+        </text>
+      )}
       <Belt x={x} y={y} />
-      <TransporterMotor x={x + 40} y={y + 8} ctrl={ctrl.motor} />
+      {/* <text x={x} y={y - 22}>
+        {JSON.stringify(st)}
+      </text> */}
     </g>
   );
 }

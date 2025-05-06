@@ -1,6 +1,7 @@
 import WinBox from "react-winbox";
 import ModelInterface from "../../core/models/ModelInterface";
 import useObjectsModalsStore from "../../stores/objects_modals_store";
+import ObjectFrame from "../../core/gui/object_frame/ObjectFrame";
 
 export default function ObjectsModalManager() {
   const { modals, close_modal } = useObjectsModalsStore();
@@ -32,8 +33,12 @@ export default function ObjectsModalManager() {
             id={info.obj.sys_id}
             onClose={(force) => handleClose(force, info.obj)}
             title={info.obj.sname}
+            width={600}
+            height={700}
           >
-            <div>Some children: {info.obj.sname}</div>
+            <div style={{ padding: "1rem" }}>
+              <ObjectFrame obj={info.obj} />
+            </div>
           </WinBox>
         ))}
       </div>

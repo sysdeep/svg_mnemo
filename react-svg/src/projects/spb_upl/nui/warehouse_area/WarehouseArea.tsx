@@ -51,51 +51,58 @@ export default function WarehouseArea({ x, y, ctrl }: Props) {
 }
 
 function WarehouseAreaVM({ x, y, ctrl }: Props) {
-  const [color, setColor] = useState<string>("black");
-  const [st, setSt] = useState<WarehouseAreaState>({ ...ctrl.value });
+  // const [color, setColor] = useState<string>("black");
+  // const [st, setSt] = useState<WarehouseAreaState>({ ...ctrl.value });
 
   const { open_modal } = useObjectsModalsStore();
 
-  useEffect(() => {
-    const on_state = () => {
-      console.log("wh area state changed");
-      setSt({ ...ctrl.value });
-    };
-    ctrl.connect(on_state);
+  // useEffect(() => {
+  //   const on_state = () => {
+  //     console.log("wh area state changed");
+  //     setSt({ ...ctrl.value });
+  //   };
+  //   ctrl.connect(on_state);
 
-    return () => ctrl.disconnect(on_state);
-  }, []);
+  //   return () => ctrl.disconnect(on_state);
+  // }, []);
 
   const { clicked, points, onContextMenu } = useContextMenu();
 
   return (
-    <rect
-      x={x}
-      y={y}
-      width={400}
-      height={400}
-      stroke={color}
-      strokeWidth={1}
-      // fill={fill_color}
-      // fill="none"
-      // onMouseEnter={() => setColor("red")}
-      // onMouseLeave={() => setColor("black")}
-      onContextMenu={onContextMenu}
-    >
-      <title>{ctrl.model.sname}</title>
-      <ContextMenu top={points.y} left={points.x} active={clicked}>
-        <ContextMenuHeader>{ctrl.model.sname}</ContextMenuHeader>
+    <g>
+      <rect
+        x={x}
+        y={y}
+        width={400}
+        height={400}
+        // stroke={color}
+        // strokeWidth={1}
+        fillOpacity={0}
+        // fill={fill_color}
+        // fill="none"
+        // onMouseEnter={() => setColor("red")}
+        // onMouseLeave={() => setColor("black")}
+        onContextMenu={onContextMenu}
+      >
+        <title>{ctrl.model.sname}</title>
+        <ContextMenu top={points.y} left={points.x} active={clicked}>
+          <ContextMenuHeader>{ctrl.model.sname}</ContextMenuHeader>
 
-        <ContextMenuAction onClick={() => console.log("menu click, aaaa")}>
-          test aaaaa
-        </ContextMenuAction>
+          {/* <ContextMenuAction onClick={() => console.log("menu click, aaaa")}>
+            test aaaaa
+          </ContextMenuAction> */}
 
-        <ContextMenuDivider />
+          <ContextMenuDivider />
 
-        <ContextMenuAction onClick={() => open_modal(ctrl.model)}>
-          Settings
-        </ContextMenuAction>
-      </ContextMenu>
-    </rect>
+          <ContextMenuAction onClick={() => open_modal(ctrl.model)}>
+            Settings
+          </ContextMenuAction>
+        </ContextMenu>
+      </rect>
+
+      {/* <text x={x} y={y}>
+        {ctrl.model.sname}
+      </text> */}
+    </g>
   );
 }

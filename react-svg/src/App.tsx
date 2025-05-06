@@ -1,10 +1,8 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect } from "react";
 import "./App.css";
-import Mnemo from "./components/Mnemo";
 import AppCompose from "./units/app/AppCompose";
 import SpbUPLMnemo from "./projects/spb_upl/SpbUPLMnemo";
-import { ProjectContext } from "./ProjectContext";
-import ProjectModal from "./projects/spb_upl/project_modal/ProjectModal";
+import ProjectModal from "./core/gui/project_modal/ProjectModal";
 
 const state = new AppCompose();
 

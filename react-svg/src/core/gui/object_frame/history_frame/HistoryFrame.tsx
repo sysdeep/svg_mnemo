@@ -1,4 +1,4 @@
-import ModelInterface from "../../../../../core/models/ModelInterface";
+import ModelInterface from "../../../models/ModelInterface";
 
 type Props = {
   obj: ModelInterface;

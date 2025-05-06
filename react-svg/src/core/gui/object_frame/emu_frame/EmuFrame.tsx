@@ -1,4 +1,4 @@
-import ModelInterface from "../../../../../core/models/ModelInterface";
+import ModelInterface from "../../../models/ModelInterface";
 import ObjectInfoPanel from "../components/ObjectInfoPanel";
 import EmuForm from "./EmuForm";
 

@@ -1,3 +1,4 @@
+import { BeltTransporterModelProtoName } from "../../../core/models/BeltTransporterModel";
 import ModelInterface from "../../../core/models/ModelInterface";
 import WarehouseLineCompose from "../nui/warehouse_line/WarehouseLineCompose";
 import warehouse_bunkers_area_composer from "./warehouse_bunkers_area_composer";
@@ -11,10 +12,16 @@ export default function warehouse_line_composer(
   );
 
   // TODO: проблема... в интерфейсе нельзя указать static а без него нельзя сослаться в классе...
-  // let transporter_model = node
-  //   .get_childrens()
-  //   .find((model) => model.name === "qqq");
+  let transporter_model = node
+    .get_childrens()
+    .find((model) => model.proto_name === BeltTransporterModelProtoName);
 
-  const transporter = warehouse_transporter_composer(node);
+  if (!transporter_model) {
+    throw new Error(
+      `${node.name} no children - ${BeltTransporterModelProtoName}`
+    );
+  }
+
+  const transporter = warehouse_transporter_composer(transporter_model);
   return new WarehouseLineCompose(node, bunkers_area, transporter);
 }

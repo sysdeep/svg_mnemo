@@ -1,6 +1,6 @@
 import { useState } from "react";
 import ModelInterface from "../../../core/models/ModelInterface";
-import ObjectFrame from "./object_frame/ObjectFrame";
+import ObjectFrame from "../../../core/gui/object_frame/ObjectFrame";
 import ProjectTree from "./tree_frame/ProjectTree";
 
 // TODO: global render
