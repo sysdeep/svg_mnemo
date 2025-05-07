@@ -2,17 +2,13 @@
 
 import { useContext, useState } from "react";
 import { BlueGray } from "../../core/nui/lib/palette";
-import Lamp from "../../views/lamp/Lamp";
 import WarehouseArea from "./nui/warehouse_area/WarehouseArea";
-import LampGradients from "../../views/lamp/LampGradients";
-import { LampColor } from "../../views/lamp/lamp_color";
-import MainGradient from "../../views/common/MainGradient";
-import BunkerGradients from "../../views/bunker/BunkerGradients";
 import warehouse_area_composer from "./composers/warehouse_area_composer";
-import MainColorizeFilters from "../../views/common/MainColorizeFilters";
-import AbstractObjectModel from "../../core/models/AbstractObjectModel";
-import Project from "../../core/project/project";
 import { ProjectContext } from "../../ProjectContext";
+import MainGradient from "../../core/views/common/MainGradient";
+import BunkerGradients from "../../core/views/bunker/BunkerGradients";
+import LampGradients from "../../core/views/lamp/LampGradients";
+import MainColorizeFilters from "../../core/views/common/MainColorizeFilters";
 
 export default function SpbUPLMnemo() {
   const max_width = 1280;
@@ -47,36 +43,10 @@ export default function SpbUPLMnemo() {
         <MainColorizeFilters />
       </defs>
 
+      {/* background */}
       <rect width={max_width} height={max_height} fill={BlueGray.p200} />
-      {/* <MainSupplyView x={100} y={100} vm={app_model.main_supply} /> */}
-      {/* <MotorView x={160} y={150} vm={app_model.motor} /> */}
-      {/* <PaletteGrid x={0} y={0} /> */}
-      {/* <Belt x={100} y={200} /> */}
-      {/* <Belt x={100} y={250} />          <Belt x={100} y={300} /> */}
-      {/* <VibroTray x={100} y={250} /> */}
 
       <WarehouseArea x={20} y={20} ctrl={wh_area_ctrl} />
-
-      {/* {[...colors_list].map((c, i) => {
-        return <ComplexLamp x={100 + i * 40} y={70} color={c} key={i} />;
-      })} */}
     </svg>
-  );
-}
-
-function ComplexLamp({
-  x,
-  y,
-  color,
-}: {
-  x: number;
-  y: number;
-  color: LampColor;
-}) {
-  const [st, setSt] = useState<boolean>(false);
-  return (
-    <g onClick={() => setSt(!st)}>
-      <Lamp x={x} y={y} color={color} size={36} state={st} />
-    </g>
   );
 }

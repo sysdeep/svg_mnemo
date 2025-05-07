@@ -1,5 +1,5 @@
-import { LampColor } from "../../views/lamp/lamp_color";
-import DSensorCompose from "./DSensorCompose";
+import { LampColor } from "../../../views/lamp/lamp_color";
+import DSensorCompose from "./DSensorProto";
 import DSensorView from "./DSensorView";
 
 export type DSensorNormalProps = {

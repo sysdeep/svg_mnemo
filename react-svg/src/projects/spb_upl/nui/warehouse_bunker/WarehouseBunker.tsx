@@ -1,18 +1,12 @@
 import useContextMenu from "../../../../core/components/context_menu/useContextMenu";
-import useCtrl from "../../../../units/useCtrl";
-import Bunker from "../../../../views/bunker/bunker";
-import BunkerGeometry from "../../../../views/bunker/bunker_geometry";
-import {
-  filter_block_colorize_id,
-  filter_error_colorize_id,
-  filter_none_colorize_id,
-} from "../../../../views/common/MainColorizeFilters";
+import BlockEffect from "../../../../core/nui/components/BlockEffect";
+import ErrorEffect from "../../../../core/nui/components/ErrorEffect";
+import ObjectContextMenu from "../../../../core/nui/components/ObjectContextMenu";
+import useCtrlState from "../../../../core/nui/components/useCtrlState";
+import Bunker from "../../../../core/views/bunker/bunker";
+import BunkerGeometry from "../../../../core/views/bunker/bunker_geometry";
 import BunkerVibroTray from "../bunker_vibro_tray/BunkerVibroTray";
-import ObjectContextMenu from "../components/ObjectContextMenu";
-import useCtrlState from "../components/useCtrlState";
-import WarehouseBunkerCtrl, {
-  WarehouseBunkerState,
-} from "./WarehouseBunkerCtrl";
+import WarehouseBunkerCtrl from "./WarehouseBunkerCtrl";
 
 type Props = {
   x: number;
@@ -81,25 +75,17 @@ function WarehouseBunkerVM({ x, y, ctrl }: Props) {
     top_height: 120,
   };
 
-  const filter = get_filter(state);
+  // const filter = get_filter(state);
 
   return (
-    // <g onClick={() => ctrl.t_on_click()} filter={`url(#${filter})`}>
     <g onContextMenu={onContextMenu}>
       <title>{ctrl.model.sname}</title>
-      <Bunker x={x} y={y} geometry={geo} />
 
-      {/* error effect */}
-      {state.is_error && (
-        <rect
-          x={x}
-          y={y}
-          width={geo.max_width}
-          height={80}
-          fill="red"
-          opacity={0.4}
-        />
-      )}
+      <BlockEffect st={state.is_block}>
+        <ErrorEffect st={state.is_error}>
+          <Bunker x={x} y={y} geometry={geo} />
+        </ErrorEffect>
+      </BlockEffect>
 
       <ObjectContextMenu
         model={ctrl.model}
@@ -109,11 +95,4 @@ function WarehouseBunkerVM({ x, y, ctrl }: Props) {
       ></ObjectContextMenu>
     </g>
   );
-}
-
-function get_filter(state: WarehouseBunkerState): string {
-  if (state.is_block) return filter_block_colorize_id;
-  if (state.is_error) return filter_error_colorize_id;
-
-  return filter_none_colorize_id;
 }

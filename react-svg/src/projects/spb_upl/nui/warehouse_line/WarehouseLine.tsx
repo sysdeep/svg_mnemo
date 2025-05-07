@@ -1,13 +1,8 @@
 import WarehouseBunkersArea from "../warehouse_bunkers_area/WarehouseBunkersArea";
 import WarehouseTransporter from "../warehouse_transporter/WarehouseTransporter";
 import WarehouseLineCompose from "./WarehouseLineCompose";
-import ContextMenu from "../../../../core/components/context_menu/ContextMenu";
 import useContextMenu from "../../../../core/components/context_menu/useContextMenu";
-import ContextMenuHeader from "../../../../core/components/context_menu/ContextMenuHeader";
-import ContextMenuAction from "../../../../core/components/context_menu/ContextMenuAction";
-import ContextMenuDivider from "../../../../core/components/context_menu/ContextMenuDivider";
-import useObjectsModalsStore from "../../../../stores/objects_modals_store";
-import ObjectContextMenu from "../components/ObjectContextMenu";
+import ObjectContextMenu from "../../../../core/nui/components/ObjectContextMenu";
 
 type Props = {
   x: number;

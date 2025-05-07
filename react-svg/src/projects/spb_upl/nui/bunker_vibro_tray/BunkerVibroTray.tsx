@@ -1,4 +1,4 @@
-import VibroTray from "../../../../views/vibro_tray/vibro_tray";
+import VibroTray from "../../../../core/views/vibro_tray/vibro_tray";
 import BunkerVibroTrayCtrl from "./BunkerVibroTrayCtrl";
 
 type Props = {

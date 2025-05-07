@@ -1,6 +1,6 @@
 import ModelInterface from "../../../core/models/ModelInterface";
-import DSensorCompose from "../../../units/dsensor/DSensorCompose";
+import DSensorProto from "../../../core/nui/units/dsensor/DSensorProto";
 
-export default function dsensor_composer(node: ModelInterface): DSensorCompose {
-  return new DSensorCompose(node);
+export default function dsensor_composer(node: ModelInterface): DSensorProto {
+  return new DSensorProto(node);
 }

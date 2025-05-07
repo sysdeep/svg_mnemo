@@ -1,10 +1,10 @@
 import { ReactNode } from "react";
-import ContextMenu from "../../../../core/components/context_menu/ContextMenu";
-import ContextMenuAction from "../../../../core/components/context_menu/ContextMenuAction";
-import ContextMenuDivider from "../../../../core/components/context_menu/ContextMenuDivider";
-import ContextMenuHeader from "../../../../core/components/context_menu/ContextMenuHeader";
-import ModelInterface from "../../../../core/models/ModelInterface";
-import useObjectsModalsStore from "../../../../stores/objects_modals_store";
+import ModelInterface from "../../models/ModelInterface";
+import useObjectsModalsStore from "../../../stores/objects_modals_store";
+import ContextMenu from "../../components/context_menu/ContextMenu";
+import ContextMenuHeader from "../../components/context_menu/ContextMenuHeader";
+import ContextMenuDivider from "../../components/context_menu/ContextMenuDivider";
+import ContextMenuAction from "../../components/context_menu/ContextMenuAction";
 
 type Props = {
   model: ModelInterface;

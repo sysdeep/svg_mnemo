@@ -1,10 +1,9 @@
-import { useEffect, useState } from "react";
-import DSensorCompose, { DSensorState } from "./DSensorCompose";
-import Lamp from "../../views/lamp/Lamp";
-import { LampColor } from "../../views/lamp/lamp_color";
-import ObjectContextMenu from "../../projects/spb_upl/nui/components/ObjectContextMenu";
-import useContextMenu from "../../core/components/context_menu/useContextMenu";
-import useCtrlState from "../../projects/spb_upl/nui/components/useCtrlState";
+import useContextMenu from "../../../components/context_menu/useContextMenu";
+import Lamp from "../../../views/lamp/Lamp";
+import { LampColor } from "../../../views/lamp/lamp_color";
+import ObjectContextMenu from "../../components/ObjectContextMenu";
+import useCtrlState from "../../components/useCtrlState";
+import DSensorCompose from "./DSensorProto";
 
 export type DSensorProps = {
   x: number;

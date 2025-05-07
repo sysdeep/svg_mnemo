@@ -1,4 +1,4 @@
-import { Amber, Gray, Red } from "../../core/nui/lib/palette";
+import { Amber, Gray, Red } from "../../nui/lib/palette";
 
 export const main_gradient_id = "main_gradient";
 export const main_gradient_v_id = "main_gradient_v";

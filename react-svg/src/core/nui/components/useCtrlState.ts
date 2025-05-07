@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
-import BaseCompose from "../../../../core/nui/BaseCompose";
+import BaseCompose from "../BaseCompose";
 
+/**
+ * обёртка над контроллером, подключается к нему и обновляет состояние
+ */
 export default function useCtrlState<T>(ctrl: BaseCompose<T>): T {
   const [state, setState] = useState<T>({ ...ctrl.value });
 

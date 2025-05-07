@@ -1,11 +1,11 @@
 import useContextMenu from "../../../../core/components/context_menu/useContextMenu";
-import { Belt } from "../../../../views/belt";
-import ObjectContextMenu from "../components/ObjectContextMenu";
+import ObjectContextMenu from "../../../../core/nui/components/ObjectContextMenu";
+import useCtrlState from "../../../../core/nui/components/useCtrlState";
+import { Belt } from "../../../../core/views/belt";
 import TransporterMotor from "../transporter_motor/TransporterMotor";
 import WarehouseTransporterCompose, {
   WarehouseTransporterState,
 } from "./WarehouseTransporterCompose";
-import useCtrlState from "../components/useCtrlState";
 
 type Props = {
   x: number;

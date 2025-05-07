@@ -1,9 +1,6 @@
-import Motor from "../../../../views/motor/Motor";
 import TransporterMotorCompose from "./TransporterMotorCompose";
-import DSensorNormalView from "../../../../units/dsensor/DSensorNormalView";
-import useCtrlState from "../components/useCtrlState";
-import ObjectContextMenu from "../components/ObjectContextMenu";
-import useContextMenu from "../../../../core/components/context_menu/useContextMenu";
+import MotorVM from "../../../../core/nui/units/motor/MotorVM";
+import DSensorNormalView from "../../../../core/nui/units/dsensor/DSensorNormalView";
 
 export type Props = {
   x: number;
@@ -21,31 +18,9 @@ export default function TransporterMotor({ x, y, ctrl }: Props) {
   return (
     <g>
       {/* self */}
-      <TransporterMotorVM x={x} y={y} ctrl={ctrl} />
+      <MotorVM x={x} y={y} ctrl={ctrl} />
 
       {sensors_view}
-    </g>
-  );
-}
-
-function TransporterMotorVM({ x, y, ctrl }: Props) {
-  const state = useCtrlState(ctrl);
-  const { clicked, points, onContextMenu } = useContextMenu();
-
-  return (
-    <g onContextMenu={onContextMenu}>
-      <Motor x={x} y={y} is_active={state.logic > 0} />
-      <title>{ctrl.model.sname}</title>
-      <ObjectContextMenu
-        model={ctrl.model}
-        top={points.y}
-        left={points.x}
-        active={clicked}
-      >
-        {/* <ContextMenuAction onClick={() => console.log("menu click, aaaa")}>
-                    test aaaaa
-                  </ContextMenuAction> */}
-      </ObjectContextMenu>
     </g>
   );
 }

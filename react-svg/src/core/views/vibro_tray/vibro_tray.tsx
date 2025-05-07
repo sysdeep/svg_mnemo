@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { Amber } from "../../core/nui/lib/palette";
+import { useState } from "react";
+import { Amber } from "../../nui/lib/palette";
 
 type Props = {
   x: number;

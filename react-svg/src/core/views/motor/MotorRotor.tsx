@@ -1,6 +1,6 @@
 import { useEffect } from "react";
-import useCycle from "../../core/lib/useCycle";
-import { Yellow } from "../../core/nui/lib/palette";
+import useCycle from "../../lib/useCycle";
+import { Yellow } from "../../nui/lib/palette";
 
 type RotorProps = {
   x: number;

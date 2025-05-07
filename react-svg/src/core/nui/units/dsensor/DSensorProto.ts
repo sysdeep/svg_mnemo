@@ -1,6 +1,6 @@
-import { DSensorModelProtoName, Attrs } from "../../core/models/DSensorModel";
-import ModelInterface from "../../core/models/ModelInterface";
-import BaseCompose from "../../core/nui/BaseCompose";
+import { DSensorModelProtoName, Attrs } from "../../../models/DSensorModel";
+import ModelInterface from "../../../models/ModelInterface";
+import BaseCompose from "../../BaseCompose";
 
 export type DSensorState = {
   is_error: boolean;
@@ -8,7 +8,7 @@ export type DSensorState = {
   is_block: boolean;
 };
 
-export default class DSensorCompose extends BaseCompose<DSensorState> {
+export default class DSensorProto extends BaseCompose<DSensorState> {
   constructor(model: ModelInterface) {
     super(model, { is_block: false, is_error: false, is_state: false });
 
