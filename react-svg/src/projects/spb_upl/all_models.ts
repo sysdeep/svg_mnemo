@@ -1,19 +1,31 @@
 import AbstractActionObjModel, {
   AbstractActionObjModelProtoName,
 } from "../../core/models/AbstractActionObjModel";
+import AbstractArrayModel, {
+  AbstractArrayModelProtoName,
+} from "../../core/models/AbstractArrayModel";
 import AbstractObjectModel, {
   AbstractObjectModelProtoName,
 } from "../../core/models/AbstractObjectModel";
 import BeltTransporterModel, {
   BeltTransporterModelProtoName,
 } from "../../core/models/BeltTransporterModel";
+import BunkerModel, {
+  BunkerModelProtoName,
+} from "../../core/models/BunkerModel";
 import DSensorModel, {
   DSensorModelProtoName,
 } from "../../core/models/DSensorModel";
 import GenericModel, {
   GenericModelProtoName,
 } from "../../core/models/GenericModel";
+import GenericMotorModel, {
+  GenericMotorModelProtoName,
+} from "../../core/models/GenericMotorModel";
 import ModelInterface from "../../core/models/ModelInterface";
+import WH_LineModel, {
+  WH_LineModelProtoName,
+} from "../../core/models/WH_LineModel";
 import ProjectInterface from "../../core/project/project_interface";
 import { ObjectSpec, ProtoSpec } from "../../core/project/project_spec";
 
@@ -36,6 +48,10 @@ export const models_map: ProtosMap = {
   [AbstractObjectModelProtoName]: AbstractObjectModel,
   [BeltTransporterModelProtoName]: BeltTransporterModel,
   [AbstractActionObjModelProtoName]: AbstractActionObjModel,
+  [GenericMotorModelProtoName]: GenericMotorModel,
+  [AbstractArrayModelProtoName]: AbstractArrayModel,
+  [WH_LineModelProtoName]: WH_LineModel,
+  [BunkerModelProtoName]: BunkerModel,
 };
 
 /**

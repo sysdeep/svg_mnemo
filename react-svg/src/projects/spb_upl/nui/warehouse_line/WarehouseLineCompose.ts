@@ -1,4 +1,5 @@
 import ModelInterface from "../../../../core/models/ModelInterface";
+import { WH_LineModelProtoName } from "../../../../core/models/WH_LineModel";
 import BaseCompose from "../../../../core/nui/BaseCompose";
 import WarehouseBunkersAreaCompose from "../warehouse_bunkers_area/WarehouseBunkersAreaCompose";
 import WarehouseTransporterCompose from "../warehouse_transporter/WarehouseTransporterCompose";
@@ -22,5 +23,9 @@ export default class WarehouseLineCompose extends BaseCompose<WarehouseLineState
 
     this.bunkers_area = bunkers_area;
     this.transporter = transporter;
+  }
+
+  protected expected_models(): string[] {
+    return [WH_LineModelProtoName];
   }
 }

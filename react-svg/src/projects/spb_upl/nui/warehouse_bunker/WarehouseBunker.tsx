@@ -1,3 +1,4 @@
+import useContextMenu from "../../../../core/components/context_menu/useContextMenu";
 import useCtrl from "../../../../units/useCtrl";
 import Bunker from "../../../../views/bunker/bunker";
 import BunkerGeometry from "../../../../views/bunker/bunker_geometry";
@@ -7,6 +8,8 @@ import {
   filter_none_colorize_id,
 } from "../../../../views/common/MainColorizeFilters";
 import BunkerVibroTray from "../bunker_vibro_tray/BunkerVibroTray";
+import ObjectContextMenu from "../components/ObjectContextMenu";
+import useCtrlState from "../components/useCtrlState";
 import WarehouseBunkerCtrl, {
   WarehouseBunkerState,
 } from "./WarehouseBunkerCtrl";
@@ -68,7 +71,8 @@ export default function WarehouseBunker({ x, y, ctrl }: Props) {
 }
 
 function WarehouseBunkerVM({ x, y, ctrl }: Props) {
-  const { state } = useCtrl<WarehouseBunkerState>(ctrl);
+  const state = useCtrlState(ctrl);
+  const { clicked, points, onContextMenu } = useContextMenu();
 
   const geo: BunkerGeometry = {
     max_width: WarehouseBunkerRect.width,
@@ -80,7 +84,9 @@ function WarehouseBunkerVM({ x, y, ctrl }: Props) {
   const filter = get_filter(state);
 
   return (
-    <g onClick={() => ctrl.t_on_click()} filter={`url(#${filter})`}>
+    // <g onClick={() => ctrl.t_on_click()} filter={`url(#${filter})`}>
+    <g onContextMenu={onContextMenu}>
+      <title>{ctrl.model.sname}</title>
       <Bunker x={x} y={y} geometry={geo} />
 
       {/* error effect */}
@@ -94,6 +100,13 @@ function WarehouseBunkerVM({ x, y, ctrl }: Props) {
           opacity={0.4}
         />
       )}
+
+      <ObjectContextMenu
+        model={ctrl.model}
+        top={points.y}
+        left={points.x}
+        active={clicked}
+      ></ObjectContextMenu>
     </g>
   );
 }

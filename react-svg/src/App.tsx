@@ -4,7 +4,7 @@ import AppCompose from "./units/app/AppCompose";
 import SpbUPLMnemo from "./projects/spb_upl/SpbUPLMnemo";
 import ProjectModal from "./core/gui/project_modal/ProjectModal";
 
-const state = new AppCompose();
+// const state = new AppCompose();
 
 /*
 // Example
@@ -51,33 +51,33 @@ export default App;
 // }
 
 function MnemoApp() {
-  useEffect(() => {
-    let int = setInterval(() => {
-      for (let s of state.main_supply.sensors) {
-        var random_boolean = Math.random() < 0.5;
-        s.set_state({ ...s.value, is_state: random_boolean });
-      }
+  // useEffect(() => {
+  //   let int = setInterval(() => {
+  //     for (let s of state.main_supply.sensors) {
+  //       var random_boolean = Math.random() < 0.5;
+  //       s.set_state({ ...s.value, is_state: random_boolean });
+  //     }
 
-      let est = state.main_supply.emergency_sensor.value;
-      state.main_supply.emergency_sensor.set_state({
-        ...est,
-        is_state: !est.is_state,
-      });
+  //     let est = state.main_supply.emergency_sensor.value;
+  //     state.main_supply.emergency_sensor.set_state({
+  //       ...est,
+  //       is_state: !est.is_state,
+  //     });
 
-      for (let s of state.motor.sensors) {
-        var random_boolean = Math.random() < 0.5;
-        s.set_state({ ...s.value, is_state: random_boolean });
-      }
-    }, 1000);
+  //     for (let s of state.motor.sensors) {
+  //       var random_boolean = Math.random() < 0.5;
+  //       s.set_state({ ...s.value, is_state: random_boolean });
+  //     }
+  //   }, 1000);
 
-    return () => clearInterval(int);
-  }, []);
+  //   return () => clearInterval(int);
+  // }, []);
 
-  const set_block = (st: boolean) =>
-    state.main_supply.set_state({ ...state.main_supply.value, is_block: st });
+  // const set_block = (st: boolean) =>
+  //   state.main_supply.set_state({ ...state.main_supply.value, is_block: st });
 
-  const set_error = (st: boolean) =>
-    state.main_supply.set_state({ ...state.main_supply.value, is_error: st });
+  // const set_error = (st: boolean) =>
+  //   state.main_supply.set_state({ ...state.main_supply.value, is_error: st });
 
   return (
     <>
@@ -98,14 +98,14 @@ function MnemoApp() {
       </div>
 
       <div>
-        <div>
+        {/* <div>
           <button onClick={() => set_error(true)}>ms error</button>
           <button onClick={() => set_error(false)}>ms unerror</button>
         </div>
         <div>
           <button onClick={() => set_block(true)}>ms block</button>
           <button onClick={() => set_block(false)}>ms unblock</button>
-        </div>
+        </div> */}
       </div>
 
       {/* <Mnemo app_model={state} /> */}

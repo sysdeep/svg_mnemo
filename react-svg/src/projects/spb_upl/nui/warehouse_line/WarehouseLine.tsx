@@ -7,6 +7,7 @@ import ContextMenuHeader from "../../../../core/components/context_menu/ContextM
 import ContextMenuAction from "../../../../core/components/context_menu/ContextMenuAction";
 import ContextMenuDivider from "../../../../core/components/context_menu/ContextMenuDivider";
 import useObjectsModalsStore from "../../../../stores/objects_modals_store";
+import ObjectContextMenu from "../components/ObjectContextMenu";
 
 type Props = {
   x: number;
@@ -34,7 +35,6 @@ export default function WarehouseLine({ x, y, ctrl }: Props) {
 
 function WarehouseLineVM({ x, y, ctrl }: Props) {
   const { clicked, points, onContextMenu } = useContextMenu();
-  const { open_modal } = useObjectsModalsStore();
 
   return (
     <rect
@@ -49,19 +49,12 @@ function WarehouseLineVM({ x, y, ctrl }: Props) {
     >
       <title>{ctrl.model.sname}</title>
 
-      <ContextMenu top={points.y} left={points.x} active={clicked}>
-        <ContextMenuHeader>{ctrl.model.sname}</ContextMenuHeader>
-
-        <ContextMenuAction onClick={() => console.log("menu click, aaaa")}>
-          test aaaaa
-        </ContextMenuAction>
-
-        <ContextMenuDivider />
-
-        <ContextMenuAction onClick={() => open_modal(ctrl.model)}>
-          Settings
-        </ContextMenuAction>
-      </ContextMenu>
+      <ObjectContextMenu
+        model={ctrl.model}
+        top={points.y}
+        left={points.x}
+        active={clicked}
+      ></ObjectContextMenu>
     </rect>
   );
 }

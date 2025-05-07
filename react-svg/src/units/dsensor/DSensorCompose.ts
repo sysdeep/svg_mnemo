@@ -1,3 +1,4 @@
+import { DSensorModelProtoName, Attrs } from "../../core/models/DSensorModel";
 import ModelInterface from "../../core/models/ModelInterface";
 import BaseCompose from "../../core/nui/BaseCompose";
 
@@ -10,9 +11,17 @@ export type DSensorState = {
 export default class DSensorCompose extends BaseCompose<DSensorState> {
   constructor(model: ModelInterface) {
     super(model, { is_block: false, is_error: false, is_state: false });
+
+    // define handlers --------------------------------------------------------
+    this.append_handlers([
+      [
+        Attrs.state,
+        (state: DSensorState, v: number) => ({ ...state, is_state: v > 0 }),
+      ],
+    ]);
   }
 
-  public on_click() {
-    this.set_state({ ...this.value, is_state: !this.value.is_state });
+  protected expected_models(): string[] {
+    return [DSensorModelProtoName];
   }
 }

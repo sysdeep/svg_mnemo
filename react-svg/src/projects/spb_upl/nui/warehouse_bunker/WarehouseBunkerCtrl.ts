@@ -1,3 +1,4 @@
+import { BunkerModelProtoName } from "../../../../core/models/BunkerModel";
 import ModelInterface from "../../../../core/models/ModelInterface";
 import BaseCompose from "../../../../core/nui/BaseCompose";
 import BunkerVibroTrayCtrl from "../bunker_vibro_tray/BunkerVibroTrayCtrl";
@@ -15,7 +16,7 @@ export default class WarehouseBunkerCtrl extends BaseCompose<WarehouseBunkerStat
     this.vibro_trays = vibro_trays;
   }
 
-  t_on_click() {
-    this.set_state({ ...this.value, is_error: !this.value.is_error });
+  protected expected_models(): string[] {
+    return [BunkerModelProtoName];
   }
 }

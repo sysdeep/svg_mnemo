@@ -38,7 +38,7 @@ export default function ObjectContextMenu({
 
         <ContextMenuDivider />
 
-        <ContextMenuAction onClick={() => open_modal(model)}>
+        <ContextMenuAction onClick={() => open_modal(model, left, top)}>
           Settings
         </ContextMenuAction>
       </ContextMenu>

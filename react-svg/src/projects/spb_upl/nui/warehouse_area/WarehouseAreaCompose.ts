@@ -1,3 +1,4 @@
+import { AbstractArrayModelProtoName } from "../../../../core/models/AbstractArrayModel";
 import ModelInterface from "../../../../core/models/ModelInterface";
 import BaseCompose from "../../../../core/nui/BaseCompose";
 import WarehouseLineCompose from "../warehouse_line/WarehouseLineCompose";
@@ -13,5 +14,9 @@ export default class WarehouseAreaCompose extends BaseCompose<WarehouseAreaState
   constructor(model: ModelInterface, lines: WarehouseLineCompose[]) {
     super(model, {});
     this.lines = lines;
+  }
+
+  protected expected_models(): string[] {
+    return [AbstractArrayModelProtoName];
   }
 }

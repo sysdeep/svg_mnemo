@@ -7,10 +7,16 @@ import { ObjectSpec, ProtoSpec } from "../project/project_spec";
 //   block: boolean;
 // };
 
-enum Attrs {
-  state = 1,
-  error = 2,
-  block = 3,
+export enum Attrs {
+  control = 1,
+  block = 2,
+  error_type = 3,
+  state = 4,
+  inverted_logic = 5,
+  use_in_logic = 6,
+  can_change_control_user_mask = 100, // int,      access: 7 --dwr,  name: Кто может снимать контроль?
+  plc_log = 997, // string,   access: 1 ----r,  name: Сообщение от ПЛК
+  warning = 1000,
 }
 
 export const DSensorModelProtoName = "DSensor";
@@ -31,9 +37,5 @@ export default class DSensorModel extends BaseModel {
     //   new Attr<boolean>(Attrs.block, false), // block
     // ];
     // super(sys_id, attrs_list);
-  }
-
-  public set_error(value: boolean) {
-    this.get_attr(Attrs.error)?.set_value(value);
   }
 }

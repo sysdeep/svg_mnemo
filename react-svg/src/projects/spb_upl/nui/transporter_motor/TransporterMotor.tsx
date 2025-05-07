@@ -1,7 +1,9 @@
-import { useEffect, useState } from "react";
 import Motor from "../../../../views/motor/Motor";
-import TransporterMotorCompose, { MotorState } from "./TransporterMotorCompose";
+import TransporterMotorCompose from "./TransporterMotorCompose";
 import DSensorNormalView from "../../../../units/dsensor/DSensorNormalView";
+import useCtrlState from "../components/useCtrlState";
+import ObjectContextMenu from "../components/ObjectContextMenu";
+import useContextMenu from "../../../../core/components/context_menu/useContextMenu";
 
 export type Props = {
   x: number;
@@ -20,43 +22,30 @@ export default function TransporterMotor({ x, y, ctrl }: Props) {
     <g>
       {/* self */}
       <TransporterMotorVM x={x} y={y} ctrl={ctrl} />
-      {/* <MotorViewInner {...params} /> */}
+
       {sensors_view}
-      {/* <DSensorNormalView x={x} y={y} vm={sc} key={i} size={8} /> */}
     </g>
   );
 }
 
 function TransporterMotorVM({ x, y, ctrl }: Props) {
-  const [state, setState] = useState<MotorState>(ctrl.value);
-
-  useEffect(() => {
-    const on_state = () => setState(ctrl.value);
-    ctrl.connect(on_state);
-    return () => ctrl.disconnect(on_state);
-  }, []);
-
-  useEffect(() => {
-    if (state.logic > 0) {
-      // start animation
-    } else {
-      // stop animation
-    }
-  }, [state.logic]);
-
-  // const color = get_color(state);
+  const state = useCtrlState(ctrl);
+  const { clicked, points, onContextMenu } = useContextMenu();
 
   return (
-    <g>
-      <Motor x={x} y={y} is_active={false} />
+    <g onContextMenu={onContextMenu}>
+      <Motor x={x} y={y} is_active={state.logic > 0} />
+      <title>{ctrl.model.sname}</title>
+      <ObjectContextMenu
+        model={ctrl.model}
+        top={points.y}
+        left={points.x}
+        active={clicked}
+      >
+        {/* <ContextMenuAction onClick={() => console.log("menu click, aaaa")}>
+                    test aaaaa
+                  </ContextMenuAction> */}
+      </ObjectContextMenu>
     </g>
   );
 }
-
-// // function get_color(st: MotorState): string {
-// //   if (st.is_block) return "gray";
-
-// //   if (st.is_error) return "red";
-
-// //   return "brown";
-// // }

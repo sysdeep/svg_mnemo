@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import useContextMenu from "../../../../core/components/context_menu/useContextMenu";
 import { Belt } from "../../../../views/belt";
 import ObjectContextMenu from "../components/ObjectContextMenu";
@@ -31,7 +30,7 @@ function WarehouseTransporterVM({ x, y, ctrl }: Props) {
   const state = useCtrlState<WarehouseTransporterState>(ctrl);
 
   return (
-    <g>
+    <g onContextMenu={onContextMenu}>
       <rect
         x={x}
         y={y}
@@ -39,9 +38,7 @@ function WarehouseTransporterVM({ x, y, ctrl }: Props) {
         height={40}
         stroke="green"
         strokeWidth={1}
-        // fill="none"
         fillOpacity={0}
-        onContextMenu={onContextMenu}
       >
         <title>{ctrl.model.sname}</title>
 
@@ -59,6 +56,7 @@ function WarehouseTransporterVM({ x, y, ctrl }: Props) {
         {/* ----------------------------- */}
       </rect>
 
+      {/* experinments */}
       {state.is_block && (
         <text x={x} y={y}>
           BLOCK!!!
@@ -70,10 +68,9 @@ function WarehouseTransporterVM({ x, y, ctrl }: Props) {
           ERROR!!!
         </text>
       )}
-      <Belt x={x} y={y} />
-      {/* <text x={x} y={y - 22}>
-        {JSON.stringify(st)}
-      </text> */}
+      {/* experinments */}
+
+      <Belt x={x} y={y} logic={state.logic} />
     </g>
   );
 }

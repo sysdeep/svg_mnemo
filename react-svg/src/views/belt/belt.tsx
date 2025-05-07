@@ -5,18 +5,24 @@ import Wheel from "./wheel";
 type Props = {
   x: number;
   y: number;
+  logic: number;
 };
 
-export default function Belt({ x, y }: Props) {
+export default function Belt({ x, y, logic }: Props) {
   const [angle, setAngle] = useState<number>(0);
 
-  // useEffect(() => {
-  //   let int = setInterval(() => {
-  //     setAngle((a) => a + 30);
-  //   }, 300);
+  useEffect(() => {
+    let int: NodeJS.Timeout | null = null;
+    if (logic) {
+      int = setInterval(() => {
+        setAngle((a) => a + 30);
+      }, 300);
+    }
 
-  //   return () => clearInterval(int);
-  // }, []);
+    return () => {
+      int && clearInterval(int);
+    };
+  }, [logic]);
 
   const max_chunks = 16;
 

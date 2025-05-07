@@ -20,7 +20,7 @@ export default function ObjectInfoPanel({ obj }: Props) {
 
           <tr>
             <td>sname</td>
-            <td>TODO</td>
+            <td>{obj.sname}</td>
 
             <td>plc_id</td>
             <td>TODO</td>

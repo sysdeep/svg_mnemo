@@ -1,3 +1,4 @@
+import { AbstractArrayModelProtoName } from "../../../../core/models/AbstractArrayModel";
 import ModelInterface from "../../../../core/models/ModelInterface";
 import BaseCompose from "../../../../core/nui/BaseCompose";
 import WarehouseBunkerCtrl from "../warehouse_bunker/WarehouseBunkerCtrl";
@@ -14,5 +15,9 @@ export default class WarehouseBunkersAreaCompose extends BaseCompose<WarehouseBu
     super(model, {});
 
     this.bunkers = bunkers;
+  }
+
+  expected_models(): string[] {
+    return [AbstractArrayModelProtoName];
   }
 }
