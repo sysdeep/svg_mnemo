@@ -18,6 +18,7 @@ export default function TransporterMotor({ x, y, ctrl }: Props) {
 
   return (
     <g>
+      {/* self */}
       <TransporterMotorVM x={x} y={y} ctrl={ctrl} />
       {/* <MotorViewInner {...params} /> */}
       {sensors_view}
@@ -30,9 +31,9 @@ function TransporterMotorVM({ x, y, ctrl }: Props) {
   const [state, setState] = useState<MotorState>(ctrl.value);
 
   useEffect(() => {
-    ctrl.connect(() => {
-      setState(ctrl.value);
-    });
+    const on_state = () => setState(ctrl.value);
+    ctrl.connect(on_state);
+    return () => ctrl.disconnect(on_state);
   }, []);
 
   useEffect(() => {

@@ -1,16 +1,12 @@
 import { useEffect, useState } from "react";
-import ContextMenu from "../../../../core/components/context_menu/ContextMenu";
-import ContextMenuAction from "../../../../core/components/context_menu/ContextMenuAction";
-import ContextMenuDivider from "../../../../core/components/context_menu/ContextMenuDivider";
-import ContextMenuHeader from "../../../../core/components/context_menu/ContextMenuHeader";
 import useContextMenu from "../../../../core/components/context_menu/useContextMenu";
-import useObjectsModalsStore from "../../../../stores/objects_modals_store";
 import { Belt } from "../../../../views/belt";
 import ObjectContextMenu from "../components/ObjectContextMenu";
 import TransporterMotor from "../transporter_motor/TransporterMotor";
 import WarehouseTransporterCompose, {
   WarehouseTransporterState,
 } from "./WarehouseTransporterCompose";
+import useCtrlState from "../components/useCtrlState";
 
 type Props = {
   x: number;
@@ -31,15 +27,8 @@ export default function WarehouseTransporter({ x, y, ctrl }: Props) {
 
 function WarehouseTransporterVM({ x, y, ctrl }: Props) {
   const { clicked, points, onContextMenu } = useContextMenu();
-  const [st, setSt] = useState<WarehouseTransporterState>({ ...ctrl.value });
 
-  useEffect(() => {
-    const on_change = () => setSt({ ...ctrl.value });
-
-    ctrl.connect(on_change);
-
-    return () => ctrl.disconnect(on_change);
-  }, []);
+  const state = useCtrlState<WarehouseTransporterState>(ctrl);
 
   return (
     <g>
@@ -70,13 +59,13 @@ function WarehouseTransporterVM({ x, y, ctrl }: Props) {
         {/* ----------------------------- */}
       </rect>
 
-      {st.is_block && (
+      {state.is_block && (
         <text x={x} y={y}>
           BLOCK!!!
         </text>
       )}
 
-      {st.is_error && (
+      {state.is_error && (
         <text x={x} y={y + 16} stroke="red">
           ERROR!!!
         </text>

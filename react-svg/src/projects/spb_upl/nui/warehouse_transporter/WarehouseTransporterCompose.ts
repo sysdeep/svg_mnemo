@@ -17,13 +17,29 @@ export default class WarehouseTransporterCompose extends BaseCompose<WarehouseTr
 
     this.motor = motor;
 
-    this.append_handler(Attrs.block, (v: any) =>
-      this.set_state({ ...this.value, is_block: v > 0 })
+    this.append_handler(
+      Attrs.block,
+      (state: WarehouseTransporterState, v: any) => ({
+        ...state,
+        is_block: v > 0,
+      })
     );
 
-    this.append_handler(Attrs.error_code, (v: number) =>
-      this.set_state({ ...this.value, is_error: v > 0 })
+    this.append_handler(
+      Attrs.error_code,
+      (state: WarehouseTransporterState, v: number) => ({
+        ...state,
+        is_error: v > 0,
+      })
     );
+
+    // this.append_handler(Attrs.block, (v: any) =>
+    //   this.set_state({ ...this.value, is_block: v > 0 })
+    // );
+
+    // this.append_handler(Attrs.error_code, (v: number) =>
+    //   this.set_state({ ...this.value, is_error: v > 0 })
+    // );
 
     this.connect_to_model();
 
