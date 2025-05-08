@@ -19,6 +19,8 @@ export default function useContextMenu() {
     e.preventDefault();
     // console.log("wh cm called", e.pageX, e.pageY);
     setClicked(true);
+    // TODO: позиционирование контекстного меню
+    console.log(e.view.innerHeight, e.view.innerWidth);
     setPoints({ x: e.pageX, y: e.pageY });
   };
 

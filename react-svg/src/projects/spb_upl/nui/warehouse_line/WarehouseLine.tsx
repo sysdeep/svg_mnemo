@@ -17,7 +17,7 @@ export default function WarehouseLine({ x, y, ctrl }: Props) {
       <WarehouseBunkersArea x={x} y={y} ctrl={ctrl.bunkers_area} />
 
       <WarehouseTransporter
-        x={x + 40}
+        x={x - 120}
         y={y + 240 - 46}
         ctrl={ctrl.transporter}
       />

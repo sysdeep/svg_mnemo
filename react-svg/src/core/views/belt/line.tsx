@@ -1,23 +1,19 @@
+import { useEffect, useState } from "react";
+
 type Props = {
   x: number;
   y: number;
   chunks_count: number;
   angle: number;
-  angle_step: number;
   is_forward: boolean;
 };
 
-export default function Line({
-  x,
-  y,
-  chunks_count,
-  angle,
-  angle_step,
-  is_forward,
-}: Props) {
-  const rots = angle / angle_step;
+export default function Line({ x, y, chunks_count, angle, is_forward }: Props) {
+  const [chunks, setChunks] = useState<Chunk[]>(make_chunks(chunks_count));
 
-  const chunks = rotate(make_chunks(chunks_count), rots, is_forward);
+  useEffect(() => {
+    setChunks((current) => rotate(current, 1, is_forward));
+  }, [angle, is_forward]);
 
   const chunk_size = 16;
   return (

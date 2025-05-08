@@ -1,26 +1,27 @@
 import {
   Attrs,
   BeltTransporterModelProtoName,
+  Direction as ProtoDirection,
 } from "../../../../core/models/BeltTransporterModel";
 import ModelInterface from "../../../../core/models/ModelInterface";
 import BaseCompose from "../../../../core/nui/BaseCompose";
+import { Direction } from "../../../../core/nui/components/enums";
 
 export type WarehouseTransporterState = {
   is_block: boolean;
   is_error: boolean;
   logic: number;
-  dir: number;
+  direction: Direction;
   is_reverse: boolean;
 };
 
-// TODO: очень похоже на схему с proto -> ctrl в python варианте
 export default class WarehouseTransporterProto extends BaseCompose<WarehouseTransporterState> {
   constructor(model: ModelInterface) {
     super(model, {
       is_block: false,
       is_error: false,
       logic: 0,
-      dir: 0,
+      direction: Direction.forward,
       is_reverse: false,
     });
 
@@ -47,7 +48,17 @@ export default class WarehouseTransporterProto extends BaseCompose<WarehouseTran
           is_error: v > 0,
         }),
       ],
+      [Attrs.dir, this.on_direction],
     ]);
+  }
+
+  on_direction(state: WarehouseTransporterState, v: number) {
+    const direction =
+      v === ProtoDirection.forward ? Direction.forward : Direction.backward;
+    return {
+      ...state,
+      direction,
+    };
   }
 
   protected expected_models(): string[] {
