@@ -1,14 +1,14 @@
 import ModelInterface from "../../../core/models/ModelInterface";
-import WarehouseBunkersAreaCompose from "../nui/warehouse_bunkers_area/WarehouseBunkersAreaCompose";
+import WarehouseBunkersAreaCtrl from "../nui/warehouse_bunkers_area/WarehouseBunkersAreaCtrl";
 import warehouse_bunker_composer from "./warehouse_bunker_composer";
 
 export default function warehouse_bunkers_area_composer(
   node: ModelInterface
-): WarehouseBunkersAreaCompose {
+): WarehouseBunkersAreaCtrl {
   const bunkers = node
     .get_childrens()
     .map((m: ModelInterface) => warehouse_bunker_composer(m));
   // const bunkers = [...Array(3)].map((_) => warehouse_bunker_composer(node));
 
-  return new WarehouseBunkersAreaCompose(node, bunkers);
+  return new WarehouseBunkersAreaCtrl(node, bunkers);
 }

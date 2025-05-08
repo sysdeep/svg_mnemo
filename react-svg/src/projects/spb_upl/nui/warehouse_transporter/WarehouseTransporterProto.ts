@@ -1,10 +1,9 @@
-import ModelInterface from "../../../../core/models/ModelInterface";
-import BaseCompose from "../../../../core/nui/BaseCompose";
-import TransporterMotorCompose from "../transporter_motor/TransporterMotorCompose";
 import {
   Attrs,
   BeltTransporterModelProtoName,
 } from "../../../../core/models/BeltTransporterModel";
+import ModelInterface from "../../../../core/models/ModelInterface";
+import BaseCompose from "../../../../core/nui/BaseCompose";
 
 export type WarehouseTransporterState = {
   is_block: boolean;
@@ -15,10 +14,8 @@ export type WarehouseTransporterState = {
 };
 
 // TODO: очень похоже на схему с proto -> ctrl в python варианте
-export default class WarehouseTransporterCompose extends BaseCompose<WarehouseTransporterState> {
-  motor: TransporterMotorCompose;
-
-  constructor(model: ModelInterface, motor: TransporterMotorCompose) {
+export default class WarehouseTransporterProto extends BaseCompose<WarehouseTransporterState> {
+  constructor(model: ModelInterface) {
     super(model, {
       is_block: false,
       is_error: false,
@@ -26,9 +23,6 @@ export default class WarehouseTransporterCompose extends BaseCompose<WarehouseTr
       dir: 0,
       is_reverse: false,
     });
-
-    // composition ----------------------------------------
-    this.motor = motor;
 
     // define handlers ------------------------------------
     this.append_handlers([

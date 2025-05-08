@@ -46,7 +46,7 @@ export default function SpbUPLMnemo() {
       {/* background */}
       <rect width={max_width} height={max_height} fill={BlueGray.p200} />
 
-      <WarehouseArea x={20} y={20} ctrl={wh_area_ctrl} />
+      <WarehouseArea x={max_width - 460} y={20} ctrl={wh_area_ctrl} />
     </svg>
   );
 }

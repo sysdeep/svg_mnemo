@@ -1,12 +1,11 @@
-import WarehouseBunker, {
-  WarehouseBunkerRect,
-} from "../warehouse_bunker/WarehouseBunker";
-import WarehouseBunkersAreaCompose from "./WarehouseBunkersAreaCompose";
+import WarehouseBunker from "../warehouse_bunker/WarehouseBunker";
+import { WarehouseBunkerRect } from "../warehouse_bunker/WarehouseBunkerVM";
+import WarehouseBunkersAreaCtrl from "./WarehouseBunkersAreaCtrl";
 
 type Props = {
   x: number;
   y: number;
-  ctrl: WarehouseBunkersAreaCompose;
+  ctrl: WarehouseBunkersAreaCtrl;
 };
 
 const x_padding = 8;

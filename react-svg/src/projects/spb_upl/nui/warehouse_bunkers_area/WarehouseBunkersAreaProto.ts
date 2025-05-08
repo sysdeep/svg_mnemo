@@ -1,7 +1,6 @@
 import { AbstractArrayModelProtoName } from "../../../../core/models/AbstractArrayModel";
 import ModelInterface from "../../../../core/models/ModelInterface";
 import BaseCompose from "../../../../core/nui/BaseCompose";
-import WarehouseBunkerCtrl from "../warehouse_bunker/WarehouseBunkerCtrl";
 
 export type WarehouseBunkersAreaState = {
   //   is_block: boolean;
@@ -9,12 +8,9 @@ export type WarehouseBunkersAreaState = {
   //   logic: number;
 };
 
-export default class WarehouseBunkersAreaCompose extends BaseCompose<WarehouseBunkersAreaState> {
-  bunkers: WarehouseBunkerCtrl[];
-  constructor(model: ModelInterface, bunkers: WarehouseBunkerCtrl[]) {
+export default class WarehouseBunkersAreaProto extends BaseCompose<WarehouseBunkersAreaState> {
+  constructor(model: ModelInterface) {
     super(model, {});
-
-    this.bunkers = bunkers;
   }
 
   expected_models(): string[] {

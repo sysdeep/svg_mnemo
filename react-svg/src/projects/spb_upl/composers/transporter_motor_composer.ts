@@ -1,11 +1,11 @@
 import { DSensorModelProtoName } from "../../../core/models/DSensorModel";
 import ModelInterface from "../../../core/models/ModelInterface";
-import TransporterMotorCompose from "../nui/transporter_motor/TransporterMotorCompose";
+import TransporterMotorCtrl from "../nui/transporter_motor/TransporterMotorCtrl";
 import dsensor_composer from "./dsensor_composer";
 
 export default function transporter_motor_composer(
   node: ModelInterface
-): TransporterMotorCompose {
+): TransporterMotorCtrl {
   const sensors = node
     .get_childrens()
     .filter(
@@ -15,5 +15,5 @@ export default function transporter_motor_composer(
     )
     .map((m: ModelInterface) => dsensor_composer(m));
 
-  return new TransporterMotorCompose(node, sensors);
+  return new TransporterMotorCtrl(node, sensors);
 }

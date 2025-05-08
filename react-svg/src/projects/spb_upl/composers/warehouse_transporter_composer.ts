@@ -1,5 +1,5 @@
 import ModelInterface from "../../../core/models/ModelInterface";
-import WarehouseTransporterCompose from "../nui/warehouse_transporter/WarehouseTransporterCompose";
+import WarehouseTransporterCompose from "../nui/warehouse_transporter/WarehouseTransporterCtrl";
 import transporter_motor_composer from "./transporter_motor_composer";
 
 export default function warehouse_transporter_composer(

@@ -1,14 +1,8 @@
 import ModelInterface from "../../../../core/models/ModelInterface";
-import BaseCompose from "../../../../core/nui/BaseCompose";
+import BunkerVibroTrayProto from "./BunkerVibroTrayProto";
 
-export type BunkerVibroTrayState = {
-  //   is_block: boolean;
-  //   is_error: boolean;
-  //   logic: number;
-};
-
-export default class BunkerVibroTrayCtrl extends BaseCompose<BunkerVibroTrayState> {
+export default class BunkerVibroTrayCtrl extends BunkerVibroTrayProto {
   constructor(model: ModelInterface) {
-    super(model, {});
+    super(model);
   }
 }

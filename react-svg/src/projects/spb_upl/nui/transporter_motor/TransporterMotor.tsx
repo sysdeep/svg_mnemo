@@ -1,11 +1,11 @@
-import TransporterMotorCompose from "./TransporterMotorCompose";
+import TransporterMotorCtrl from "./TransporterMotorCtrl";
 import MotorVM from "../../../../core/nui/units/motor/MotorVM";
 import DSensorNormalView from "../../../../core/nui/units/dsensor/DSensorNormalView";
 
 export type Props = {
   x: number;
   y: number;
-  ctrl: TransporterMotorCompose;
+  ctrl: TransporterMotorCtrl;
 };
 
 export default function TransporterMotor({ x, y, ctrl }: Props) {

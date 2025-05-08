@@ -1,19 +1,16 @@
 import { AbstractArrayModelProtoName } from "../../../../core/models/AbstractArrayModel";
 import ModelInterface from "../../../../core/models/ModelInterface";
 import BaseCompose from "../../../../core/nui/BaseCompose";
-import WarehouseLineCompose from "../warehouse_line/WarehouseLineCompose";
 
 export type WarehouseAreaState = {
   // is_block: boolean;
-  //   is_error: boolean;
+  // is_error: boolean;
   //   logic: number;
 };
 
-export default class WarehouseAreaCompose extends BaseCompose<WarehouseAreaState> {
-  lines: WarehouseLineCompose[];
-  constructor(model: ModelInterface, lines: WarehouseLineCompose[]) {
+export default class WarehouseAreaProto extends BaseCompose<WarehouseAreaState> {
+  constructor(model: ModelInterface) {
     super(model, {});
-    this.lines = lines;
   }
 
   protected expected_models(): string[] {
