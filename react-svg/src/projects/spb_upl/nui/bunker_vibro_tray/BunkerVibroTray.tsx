@@ -1,5 +1,5 @@
-import VibroTray from "../../../../core/views/vibro_tray/vibro_tray";
 import BunkerVibroTrayCtrl from "./BunkerVibroTrayCtrl";
+import BunkerVibroTrayVM from "./BunkerVibroTrayVM";
 
 type Props = {
   x: number;
@@ -8,5 +8,5 @@ type Props = {
 };
 
 export default function BunkerVibroTray({ x, y, ctrl }: Props) {
-  return <VibroTray x={x} y={y} />;
+  return <BunkerVibroTrayVM x={x} y={y} ctrl={ctrl} />;
 }

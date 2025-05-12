@@ -1,27 +1,31 @@
-import useContextMenu from "../../../../core/components/context_menu/useContextMenu";
+import { ReactNode } from "react";
 import BlockEffect from "../../../../core/nui/components/BlockEffect";
 import ErrorEffect from "../../../../core/nui/components/ErrorEffect";
-import ObjectContextMenu from "../../../../core/nui/components/ObjectContextMenu";
 import useCtrlState from "../../../../core/nui/components/useCtrlState";
 import { Green } from "../../../../core/nui/lib/palette";
 import { Belt } from "../../../../core/views/belt";
 import WarehouseTransporterProto, {
   WarehouseTransporterState,
 } from "./WarehouseTransporterProto";
+import ObjectContextMenuWrapper from "../../../../core/nui/components/ObjectContextMenuWrapper";
 
 type Props = {
   x: number;
   y: number;
   ctrl: WarehouseTransporterProto;
+  menu_items?: ReactNode;
 };
 
-export default function WarehouseTransporterVM({ x, y, ctrl }: Props) {
-  const { clicked, points, onContextMenu } = useContextMenu();
-
+export default function WarehouseTransporterVM({
+  x,
+  y,
+  ctrl,
+  menu_items,
+}: Props) {
   const state = useCtrlState<WarehouseTransporterState>(ctrl);
 
   return (
-    <g onContextMenu={onContextMenu}>
+    <ObjectContextMenuWrapper model={ctrl.model}>
       <rect
         x={x}
         y={y}
@@ -33,6 +37,7 @@ export default function WarehouseTransporterVM({ x, y, ctrl }: Props) {
         fill={Green.p300}
       />
 
+      <title>{ctrl.model.sname}</title>
       <BlockEffect st={state.is_block}>
         <ErrorEffect st={state.is_error}>
           <Belt
@@ -44,18 +49,6 @@ export default function WarehouseTransporterVM({ x, y, ctrl }: Props) {
           />
         </ErrorEffect>
       </BlockEffect>
-      <title>{ctrl.model.sname}</title>
-
-      <ObjectContextMenu
-        model={ctrl.model}
-        top={points.y}
-        left={points.x}
-        active={clicked}
-      >
-        {/* <ContextMenuAction onClick={() => console.log("menu click, aaaa")}>
-            test aaaaa
-          </ContextMenuAction> */}
-      </ObjectContextMenu>
-    </g>
+    </ObjectContextMenuWrapper>
   );
 }

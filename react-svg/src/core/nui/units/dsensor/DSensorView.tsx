@@ -2,6 +2,7 @@ import useContextMenu from "../../../components/context_menu/useContextMenu";
 import Lamp from "../../../views/lamp/Lamp";
 import { LampColor } from "../../../views/lamp/lamp_color";
 import ObjectContextMenu from "../../components/ObjectContextMenu";
+import ObjectContextMenuWrapper from "../../components/ObjectContextMenuWrapper";
 import useCtrlState from "../../components/useCtrlState";
 import DSensorCompose from "./DSensorProto";
 
@@ -22,10 +23,8 @@ export default function DSensorView({
 }: DSensorProps) {
   const state = useCtrlState(ctrl);
 
-  const { clicked, points, onContextMenu } = useContextMenu();
-
   return (
-    <g onContextMenu={onContextMenu}>
+    <ObjectContextMenuWrapper model={ctrl.model}>
       <Lamp
         x={x}
         y={y}
@@ -34,12 +33,6 @@ export default function DSensorView({
         state={state.is_state}
       />
       <title>{ctrl.model.sname}</title>
-      <ObjectContextMenu
-        model={ctrl.model}
-        top={points.y}
-        left={points.x}
-        active={clicked}
-      ></ObjectContextMenu>
-    </g>
+    </ObjectContextMenuWrapper>
   );
 }

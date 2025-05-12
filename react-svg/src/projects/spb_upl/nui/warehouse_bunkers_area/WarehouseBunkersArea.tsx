@@ -12,12 +12,12 @@ const x_padding = 8;
 const y_padding = 2;
 
 export const WarehouseBunkersAreaRect = {
-  width: WarehouseBunkerRect.width * 3 + (4 + x_padding) + x_padding * 2,
+  width: WarehouseBunkerRect.width * 4 + 5 * x_padding,
   height: WarehouseBunkerRect.height + y_padding * 2,
 };
 
 export default function WarehouseBunkersArea({ x, y, ctrl }: Props) {
-  const debug_rect = true;
+  const debug_rect = false;
   return (
     <g>
       {debug_rect && (

@@ -5,6 +5,7 @@ import BlockEffect from "../../components/BlockEffect";
 import ErrorEffect from "../../components/ErrorEffect";
 import ObjectContextMenu from "../../components/ObjectContextMenu";
 import Motor from "../../../views/motor/Motor";
+import ObjectContextMenuWrapper from "../../components/ObjectContextMenuWrapper";
 
 export type Props = {
   x: number;
@@ -14,10 +15,9 @@ export type Props = {
 
 export default function MotorVM({ x, y, ctrl }: Props) {
   const state = useCtrlState(ctrl);
-  const { clicked, points, onContextMenu } = useContextMenu();
 
   return (
-    <g onContextMenu={onContextMenu}>
+    <ObjectContextMenuWrapper model={ctrl.model}>
       <title>{ctrl.model.sname}</title>
 
       <BlockEffect st={state.is_block}>
@@ -25,17 +25,6 @@ export default function MotorVM({ x, y, ctrl }: Props) {
           <Motor x={x} y={y} is_active={state.logic > 0} />
         </ErrorEffect>
       </BlockEffect>
-
-      <ObjectContextMenu
-        model={ctrl.model}
-        top={points.y}
-        left={points.x}
-        active={clicked}
-      >
-        {/* <ContextMenuAction onClick={() => console.log("menu click, aaaa")}>
-                    test aaaaa
-                  </ContextMenuAction> */}
-      </ObjectContextMenu>
-    </g>
+    </ObjectContextMenuWrapper>
   );
 }

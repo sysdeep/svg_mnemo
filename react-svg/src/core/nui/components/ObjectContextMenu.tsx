@@ -12,6 +12,7 @@ type Props = {
   left: number;
   active: boolean;
   children?: ReactNode;
+  add_items?: ReactNode; // дополнительные элементы, переданные как react компоненты
 };
 
 export default function ObjectContextMenu({
@@ -20,6 +21,7 @@ export default function ObjectContextMenu({
   left,
   active,
   children,
+  add_items = [],
 }: Props) {
   const { open_modal } = useObjectsModalsStore();
 
@@ -35,6 +37,8 @@ export default function ObjectContextMenu({
         {/* any childrens */}
 
         {children}
+
+        {add_items}
 
         <ContextMenuDivider />
 

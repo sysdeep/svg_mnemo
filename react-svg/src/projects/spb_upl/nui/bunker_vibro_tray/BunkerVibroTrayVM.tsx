@@ -1,31 +1,20 @@
+import useContextMenu from "../../../../core/components/context_menu/useContextMenu";
 import BlockEffect from "../../../../core/nui/components/BlockEffect";
 import ErrorEffect from "../../../../core/nui/components/ErrorEffect";
+import ObjectContextMenu from "../../../../core/nui/components/ObjectContextMenu";
 import ObjectContextMenuWrapper from "../../../../core/nui/components/ObjectContextMenuWrapper";
 import useCtrlState from "../../../../core/nui/components/useCtrlState";
-import Bunker from "../../../../core/views/bunker/bunker";
-import BunkerGeometry from "../../../../core/views/bunker/bunker_geometry";
-import WarehouseBunkerProto from "./WarehouseBunkerProto";
+import VibroTray from "../../../../core/views/vibro_tray/vibro_tray";
+import BunkerVibroTrayCtrl from "./BunkerVibroTrayCtrl";
 
 type Props = {
   x: number;
   y: number;
-  ctrl: WarehouseBunkerProto;
+  ctrl: BunkerVibroTrayCtrl;
 };
 
-export const WarehouseBunkerRect = {
-  width: 3 * 28 + 2 * 4,
-  height: 160,
-};
-
-export default function WarehouseBunkerVM({ x, y, ctrl }: Props) {
+export default function BunkerVibroTrayVM({ x, y, ctrl }: Props) {
   const state = useCtrlState(ctrl);
-
-  const geo: BunkerGeometry = {
-    max_width: WarehouseBunkerRect.width,
-    conus_height: 30,
-    out_width: 30,
-    top_height: 120,
-  };
 
   return (
     <ObjectContextMenuWrapper model={ctrl.model}>
@@ -33,7 +22,7 @@ export default function WarehouseBunkerVM({ x, y, ctrl }: Props) {
 
       <BlockEffect st={state.is_block}>
         <ErrorEffect st={state.is_error}>
-          <Bunker x={x} y={y} geometry={geo} />
+          <VibroTray x={x} y={y} />;
         </ErrorEffect>
       </BlockEffect>
     </ObjectContextMenuWrapper>

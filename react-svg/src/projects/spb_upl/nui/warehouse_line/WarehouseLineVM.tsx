@@ -1,5 +1,4 @@
-import useContextMenu from "../../../../core/components/context_menu/useContextMenu";
-import ObjectContextMenu from "../../../../core/nui/components/ObjectContextMenu";
+import ObjectContextMenuWrapper from "../../../../core/nui/components/ObjectContextMenuWrapper";
 import WarehouseLineProto from "./WarehouseLineProto";
 
 type Props = {
@@ -9,10 +8,8 @@ type Props = {
 };
 
 export default function WarehouseLineVM({ x, y, ctrl }: Props) {
-  const { clicked, points, onContextMenu } = useContextMenu();
-
   return (
-    <g onContextMenu={onContextMenu}>
+    <ObjectContextMenuWrapper model={ctrl.model}>
       <rect
         x={x}
         y={y}
@@ -23,14 +20,7 @@ export default function WarehouseLineVM({ x, y, ctrl }: Props) {
         fillOpacity={0.1}
       >
         <title>{ctrl.model.sname}</title>
-
-        <ObjectContextMenu
-          model={ctrl.model}
-          top={points.y}
-          left={points.x}
-          active={clicked}
-        ></ObjectContextMenu>
       </rect>
-    </g>
+    </ObjectContextMenuWrapper>
   );
 }

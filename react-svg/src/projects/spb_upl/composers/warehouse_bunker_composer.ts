@@ -5,8 +5,11 @@ import bunker_vibro_tray_composer from "./bunker_vibro_tray_composer";
 export default function warehouse_bunker_composer(
   node: ModelInterface
 ): WarehouseBunkerCtrl {
-  const vibro_trays = [...Array(7)].map((_) => {
-    return bunker_vibro_tray_composer(node);
+  let gates_node = node.must_node("gates");
+
+  const vibro_trays = gates_node.get_childrens().map((vnode) => {
+    return bunker_vibro_tray_composer(vnode);
   });
+
   return new WarehouseBunkerCtrl(node, vibro_trays);
 }

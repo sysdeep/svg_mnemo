@@ -23,6 +23,9 @@ import GenericMotorModel, {
   GenericMotorModelProtoName,
 } from "../../core/models/GenericMotorModel";
 import ModelInterface from "../../core/models/ModelInterface";
+import SimpleVibroTrayModel, {
+  SimpleVibroTrayModelProtoName,
+} from "../../core/models/SimpleVibroTrayModel";
 import WH_LineModel, {
   WH_LineModelProtoName,
 } from "../../core/models/WH_LineModel";
@@ -52,6 +55,7 @@ export const models_map: ProtosMap = {
   [AbstractArrayModelProtoName]: AbstractArrayModel,
   [WH_LineModelProtoName]: WH_LineModel,
   [BunkerModelProtoName]: BunkerModel,
+  [SimpleVibroTrayModelProtoName]: SimpleVibroTrayModel,
 };
 
 /**
