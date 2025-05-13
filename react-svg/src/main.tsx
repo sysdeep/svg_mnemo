@@ -2,6 +2,8 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "bootstrap/dist/css/bootstrap.min.css";
+// import "bootstrap-icons/font/bootstrap-icons.min.css";
+
 import "winbox/dist/css/winbox.min.css"; // required
 import "winbox/dist/css/themes/modern.min.css"; // optional
 

@@ -35,9 +35,15 @@ export default function ObjectsModalManager() {
             title={info.obj.sname}
             width={600}
             height={700}
-            x={info.x}
-            y={info.y}
-          >
+            // x={info.x}
+            // y={info.y}
+            x="center"
+            y="center"
+            // className="modern"
+            border={1}
+            noMax={true}
+            noMin={true}
+            noFull={true}>
             <div style={{ padding: "1rem" }}>
               <ObjectFrame obj={info.obj} />
             </div>

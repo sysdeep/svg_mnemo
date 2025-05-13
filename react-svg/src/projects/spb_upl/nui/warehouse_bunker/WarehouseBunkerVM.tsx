@@ -14,7 +14,7 @@ type Props = {
 
 export const WarehouseBunkerRect = {
   width: 3 * 28 + 2 * 4,
-  height: 160,
+  height: 190,
 };
 
 export default function WarehouseBunkerVM({ x, y, ctrl }: Props) {
@@ -24,7 +24,7 @@ export default function WarehouseBunkerVM({ x, y, ctrl }: Props) {
     max_width: WarehouseBunkerRect.width,
     conus_height: 30,
     out_width: 30,
-    top_height: 120,
+    top_height: 150,
   };
 
   return (

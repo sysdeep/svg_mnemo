@@ -12,7 +12,7 @@ export default function ProjectFrame() {
   const on_object_selected = (obj: ModelInterface) => setObj(obj);
 
   return (
-    <div>
+    <div style={{ padding: "1rem" }}>
       <div className="row">
         <div className="col-6">
           <ProjectTree on_selected={on_object_selected} />

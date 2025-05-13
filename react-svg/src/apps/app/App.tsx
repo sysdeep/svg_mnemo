@@ -1,3 +1,4 @@
+import ProjectFrame from "../../core/gui/project_modal/ProjectFrame";
 import ProjectModal from "../../core/gui/project_modal/ProjectModal";
 import SpbUPLMnemo from "../../projects/spb_upl/SpbUPLMnemo";
 import MainNavBar from "./MainNavBar";
