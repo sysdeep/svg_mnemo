@@ -13,12 +13,7 @@ export default class DSensorProto extends BaseCompose<DSensorState> {
     super(model, { is_block: false, is_error: false, is_state: false });
 
     // define handlers --------------------------------------------------------
-    this.append_handlers([
-      [
-        Attrs.state,
-        (state: DSensorState, v: number) => ({ ...state, is_state: v > 0 }),
-      ],
-    ]);
+    this.append_handlers([[Attrs.state, (state: DSensorState, v: number) => ({ ...state, is_state: v > 0 })]]);
   }
 
   protected expected_models(): string[] {
