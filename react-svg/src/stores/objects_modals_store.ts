@@ -20,10 +20,7 @@ const useObjectsModalsStore = create<StoreState>((set) => ({
   modals: [] as ObjectModal[],
   open_modal: (obj: ModelInterface, x: number, y: number) =>
     set((state) => ({
-      modals: [
-        ...state.modals.filter((m: ObjectModal) => m.obj !== obj),
-        create_modal(obj, x, y),
-      ],
+      modals: [...state.modals.filter((m: ObjectModal) => m.obj !== obj), create_modal(obj, x, y)],
     })),
   close_modal: (obj: ModelInterface) =>
     set((state) => ({
