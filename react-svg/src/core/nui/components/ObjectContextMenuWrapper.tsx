@@ -16,12 +16,7 @@ export default function ObjectContextMenuWrapper({ model, children }: Props) {
   return (
     <g onContextMenu={onContextMenu}>
       {children}
-      <ObjectContextMenu
-        model={model}
-        top={points.y}
-        left={points.x}
-        active={clicked}
-      />
+      <ObjectContextMenu model={model} top={points.y} left={points.x} active={clicked} />
     </g>
   );
 }

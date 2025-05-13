@@ -5,6 +5,7 @@ import ContextMenu from "../../components/context_menu/ContextMenu";
 import ContextMenuHeader from "../../components/context_menu/ContextMenuHeader";
 import ContextMenuDivider from "../../components/context_menu/ContextMenuDivider";
 import ContextMenuAction from "../../components/context_menu/ContextMenuAction";
+import SettingsIcon from "./icons/SettingsIcon";
 
 type Props = {
   model: ModelInterface;
@@ -15,14 +16,7 @@ type Props = {
   add_items?: ReactNode; // дополнительные элементы, переданные как react компоненты
 };
 
-export default function ObjectContextMenu({
-  model,
-  top,
-  left,
-  active,
-  children,
-  add_items = [],
-}: Props) {
+export default function ObjectContextMenu({ model, top, left, active, children, add_items = [] }: Props) {
   const { open_modal } = useObjectsModalsStore();
 
   return (
@@ -43,7 +37,7 @@ export default function ObjectContextMenu({
         <ContextMenuDivider />
 
         <ContextMenuAction onClick={() => open_modal(model, left, top)}>
-          Settings
+          <SettingsIcon /> Свойства
         </ContextMenuAction>
       </ContextMenu>
     </>

@@ -15,7 +15,6 @@ import ObjectsModalManager from "./projects/spb_upl/ObjectsModalManager.tsx";
 async function main(): Promise<any> {
   const resp = await fetch("/project.json");
   const project_data = await resp.json();
-  console.log(project_data);
 
   return project_data;
 }
