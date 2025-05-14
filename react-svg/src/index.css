@@ -2,6 +2,10 @@ html {
   font-size: 12px;
 }
 
+body {
+  font-family: "Ubuntu";
+}
+
 :root {
   
   /* Overwrite this variable */

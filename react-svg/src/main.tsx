@@ -6,7 +6,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 import "winbox/dist/css/winbox.min.css"; // required
 import "winbox/dist/css/themes/modern.min.css"; // optional
+import "@fontsource/ubuntu"; // Defaults to weight 400
 
+// self -----------------------------------------------------------------------
 import "./index.css";
 import { ProjectContext } from "./ProjectContext.ts";
 import { make_project } from "./projects/spb_upl/loader.ts";

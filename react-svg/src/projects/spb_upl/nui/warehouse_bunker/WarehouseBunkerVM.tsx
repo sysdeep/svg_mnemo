@@ -2,6 +2,7 @@ import BlockEffect from "../../../../core/nui/components/BlockEffect";
 import ErrorEffect from "../../../../core/nui/components/ErrorEffect";
 import ObjectContextMenuWrapper from "../../../../core/nui/components/ObjectContextMenuWrapper";
 import useCtrlState from "../../../../core/nui/components/useCtrlState";
+import { Yellow } from "../../../../core/nui/lib/palette";
 import Bunker from "../../../../core/views/bunker/bunker";
 import BunkerGeometry from "../../../../core/views/bunker/bunker_geometry";
 import WarehouseBunkerProto from "./WarehouseBunkerProto";
@@ -34,6 +35,17 @@ export default function WarehouseBunkerVM({ x, y, ctrl }: Props) {
       <BlockEffect st={state.is_block}>
         <ErrorEffect st={state.is_error}>
           <Bunker x={x} y={y} geometry={geo} />
+          {state.is_mnemo_name && (
+            <text
+              x={x + WarehouseBunkerRect.width - 4}
+              y={y + 16}
+              fill={Yellow.p200}
+              textAnchor="end"
+              // fontFamily="Ubuntu"
+            >
+              {state.mnemo_name}
+            </text>
+          )}
         </ErrorEffect>
       </BlockEffect>
     </ObjectContextMenuWrapper>

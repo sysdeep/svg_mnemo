@@ -5,14 +5,4 @@ export default class BunkerVibroTrayCtrl extends BunkerVibroTrayProto {
   constructor(model: ModelInterface) {
     super(model);
   }
-
-  start() {
-    // TODO: to model
-    console.log("start");
-  }
-
-  stop() {
-    // TODO: to model
-    console.log("stop");
-  }
 }

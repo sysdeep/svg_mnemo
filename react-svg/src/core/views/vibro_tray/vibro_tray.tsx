@@ -55,8 +55,9 @@ export default function VibroTray({ x, y, active, on_press, on_release }: Props)
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
       cursor={cursor}
-      onMouseDown={() => on_mouse_down()}
-      onMouseUp={() => on_mouse_up()}>
+      // onMouseDown={ond}
+      onMouseDown={(e) => e.button === 0 && on_mouse_down()}
+      onMouseUp={(e) => e.button === 0 && on_mouse_up()}>
       {frames.map((f, i) => {
         return (
           <rect

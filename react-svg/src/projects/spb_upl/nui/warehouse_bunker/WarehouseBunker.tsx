@@ -1,3 +1,4 @@
+import DSensorNormalView from "../../../../core/nui/units/dsensor/DSensorNormalView";
 import BunkerVibroTray from "../bunker_vibro_tray/BunkerVibroTray";
 import WarehouseBunkerCtrl from "./WarehouseBunkerCtrl";
 import WarehouseBunkerVM from "./WarehouseBunkerVM";
@@ -18,6 +19,10 @@ export default function WarehouseBunker({ x, y, ctrl }: Props) {
   return (
     <g>
       <WarehouseBunkerVM x={x} y={y} ctrl={ctrl} />
+
+      {ctrl.auto_mode_sensor && <DSensorNormalView ctrl={ctrl.auto_mode_sensor} x={x + 2} y={y + 2} />}
+
+      {ctrl.ready_sensor && <DSensorNormalView ctrl={ctrl.ready_sensor} x={x + 2 + 16} y={y + 2} />}
 
       {/* vibrators */}
       {trays_matrix.map((vtrow, iy) => {
