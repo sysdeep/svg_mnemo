@@ -1,9 +1,6 @@
 import { useState } from "react";
-import BunkerGradients from "../../../views/bunker/BunkerGradients";
-import MainColorizeFilters from "../../../views/common/MainColorizeFilters";
-import MainGradient from "../../../views/common/MainGradient";
-import LampGradients from "../../../views/lamp/LampGradients";
-import Motor from "../../../views/motor/Motor";
+import Motor from "../../../core/views/motor/Motor";
+import DevMnemoDefs from "./components/DevMnemoDefs";
 
 type MotorState = {
   is_logic: boolean;
@@ -32,13 +29,7 @@ export default function MotorPage() {
 function Mnemo({ is_logic }: MotorState) {
   return (
     <svg width={600} height={600} viewBox="0 0 50 50">
-      <defs>
-        <MainGradient />
-        <BunkerGradients />
-        <LampGradients />
-
-        <MainColorizeFilters />
-      </defs>
+      <DevMnemoDefs />
 
       <Motor x={10} y={10} is_active={is_logic} />
     </svg>

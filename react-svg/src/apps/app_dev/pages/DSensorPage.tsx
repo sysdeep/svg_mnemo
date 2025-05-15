@@ -1,14 +1,7 @@
 import { useState } from "react";
-import LampGradients from "../../../views/lamp/LampGradients";
-import { colors_list, LampColor } from "../../../views/lamp/lamp_color";
-import Lamp from "../../../views/lamp/Lamp";
-import MainColorizeFilters from "../../../views/common/MainColorizeFilters";
-import MainGradient from "../../../views/common/MainGradient";
-import BunkerGradients from "../../../views/bunker/BunkerGradients";
-
-// type MotorState = {
-//   is_logic: boolean;
-// };
+import { colors_list, LampColor } from "../../../core/views/lamp/lamp_color";
+import Lamp from "../../../core/views/lamp/Lamp";
+import DevMnemoDefs from "./components/DevMnemoDefs";
 
 export default function DSensorPage() {
   // const [mstate, setMstate] = useState<MotorState>({ is_logic: false });
@@ -33,13 +26,7 @@ export default function DSensorPage() {
 function Mnemo() {
   return (
     <svg width={600} height={600} viewBox="0 0 400 400">
-      <defs>
-        <MainGradient />
-        <BunkerGradients />
-        <LampGradients />
-
-        <MainColorizeFilters />
-      </defs>
+      <DevMnemoDefs />
 
       <g>
         {[...colors_list].map((c, i) => {
@@ -50,15 +37,7 @@ function Mnemo() {
   );
 }
 
-function ComplexLamp({
-  x,
-  y,
-  color,
-}: {
-  x: number;
-  y: number;
-  color: LampColor;
-}) {
+function ComplexLamp({ x, y, color }: { x: number; y: number; color: LampColor }) {
   const [st, setSt] = useState<boolean>(false);
   return (
     <g onClick={() => setSt(!st)}>

@@ -66,9 +66,9 @@ export default function VibroTray({ x, y, active, on_press, on_release }: Props)
             y={y + f.p * 2}
             width={f.size}
             height={f.size}
-            fill={paddings.length - aindex === i ? Amber.p100 : Amber.p500}
-            stroke="black"
-            strokeWidth={0.2}
+            fill={paddings.length - aindex === i ? Amber.p100 : Amber.p600}
+            stroke={Amber.p800}
+            strokeWidth={0.1}
           />
         );
       })}
