@@ -1,4 +1,5 @@
 import useProjectModal from "../../core/gui/project_modal/useProjectModal";
+import MainNavBarDate from "./MainNavBarDate";
 
 export default function MainNavBar() {
   const { open_modal } = useProjectModal();
@@ -85,6 +86,9 @@ export default function MainNavBar() {
               </a>
             </li>
           </ul>
+          <span className="navbar-text">
+            <MainNavBarDate />
+          </span>
         </div>
       </div>
     </nav>

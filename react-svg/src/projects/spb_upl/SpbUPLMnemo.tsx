@@ -1,6 +1,6 @@
 // type Props = {};
 
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { BlueGray } from "../../core/nui/lib/palette";
 import WarehouseArea from "./nui/warehouse_area/WarehouseArea";
 import warehouse_area_composer from "./composers/warehouse_area_composer";
@@ -9,6 +9,7 @@ import MainGradient from "../../core/views/common/MainGradient";
 import BunkerGradients from "../../core/views/bunker/BunkerGradients";
 import LampGradients from "../../core/views/lamp/LampGradients";
 import MainColorizeFilters from "../../core/views/common/MainColorizeFilters";
+import BarHud from "./bar_hud/BarHud";
 
 export default function SpbUPLMnemo() {
   const max_width = 1280;
@@ -45,6 +46,9 @@ export default function SpbUPLMnemo() {
 
       {/* background */}
       <rect width={max_width} height={max_height} fill={BlueGray.p200} />
+
+      {/* top bar */}
+      <BarHud x={0} y={0} width={max_width} />
 
       <WarehouseArea x={max_width - 460} y={20} ctrl={wh_area_ctrl} />
     </svg>
