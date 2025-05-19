@@ -1,4 +1,4 @@
-import { ReactElement, ReactNode } from "react";
+import { MouseEvent, ReactNode } from "react";
 
 type Props = {
   children: ReactNode;
@@ -6,7 +6,7 @@ type Props = {
 };
 
 export default function ContextMenuAction({ children, onClick }: Props) {
-  const on_click = (e: any) => {
+  const on_click = (e: MouseEvent) => {
     e.preventDefault();
     onClick();
   };

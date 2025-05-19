@@ -1,4 +1,4 @@
-import { BlueGray, Gray } from "../../../core/nui/lib/palette";
+import { BlueGray } from "../../../core/nui/lib/palette";
 import PLC from "../../../core/views/remote_devices/plc/PLC";
 import Server from "../../../core/views/remote_devices/server/Server";
 

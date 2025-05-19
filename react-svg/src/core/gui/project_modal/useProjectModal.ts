@@ -12,11 +12,11 @@ interface StoreState {
 const useProjectModal = create<StoreState>((set) => ({
   is_open: false,
   open_modal: () =>
-    set((state) => ({
+    set((_) => ({
       is_open: true,
     })),
   close_modal: () =>
-    set((state) => ({
+    set((_) => ({
       is_open: false,
     })),
 }));

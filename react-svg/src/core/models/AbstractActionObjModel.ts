@@ -2,25 +2,25 @@ import BaseModel from "../../core/models/BaseModel";
 import ProjectInterface from "../project/project_interface";
 import { ObjectSpec, ProtoSpec } from "../project/project_spec";
 
-export enum Attrs {
-  cmd = 0,
-  logic = 1,
-  block = 2,
-  error_code = 3,
-  cur_cmd = 4,
-  ready = 5,
+export const Attrs = {
+  cmd: 0,
+  logic: 1,
+  block: 2,
+  error_code: 3,
+  cur_cmd: 4,
+  ready: 5,
   // use_in_dosing	= 6, 			// Флаг использования в дозировании
 
   //--- 2021.10.26
-  strWarning = 995, // string,   access: 3 ---wr,  name: Предупреждение в текстовом формате
-  strError = 996, // string,   access: 3 ---wr,  name: Ошибка в текстовом формате
+  strWarning: 995, // string,   access: 3 ---wr,  name: Предупреждение в текстовом формате
+  strError: 996, // string,   access: 3 ---wr,  name: Ошибка в текстовом формате
 
-  used_in_cur_job = 998, // int,      access: 1 ----r,  name: Используется в текущем задании?
-  plc_log = 997, // string,   access: 1 ----r,  name: Сообщение от ПЛК
-  state_STM = 999, // Состояние state-machine
-  warning = 1000,
-  server_soft_simulation = 1001, // Программная симуляция сервером
-}
+  used_in_cur_job: 998, // int,      access: 1 ----r,  name: Используется в текущем задании?
+  plc_log: 997, // string,   access: 1 ----r,  name: Сообщение от ПЛК
+  state_STM: 999, // Состояние state-machine
+  warning: 1000,
+  server_soft_simulation: 1001, // Программная симуляция сервером
+};
 
 // """список кодов cmd"""
 export enum Cmd {
@@ -37,11 +37,7 @@ export const AbstractActionObjModelProtoName = "AbstractActionObj";
 export default class AbstractActionObjModel extends BaseModel {
   proto_name: string = AbstractActionObjModelProtoName;
 
-  constructor(
-    project: ProjectInterface,
-    proto_spec: ProtoSpec,
-    object_spec: ObjectSpec
-  ) {
+  constructor(project: ProjectInterface, proto_spec: ProtoSpec, object_spec: ObjectSpec) {
     super(project, proto_spec, object_spec);
     // let attrs_list = [
     //   new Attr<boolean>(Attrs.state, false), // state

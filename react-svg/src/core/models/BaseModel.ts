@@ -60,14 +60,14 @@ export default class BaseModel implements ModelInterface, AttrModelInterface {
     if (node_sys_id) return this.project.get_object(node_sys_id);
 
     // otherwise - try find in self -----------------------
-    let nodes_array = node_path.split("."); // разбиваем строку
-    let top_node = nodes_array[0]; // 1 элемент
+    const nodes_array = node_path.split("."); // разбиваем строку
+    const top_node = nodes_array[0]; // 1 элемент
     node_sys_id = this.top_nodes[top_node]; // ищем в своём словаре
 
     // если не нашли - ошибка - такого элемента нет!!!
     if (node_sys_id === undefined) return null;
 
-    let node = this.project.get_object(node_sys_id);
+    const node = this.project.get_object(node_sys_id);
     if (!node) {
       return null;
     }
@@ -81,10 +81,10 @@ export default class BaseModel implements ModelInterface, AttrModelInterface {
     // иначе рекурсивно спускаемся ниже
 
     // создаём новый путь без обработанного элемента
-    let next_node_path = nodes_array.slice(1, nodes_array.length).join(".");
+    const next_node_path = nodes_array.slice(1, nodes_array.length).join(".");
 
     // возвращаем результат след. поиска
-    let next_node = node.get_node(next_node_path);
+    const next_node = node.get_node(next_node_path);
 
     if (next_node) {
       this.cache_nodes[node_path] = next_node.sys_id;
@@ -93,7 +93,7 @@ export default class BaseModel implements ModelInterface, AttrModelInterface {
   }
 
   public must_node(node_path: string): ModelInterface {
-    let node = this.get_node(node_path);
+    const node = this.get_node(node_path);
     if (!node) {
       throw new Error(`node ${this.name} no children path - ${node_path}`);
     }
@@ -104,13 +104,14 @@ export default class BaseModel implements ModelInterface, AttrModelInterface {
     if (this.attr_handlers.includes(handler)) return;
     this.attr_handlers.push(handler);
   }
+
   public disconnect_changed(handler: AttrChangeEventHandler) {
     if (!this.attr_handlers.includes(handler)) return;
     this.attr_handlers = this.attr_handlers.filter((h) => h !== handler);
   }
 
   public get_attr(attr_id: number): Attr<any> {
-    let attr = this.attrs_map[attr_id];
+    const attr = this.attrs_map[attr_id];
     if (!attr) {
       throw new Error(`no attr with id: ${attr_id} found`);
     }
@@ -118,17 +119,13 @@ export default class BaseModel implements ModelInterface, AttrModelInterface {
   }
 
   public has_attr(attr_id: number): boolean {
-    let attr = this.attrs_map[attr_id];
+    const attr = this.attrs_map[attr_id];
     return !!attr;
   }
 
   get_childrens(): ModelInterface[] {
-    let childrens = this.project.get_objects().filter((obj) => {
-      return (
-        obj.tree_lk > this.tree_lk &&
-        obj.tree_rk < this.tree_rk &&
-        obj.tree_level - 1 === this.tree_level
-      );
+    const childrens = this.project.get_objects().filter((obj) => {
+      return obj.tree_lk > this.tree_lk && obj.tree_rk < this.tree_rk && obj.tree_level - 1 === this.tree_level;
     });
 
     // TODO
@@ -182,7 +179,7 @@ export default class BaseModel implements ModelInterface, AttrModelInterface {
 
   // private ------------------------------------------------------------------
   on_attr_changed(attr_id: number): void {
-    for (let h of this.attr_handlers) {
+    for (const h of this.attr_handlers) {
       h(attr_id);
     }
   }
@@ -190,25 +187,19 @@ export default class BaseModel implements ModelInterface, AttrModelInterface {
   _make_attrs_map(proto_spec: ProtoSpec, object_spec: ObjectSpec) {
     // attrs
     const attrs_list = proto_spec.attrs.map((proto_attr) => {
-      const obj_value = object_spec.attrs_values
-        ? object_spec.attrs_values[String(proto_attr.attr_id)]
-        : undefined;
-      let attr = this._make_attr(proto_attr, obj_value);
-      return attr;
+      const obj_value = object_spec.attrs_values ? object_spec.attrs_values[String(proto_attr.attr_id)] : undefined;
+      return this._make_attr(proto_attr, obj_value);
     });
 
-    return attrs_list.reduce(
-      (map: { [key: number]: Attr<any> }, attr: Attr<any>) => {
-        map[attr.id] = attr;
-        return map;
-      },
-      {}
-    );
+    return attrs_list.reduce((map: { [key: number]: Attr<any> }, attr: Attr<any>) => {
+      map[attr.id] = attr;
+      return map;
+    }, {});
   }
 
   // TODO: use Attr.convert
   _make_attr(proto_attr: ProtoSpecAttr, obj_value: any | undefined): Attr<any> {
-    let need_value = obj_value === undefined ? proto_attr.value : obj_value;
+    const need_value = obj_value === undefined ? proto_attr.value : obj_value;
 
     if (proto_attr.vtype === "int") {
       return new Attr<number>(this, proto_attr, parseInt(need_value));

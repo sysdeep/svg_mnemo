@@ -11,8 +11,8 @@ type Props = {
 
 export default function WarehouseBunker({ x, y, ctrl }: Props) {
   const trays_matrix = [...Array(Math.ceil(ctrl.vibro_trays.length / 3))].map((_, i) => {
-    let start = i * 3;
-    let end = start + 3;
+    const start = i * 3;
+    const end = start + 3;
     return ctrl.vibro_trays.slice(start, end);
   });
 

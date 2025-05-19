@@ -17,7 +17,7 @@ export default function Belt({ x, y, logic, direction, chunks_count }: Props) {
   useEffect(() => {
     let int: NodeJS.Timeout | null = null;
     if (logic) {
-      let dir_k = direction === Direction.forward ? 1 : -1;
+      const dir_k = direction === Direction.forward ? 1 : -1;
       int = setInterval(() => {
         setAngle((a) => {
           let ca = a;
@@ -41,13 +41,7 @@ export default function Belt({ x, y, logic, direction, chunks_count }: Props) {
   return (
     <g>
       {/* top line */}
-      <Line
-        x={x + 18}
-        y={y}
-        chunks_count={chunks_count}
-        angle={angle}
-        is_forward={direction === Direction.forward}
-      />
+      <Line x={x + 18} y={y} chunks_count={chunks_count} angle={angle} is_forward={direction === Direction.forward} />
 
       {/* bottom line */}
       <Line

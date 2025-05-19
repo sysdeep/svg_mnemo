@@ -4,22 +4,13 @@ import WarehouseLineCompose from "../nui/warehouse_line/WarehouseLineCompose";
 import warehouse_bunkers_area_composer from "./warehouse_bunkers_area_composer";
 import warehouse_transporter_composer from "./warehouse_transporter_composer";
 
-export default function warehouse_line_composer(
-  node: ModelInterface
-): WarehouseLineCompose {
-  const bunkers_area = warehouse_bunkers_area_composer(
-    node.must_node("bunkerArray")
-  );
+export default function warehouse_line_composer(node: ModelInterface): WarehouseLineCompose {
+  const bunkers_area = warehouse_bunkers_area_composer(node.must_node("bunkerArray"));
 
-  // TODO: проблема... в интерфейсе нельзя указать static а без него нельзя сослаться в классе...
-  let transporter_model = node
-    .get_childrens()
-    .find((model) => model.proto_name === BeltTransporterModelProtoName);
+  const transporter_model = node.get_childrens().find((model) => model.proto_name === BeltTransporterModelProtoName);
 
   if (!transporter_model) {
-    throw new Error(
-      `${node.name} no children - ${BeltTransporterModelProtoName}`
-    );
+    throw new Error(`${node.name} no children - ${BeltTransporterModelProtoName}`);
   }
 
   const transporter = warehouse_transporter_composer(transporter_model);

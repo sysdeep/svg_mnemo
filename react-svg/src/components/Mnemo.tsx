@@ -1,7 +1,6 @@
 import MainSupplyView from "../units/main_supply/MainSupplyView";
 import MotorView from "../units/motor/MotorView";
 import AppCompose from "../units/app/AppCompose";
-import PaletteGrid from "./PaletteGrid";
 import { Belt } from "../views/belt";
 import VibroTray from "../views/vibro_tray/vibro_tray";
 

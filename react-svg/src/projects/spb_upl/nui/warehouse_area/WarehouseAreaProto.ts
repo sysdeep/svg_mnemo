@@ -3,14 +3,12 @@ import ModelInterface from "../../../../core/models/ModelInterface";
 import BaseCompose from "../../../../core/nui/BaseCompose";
 
 export type WarehouseAreaState = {
-  // is_block: boolean;
-  // is_error: boolean;
-  //   logic: number;
+  is_block: boolean;
 };
 
 export default class WarehouseAreaProto extends BaseCompose<WarehouseAreaState> {
   constructor(model: ModelInterface) {
-    super(model, {});
+    super(model, { is_block: false });
   }
 
   protected expected_models(): string[] {

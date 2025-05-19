@@ -4,7 +4,6 @@ import DSensorPage from "./pages/DSensorPage";
 
 import "winbox/dist/css/winbox.min.css"; // required
 import "winbox/dist/css/themes/modern.min.css"; // optional
-import WinBox from "react-winbox";
 import ServerPage from "./pages/ServerPage";
 import PLCPage from "./pages/PLCPage";
 import VibroTrayPage from "./pages/VibroTrayPage";

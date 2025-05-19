@@ -1,9 +1,6 @@
 import ProjectInterface from "../project/project_interface";
 import { ObjectSpec, ProtoSpec } from "../project/project_spec";
-import AbstractActionObjModel, {
-  Attrs as AttrsBase,
-  Cmd as CmdBase,
-} from "./AbstractActionObjModel";
+import AbstractActionObjModel from "./AbstractActionObjModel";
 
 // """направление вращения"""
 export enum Direction {
@@ -89,11 +86,7 @@ export const GenericMotorModelProtoName = "GenericMotor";
 export default class GenericMotorModel extends AbstractActionObjModel {
   proto_name: string = GenericMotorModelProtoName;
 
-  constructor(
-    project: ProjectInterface,
-    proto_spec: ProtoSpec,
-    object_spec: ObjectSpec
-  ) {
+  constructor(project: ProjectInterface, proto_spec: ProtoSpec, object_spec: ObjectSpec) {
     super(project, proto_spec, object_spec);
     // let attrs_list = [
     //   new Attr<boolean>(Attrs.state, false), // state

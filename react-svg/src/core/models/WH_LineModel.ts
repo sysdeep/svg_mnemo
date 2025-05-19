@@ -1,31 +1,20 @@
 import ProjectInterface from "../project/project_interface";
 import { ObjectSpec, ProtoSpec } from "../project/project_spec";
-import AbstractActionObjModel, {
-  Attrs as AttrsBase,
-  Cmd as CmdBase,
-} from "./AbstractActionObjModel";
+import AbstractActionObjModel, { Attrs as AttrsBase, Cmd as CmdBase } from "./AbstractActionObjModel";
 
-// """направление вращения"""
-export enum Direction {
-  forward = 1,
-  backward = -1,
-}
+// направление вращения
+export const Direction = {
+  forward: 1,
+  backward: -1,
+};
 
-// """список кодов cmd"""
-
-// enum CmdLocal {
-//   start = 4,
-//   stop = 5,
-// }
-// export type Cmd = CmdBase | CmdLocal;
+export const Cmd = {
+  ...CmdBase,
+  start: 4,
+  stop: 5,
+};
 
 /*
-class Direction:
-    """направление вращения"""
-    forward = 1
-    backward = -1
-
-
 
 class Cmd(CmdBase):
     """список кодов cmd"""
@@ -43,43 +32,18 @@ class Cmd(CmdBase):
 
 */
 
-// TODO: дублирование
-export enum Attrs {
-  // FROM PARENT
-  cmd = 0,
-  logic = 1,
-  block = 2,
-  error_code = 3,
-  cur_cmd = 4,
-  ready = 5,
-  // use_in_dosing	= 6, 			// Флаг использования в дозировании
+export const Attrs = {
+  ...AttrsBase,
 
-  //--- 2021.10.26
-  strWarning = 995, // string,   access: 3 ---wr,  name: Предупреждение в текстовом формате
-  strError = 996, // string,   access: 3 ---wr,  name: Ошибка в текстовом формате
-
-  used_in_cur_job = 998, // int,      access: 1 ----r,  name: Используется в текущем задании?
-  plc_log = 997, // string,   access: 1 ----r,  name: Сообщение от ПЛК
-  state_STM = 999, // Состояние state-machine
-  warning = 1000,
-  server_soft_simulation = 1001, // Программная симуляция сервером
-
-  // LOCAL
-  job_ID = 8, // int,      access: 1 ----r,  name: Номер ассоциированного задания
-}
-
-// export type Attrs = AttrsBase | AttrsLocal;
+  job_ID: 8, // int,      access: 1 ----r,  name: Номер ассоциированного задания
+};
 
 export const WH_LineModelProtoName = "WH_Line";
 
 export default class WH_LineModel extends AbstractActionObjModel {
   proto_name: string = WH_LineModelProtoName;
 
-  constructor(
-    project: ProjectInterface,
-    proto_spec: ProtoSpec,
-    object_spec: ObjectSpec
-  ) {
+  constructor(project: ProjectInterface, proto_spec: ProtoSpec, object_spec: ObjectSpec) {
     super(project, proto_spec, object_spec);
     // let attrs_list = [
     //   new Attr<boolean>(Attrs.state, false), // state

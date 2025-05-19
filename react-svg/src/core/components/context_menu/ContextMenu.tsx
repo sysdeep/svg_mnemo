@@ -35,10 +35,10 @@ function DDMenu({ children, top, left }: { children: ReactNode; top: number; lef
 
   useEffect(() => {
     if (menuRef.current) {
-      let dims = menuRef.current.getBoundingClientRect();
+      const dims = menuRef.current.getBoundingClientRect();
 
-      let max_width = menuRef.current.parentElement ? menuRef.current.parentElement.clientWidth : 0;
-      let max_height = menuRef.current.parentElement ? menuRef.current.parentElement.clientHeight : 0;
+      const max_width = menuRef.current.parentElement ? menuRef.current.parentElement.clientWidth : 0;
+      const max_height = menuRef.current.parentElement ? menuRef.current.parentElement.clientHeight : 0;
 
       if (left + dims.width > max_width) {
         left = max_width - dims.width;

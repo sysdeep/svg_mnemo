@@ -2,12 +2,12 @@ import {
   Attrs,
   BeltTransporterModelProtoName,
   Direction as ProtoDirection,
-} from "../../../../core/models/BeltTransporterModel";
-import ModelInterface from "../../../../core/models/ModelInterface";
-import BaseCompose from "../../../../core/nui/BaseCompose";
-import { Direction } from "../../../../core/nui/components/enums";
+} from "../../../models/BeltTransporterModel";
+import ModelInterface from "../../../models/ModelInterface";
+import BaseCompose from "../../BaseCompose";
+import { Direction } from "../../components/enums";
 
-export type WarehouseTransporterState = {
+export type BeltState = {
   is_block: boolean;
   is_error: boolean;
   logic: number;
@@ -15,7 +15,7 @@ export type WarehouseTransporterState = {
   is_reverse: boolean;
 };
 
-export default class WarehouseTransporterProto extends BaseCompose<WarehouseTransporterState> {
+export default class BeltProto extends BaseCompose<BeltState> {
   constructor(model: ModelInterface) {
     super(model, {
       is_block: false,
@@ -29,21 +29,21 @@ export default class WarehouseTransporterProto extends BaseCompose<WarehouseTran
     this.append_handlers([
       [
         Attrs.logic,
-        (state: WarehouseTransporterState, v: number) => ({
+        (state: BeltState, v: number) => ({
           ...state,
           logic: v,
         }),
       ],
       [
         Attrs.block,
-        (state: WarehouseTransporterState, v: any) => ({
+        (state: BeltState, v: any) => ({
           ...state,
           is_block: v > 0,
         }),
       ],
       [
         Attrs.error_code,
-        (state: WarehouseTransporterState, v: number) => ({
+        (state: BeltState, v: number) => ({
           ...state,
           is_error: v > 0,
         }),
@@ -52,9 +52,8 @@ export default class WarehouseTransporterProto extends BaseCompose<WarehouseTran
     ]);
   }
 
-  on_direction(state: WarehouseTransporterState, v: number) {
-    const direction =
-      v === ProtoDirection.forward ? Direction.forward : Direction.backward;
+  on_direction(state: BeltState, v: number) {
+    const direction = v === ProtoDirection.forward ? Direction.forward : Direction.backward;
     return {
       ...state,
       direction,

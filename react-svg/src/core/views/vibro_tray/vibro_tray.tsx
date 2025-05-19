@@ -11,11 +11,11 @@ type Props = {
 
 export default function VibroTray({ x, y, active, on_press, on_release }: Props) {
   const max_size = 24;
-  let padding = 2;
-  let paddings = [0, 1, 2, 3, 4];
+  const padding = 2;
+  const paddings = [0, 1, 2, 3, 4];
 
   const frames: Frame[] = paddings.map((p) => {
-    let size = max_size - p * padding * 2;
+    const size = max_size - p * padding * 2;
     return { size, is_active: false, p };
   });
 
@@ -46,7 +46,7 @@ export default function VibroTray({ x, y, active, on_press, on_release }: Props)
         int = null;
       }
     };
-  }, [active]);
+  }, [active, paddings]);
 
   const cursor = hover ? "pointer" : "arrow";
 
