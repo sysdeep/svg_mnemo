@@ -6,6 +6,7 @@ import { BunkerModel, BunkerModelProtoName } from "../../core/models/BunkerModel
 import { DSensorModel, DSensorModelProtoName } from "../../core/models/DSensorModel";
 import { GenericModel, GenericModelProtoName } from "../../core/models/GenericModel";
 import { GenericMotorModel, GenericMotorModelProtoName } from "../../core/models/GenericMotorModel";
+import { MainSupplyModel, MainSupplyModelProtoName } from "../../core/models/MainSupplyModel";
 import ModelInterface from "../../core/models/ModelInterface";
 import { SimpleVibroTrayModel, SimpleVibroTrayModelProtoName } from "../../core/models/SimpleVibroTrayModel";
 import { WH_LineModel, WH_LineModelProtoName } from "../../core/models/WH_LineModel";
@@ -32,6 +33,7 @@ export const models_map: ProtosMap = {
   [WH_LineModelProtoName]: WH_LineModel,
   [BunkerModelProtoName]: BunkerModel,
   [SimpleVibroTrayModelProtoName]: SimpleVibroTrayModel,
+  [MainSupplyModelProtoName]: MainSupplyModel,
 };
 
 /**

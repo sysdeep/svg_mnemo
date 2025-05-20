@@ -1,15 +1,13 @@
-// type Props = {};
-
 import { useContext } from "react";
 import { BlueGray } from "../../core/nui/lib/palette";
-import WarehouseArea from "./nui/warehouse_area/WarehouseArea";
-import warehouse_area_composer from "./composers/warehouse_area_composer";
 import { ProjectContext } from "../../ProjectContext";
 import MainGradient from "../../core/views/common/MainGradient";
 import BunkerGradients from "../../core/views/bunker/BunkerGradients";
 import LampGradients from "../../core/views/lamp/LampGradients";
 import MainColorizeFilters from "../../core/views/common/MainColorizeFilters";
 import BarHud from "./bar_hud/BarHud";
+import upload_system_composer from "./composers/upload_system_composer";
+import UploadSystem from "./nui/upload_system/UploadSystem";
 
 export default function SpbUPLMnemo() {
   const max_width = 1280;
@@ -18,20 +16,16 @@ export default function SpbUPLMnemo() {
   const project = useContext(ProjectContext);
 
   if (!project) {
-    return <h2>No Project!!</h2>;
+    return <h2>No Project</h2>;
   }
 
-  // const project = new Project();
-  // const warehouse_node = new AbstractObjectModel(project, "warehouse_area");
-  const warehouse_node = project.get_node(
-    "raw_materials_warehouse_control_system.inertUploadSystem.stuffWarehouseArea"
-  );
+  const upload_system = project.get_node("raw_materials_warehouse_control_system.inertUploadSystem");
 
-  if (!warehouse_node) {
+  if (!upload_system) {
     return <h2>No Node</h2>;
   }
 
-  const wh_area_ctrl = warehouse_area_composer(warehouse_node);
+  const upload_system_ctrl = upload_system_composer(upload_system);
 
   return (
     // <svg viewBox="0 0 800 600" width={800} height={600} fill="gray">
@@ -50,7 +44,7 @@ export default function SpbUPLMnemo() {
       {/* top bar */}
       <BarHud x={0} y={0} width={max_width} />
 
-      <WarehouseArea x={max_width - 460} y={20} ctrl={wh_area_ctrl} />
+      <UploadSystem x={0} y={80} max_width={max_width} ctrl={upload_system_ctrl} />
     </svg>
   );
 }

@@ -1,4 +1,4 @@
-import MotorProto from "./MotorProto";
+import MotorProto, { MotorState } from "./MotorProto";
 import useCtrlState from "../../components/useCtrlState";
 import BlockEffect from "../../components/BlockEffect";
 import ErrorEffect from "../../components/ErrorEffect";
@@ -12,7 +12,7 @@ export type Props = {
 };
 
 export default function MotorVM({ x, y, ctrl }: Props) {
-  const state = useCtrlState(ctrl);
+  const state = useCtrlState<MotorState>(ctrl);
 
   return (
     <ObjectContextMenuWrapper model={ctrl.model}>
