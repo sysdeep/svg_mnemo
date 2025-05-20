@@ -1,12 +1,11 @@
 import ProjectInterface from "../project/project_interface";
 import { ObjectSpec, ProtoSpec } from "../project/project_spec";
-import AbstractActionObjModel from "./AbstractActionObjModel";
+import { AbstractActionObjModel, Attrs as AttrsBase } from "./AbstractActionObjModel";
 
-// """направление вращения"""
-export enum Direction {
-  forward = 1,
-  backward = -1,
-}
+export const Direction = {
+  forward: 1,
+  backward: -1,
+};
 
 // """список кодов cmd"""
 
@@ -40,50 +39,30 @@ class Cmd(CmdBase):
 
 */
 
-// TODO: дублирование
-export enum Attrs {
-  // FROM PARENT
-  cmd = 0,
-  logic = 1,
-  block = 2,
-  error_code = 3,
-  cur_cmd = 4,
-  ready = 5,
-  // use_in_dosing	= 6, 			// Флаг использования в дозировании
-
-  //--- 2021.10.26
-  strWarning = 995, // string,   access: 3 ---wr,  name: Предупреждение в текстовом формате
-  strError = 996, // string,   access: 3 ---wr,  name: Ошибка в текстовом формате
-
-  used_in_cur_job = 998, // int,      access: 1 ----r,  name: Используется в текущем задании?
-  plc_log = 997, // string,   access: 1 ----r,  name: Сообщение от ПЛК
-  state_STM = 999, // Состояние state-machine
-  warning = 1000,
-  server_soft_simulation = 1001, // Программная симуляция сервером
+export const Attrs = {
+  ...AttrsBase,
 
   // LOCAL
-  set_speed = 6, //< vtype: int,      access: 3 ---wr,  name: Заданная скорость
-  current_control = 7, //< vtype: int,      access: 15 -sdwr, name: Контроль тока?
-  ready_control = 8, //< vtype: int,      access: 15 -sdwr, name: Контролируем готовность?
-  current = 9, //< vtype: int,      access: 1 ----r,  name: Текущий ток двигателя
-  power = 10, //< vtype: int,      access: 1 ----r,  name: Текущая мощность Двигателя
-  dir = 11, //< vtype: int,      access: 1 ----r,  name: Направление вращения
-  cur_speed_hz = 12, //< vtype: int,      access: 1 ----r,  name: Текущая скорость вращения Двигателя
-  max_current = 13, //< vtype: int,      access: 15 -sdwr, name: Максимально допустимый Ток двигателя
-  cur_speed_num = 14, //< vtype: int,      access: 1 ----r,  name: Номер текущей скорости
-  cur_speed_rpm = 15, //< vtype: int,      access: 1 ----r,  name: Текущая скорость об/мин
-  motohours = 17, //< vtype: int,      access: 17 h---r, name: Моточасы
-  total_motohours = 18, //< vtype: int,      access: 5 --d-r,  name: Общее количество Моточасов
-  motor_off_timeout = 19, //< vtype: int,      access: 15 -sdwr, name: Допустимое время превышения тока
-  instant_off_curent = 20, //< vtype: int,      access: 15 -sdwr, name: Ток немедленного  отключения двигателя
-  is_reverse = 21, //< vtype: int,      access: 1 ----r,  name: Реверсивный?
-}
-
-// export type Attrs = AttrsBase | AttrsLocal;
+  set_speed: 6, //< vtype: int,      access: 3 ---wr,  name: Заданная скорость
+  current_control: 7, //< vtype: int,      access: 15 -sdwr, name: Контроль тока?
+  ready_control: 8, //< vtype: int,      access: 15 -sdwr, name: Контролируем готовность?
+  current: 9, //< vtype: int,      access: 1 ----r,  name: Текущий ток двигателя
+  power: 10, //< vtype: int,      access: 1 ----r,  name: Текущая мощность Двигателя
+  dir: 11, //< vtype: int,      access: 1 ----r,  name: Направление вращения
+  cur_speed_hz: 12, //< vtype: int,      access: 1 ----r,  name: Текущая скорость вращения Двигателя
+  max_current: 13, //< vtype: int,      access: 15 -sdwr, name: Максимально допустимый Ток двигателя
+  cur_speed_num: 14, //< vtype: int,      access: 1 ----r,  name: Номер текущей скорости
+  cur_speed_rpm: 15, //< vtype: int,      access: 1 ----r,  name: Текущая скорость об/мин
+  motohours: 17, //< vtype: int,      access: 17 h---r, name: Моточасы
+  total_motohours: 18, //< vtype: int,      access: 5 --d-r,  name: Общее количество Моточасов
+  motor_off_timeout: 19, //< vtype: int,      access: 15 -sdwr, name: Допустимое время превышения тока
+  instant_off_curent: 20, //< vtype: int,      access: 15 -sdwr, name: Ток немедленного  отключения двигателя
+  is_reverse: 21, //< vtype: int,      access: 1 ----r,  name: Реверсивный?
+};
 
 export const GenericMotorModelProtoName = "GenericMotor";
 
-export default class GenericMotorModel extends AbstractActionObjModel {
+export class GenericMotorModel extends AbstractActionObjModel {
   proto_name: string = GenericMotorModelProtoName;
 
   constructor(project: ProjectInterface, proto_spec: ProtoSpec, object_spec: ObjectSpec) {

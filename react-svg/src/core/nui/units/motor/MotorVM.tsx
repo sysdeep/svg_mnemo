@@ -1,9 +1,7 @@
-import useContextMenu from "../../../../core/components/context_menu/useContextMenu";
 import MotorProto from "./MotorProto";
 import useCtrlState from "../../components/useCtrlState";
 import BlockEffect from "../../components/BlockEffect";
 import ErrorEffect from "../../components/ErrorEffect";
-import ObjectContextMenu from "../../components/ObjectContextMenu";
 import Motor from "../../../views/motor/Motor";
 import ObjectContextMenuWrapper from "../../components/ObjectContextMenuWrapper";
 

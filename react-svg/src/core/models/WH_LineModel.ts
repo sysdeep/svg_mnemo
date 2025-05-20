@@ -1,6 +1,6 @@
 import ProjectInterface from "../project/project_interface";
 import { ObjectSpec, ProtoSpec } from "../project/project_spec";
-import AbstractActionObjModel, { Attrs as AttrsBase, Cmd as CmdBase } from "./AbstractActionObjModel";
+import { AbstractActionObjModel, Attrs as AttrsBase, Cmd as CmdBase } from "./AbstractActionObjModel";
 
 // направление вращения
 export const Direction = {
@@ -40,7 +40,7 @@ export const Attrs = {
 
 export const WH_LineModelProtoName = "WH_Line";
 
-export default class WH_LineModel extends AbstractActionObjModel {
+export class WH_LineModel extends AbstractActionObjModel {
   proto_name: string = WH_LineModelProtoName;
 
   constructor(project: ProjectInterface, proto_spec: ProtoSpec, object_spec: ObjectSpec) {

@@ -1,43 +1,19 @@
-import AbstractActionObjModel, {
-  AbstractActionObjModelProtoName,
-} from "../../core/models/AbstractActionObjModel";
-import AbstractArrayModel, {
-  AbstractArrayModelProtoName,
-} from "../../core/models/AbstractArrayModel";
-import AbstractObjectModel, {
-  AbstractObjectModelProtoName,
-} from "../../core/models/AbstractObjectModel";
-import BeltTransporterModel, {
-  BeltTransporterModelProtoName,
-} from "../../core/models/BeltTransporterModel";
-import BunkerModel, {
-  BunkerModelProtoName,
-} from "../../core/models/BunkerModel";
-import DSensorModel, {
-  DSensorModelProtoName,
-} from "../../core/models/DSensorModel";
-import GenericModel, {
-  GenericModelProtoName,
-} from "../../core/models/GenericModel";
-import GenericMotorModel, {
-  GenericMotorModelProtoName,
-} from "../../core/models/GenericMotorModel";
+import { AbstractActionObjModel, AbstractActionObjModelProtoName } from "../../core/models/AbstractActionObjModel";
+import { AbstractArrayModel, AbstractArrayModelProtoName } from "../../core/models/AbstractArrayModel";
+import { AbstractObjectModel, AbstractObjectModelProtoName } from "../../core/models/AbstractObjectModel";
+import { BeltTransporterModel, BeltTransporterModelProtoName } from "../../core/models/BeltTransporterModel";
+import { BunkerModel, BunkerModelProtoName } from "../../core/models/BunkerModel";
+import { DSensorModel, DSensorModelProtoName } from "../../core/models/DSensorModel";
+import { GenericModel, GenericModelProtoName } from "../../core/models/GenericModel";
+import { GenericMotorModel, GenericMotorModelProtoName } from "../../core/models/GenericMotorModel";
 import ModelInterface from "../../core/models/ModelInterface";
-import SimpleVibroTrayModel, {
-  SimpleVibroTrayModelProtoName,
-} from "../../core/models/SimpleVibroTrayModel";
-import WH_LineModel, {
-  WH_LineModelProtoName,
-} from "../../core/models/WH_LineModel";
+import { SimpleVibroTrayModel, SimpleVibroTrayModelProtoName } from "../../core/models/SimpleVibroTrayModel";
+import { WH_LineModel, WH_LineModelProtoName } from "../../core/models/WH_LineModel";
 import ProjectInterface from "../../core/project/project_interface";
 import { ObjectSpec, ProtoSpec } from "../../core/project/project_spec";
 
 export interface ModelInterfaceConstructor {
-  new (
-    project: ProjectInterface,
-    proto_spec: ProtoSpec,
-    object_spec: ObjectSpec
-  ): ModelInterface;
+  new (project: ProjectInterface, proto_spec: ProtoSpec, object_spec: ObjectSpec): ModelInterface;
 }
 
 export type ProtosMap = { [key: string]: ModelInterfaceConstructor };

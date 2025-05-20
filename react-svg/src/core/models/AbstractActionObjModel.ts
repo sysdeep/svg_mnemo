@@ -22,19 +22,19 @@ export const Attrs = {
   server_soft_simulation: 1001, // Программная симуляция сервером
 };
 
-// """список кодов cmd"""
-export enum Cmd {
-  no_cmd = 0,
-  confirm_error = 1, //!< Квитировать ошибку
-  block = 2,
-  unblock = 3,
-  action_on = 4,
-  action_off = 5,
-}
+// список кодов cmd
+export const Cmd = {
+  no_cmd: 0,
+  confirm_error: 1, //!< Квитировать ошибку
+  block: 2,
+  unblock: 3,
+  action_on: 4,
+  action_off: 5,
+};
 
 export const AbstractActionObjModelProtoName = "AbstractActionObj";
 
-export default class AbstractActionObjModel extends BaseModel {
+export class AbstractActionObjModel extends BaseModel {
   proto_name: string = AbstractActionObjModelProtoName;
 
   constructor(project: ProjectInterface, proto_spec: ProtoSpec, object_spec: ObjectSpec) {
