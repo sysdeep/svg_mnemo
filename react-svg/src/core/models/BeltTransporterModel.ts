@@ -29,6 +29,7 @@ export class BeltTransporterModel extends AbstractActionObjModel {
 
   constructor(project: ProjectInterface, proto_spec: ProtoSpec, object_spec: ObjectSpec) {
     super(project, proto_spec, object_spec);
+
     // let attrs_list = [
     //   new Attr<boolean>(Attrs.state, false), // state
     //   new Attr<boolean>(Attrs.error, false), // error

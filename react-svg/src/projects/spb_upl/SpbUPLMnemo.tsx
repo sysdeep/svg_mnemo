@@ -8,6 +8,7 @@ import MainColorizeFilters from "../../core/views/common/MainColorizeFilters";
 import BarHud from "./bar_hud/BarHud";
 import upload_system_composer from "./composers/upload_system_composer";
 import UploadSystem from "./nui/upload_system/UploadSystem";
+import ObjErrorsModal from "../../core/nui/components/obj_errors_modal/ObjErrorsModal";
 
 export default function SpbUPLMnemo() {
   const max_width = 1280;
@@ -45,6 +46,8 @@ export default function SpbUPLMnemo() {
       <BarHud x={0} y={0} width={max_width} />
 
       <UploadSystem x={0} y={80} max_width={max_width} ctrl={upload_system_ctrl} />
+
+      <ObjErrorsModal x={30} y={200} />
     </svg>
   );
 }
