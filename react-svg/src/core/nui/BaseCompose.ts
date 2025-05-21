@@ -27,7 +27,7 @@ export default class BaseCompose<Type> {
 
   private check_expected_models(model: ModelInterface) {
     if (!this.expected_models().includes(model.proto_name)) {
-      console.log(this.model.sname);
+      console.log(`${this.model.sname} - неожиданный прототип ${model.proto_name} из ${this.expected_models()}`);
     }
     // console.log(this.expected_models().includes(model.proto_name));
     // if (!this.expected_models().includes(model.proto_name)) {
@@ -65,9 +65,7 @@ export default class BaseCompose<Type> {
     this.attr_handlers.set(attr_id, handler);
 
     // preload
-    this.set_state(
-      handler({ ...this.value }, this.model.get_attr_value(attr_id))
-    );
+    this.set_state(handler({ ...this.value }, this.model.get_attr_value(attr_id)));
   }
 
   /**

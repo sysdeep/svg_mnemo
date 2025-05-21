@@ -1,17 +1,17 @@
-import { InertUploadSystemProtoName } from "../../../../core/models/InertUploadSystem";
+import { AbstractArrayModelProtoName } from "../../../../core/models/AbstractArrayModel";
 import ModelInterface from "../../../../core/models/ModelInterface";
 import BaseCompose from "../../../../core/nui/BaseCompose";
 
-export type UploadSystemState = {
+export type PowerSupplyAreaState = {
   is_block: boolean;
 };
 
-export default class UploadSystemProto extends BaseCompose<UploadSystemState> {
+export default class PowerSupplyAreaProto extends BaseCompose<PowerSupplyAreaState> {
   constructor(model: ModelInterface) {
     super(model, { is_block: false });
   }
 
   protected expected_models(): string[] {
-    return [InertUploadSystemProtoName];
+    return [AbstractArrayModelProtoName];
   }
 }
