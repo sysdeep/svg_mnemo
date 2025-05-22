@@ -37,6 +37,12 @@ export default function SpbUPLMnemo() {
         <LampGradients />
 
         <MainColorizeFilters />
+
+        {/* TODO: вынести в компоненты, используется в модале ошибки */}
+        <filter id="shadow">
+          {/* <feDropShadow dx="0.2" dy="0.4" stdDeviation="0.2" /> */}
+          <feDropShadow dx="1" dy="1" stdDeviation="1" />
+        </filter>
       </defs>
 
       {/* background */}
@@ -47,7 +53,8 @@ export default function SpbUPLMnemo() {
 
       <UploadSystem x={0} y={80} max_width={max_width} ctrl={upload_system_ctrl} />
 
-      <ObjErrorsModal x={30} y={200} />
+      {/* debug obj modal */}
+      {/* <ObjErrorsModal x={30} y={200} /> */}
     </svg>
   );
 }

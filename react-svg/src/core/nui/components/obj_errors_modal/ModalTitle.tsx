@@ -9,6 +9,7 @@ type Props = {
   title: string;
 };
 
+// TODO: в оригинале есть шконка с описанием объекта
 export default function ModalTitle({ x, y, title, width, height }: Props) {
   return (
     <g>
