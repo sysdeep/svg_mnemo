@@ -39,12 +39,25 @@ export class AbstractActionObjModel extends BaseModel {
 
   constructor(project: ProjectInterface, proto_spec: ProtoSpec, object_spec: ObjectSpec) {
     super(project, proto_spec, object_spec);
-    // let attrs_list = [
-    //   new Attr<boolean>(Attrs.state, false), // state
-    //   new Attr<boolean>(Attrs.error, false), // error
-    //   new Attr<boolean>(Attrs.block, false), // block
-    // ];
-    // super(sys_id, attrs_list);
+
+    // const traps = {
+
+    // }
+
+    // this.connect_changed((attr_id: number) => {
+
+    // })
+    // #--- список ошибок от оборудования
+    //     self.raw_errors = []
+
+    //     #--- отображение сообщений от плк
+    //     self.append_trap_handler(Attr.strWarning, self.on_str_warning)
+
+    //     #--- обработка ошибок в текстовом формате
+    //     self.append_trap_handler(Attr.strError, self.on_str_error)
+
+    //     # обработка сообщений от плк
+    //     self.append_trap_handler(Attr.plc_log, self.on_plc_log)
   }
 
   // public set_error(value: boolean) {
