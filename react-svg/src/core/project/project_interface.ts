@@ -8,4 +8,5 @@ export default interface ProjectInterface {
   get_object(sys_id: string): ModelInterface | null;
   get_proto(proto_id: string): ProtoSpec | null;
   get_node(node_path: string): ModelInterface | null;
+  must_node(node_path: string): ModelInterface;
 }

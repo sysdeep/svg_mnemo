@@ -1,16 +1,8 @@
-import { Children } from "react";
 import { models_map } from "../../projects/spb_upl/all_models";
-import Attr from "../models/attrs/Attr";
-import GenericModel, { GenericModelProtoName } from "../models/GenericModel";
+import { GenericModelProtoName } from "../models/GenericModel";
 import ModelInterface from "../models/ModelInterface";
 import ProjectInterface from "./project_interface";
-import {
-  LinkSpec,
-  ObjectSpec,
-  ProjectSpec,
-  ProtoSpec,
-  ProtoSpecAttr,
-} from "./project_spec";
+import { LinkSpec, ObjectSpec, ProjectSpec, ProtoSpec } from "./project_spec";
 
 type ProtosMap = { [key: string]: ProtoSpec };
 
@@ -42,9 +34,7 @@ export default class Project implements ProjectInterface {
     this.name = project_spec.body.name;
     this.description = project_spec.body.description;
     this.protos_map = this._make_protos_map(project_spec.protos);
-    this.objects_map = this._make_objects_map(
-      this._make_models_list(project_spec.body.objects, this.protos_map)
-    );
+    this.objects_map = this._make_objects_map(this._make_models_list(project_spec.body.objects, this.protos_map));
     this.links = [...project_spec.body.links];
 
     this.top_nodes = {};
@@ -108,6 +98,16 @@ export default class Project implements ProjectInterface {
     return next_node;
   }
 
+  must_node(node_path: string): ModelInterface {
+    const node = this.get_node(node_path);
+
+    if (!node) {
+      throw new Error(`project - no node for path: ${node_path} found`);
+    }
+
+    return node;
+  }
+
   // private ------------------------------------------------------------------
   _make_protos_map(protos_list: ProtoSpec[]): ProtosMap {
     return protos_list.reduce((map: ProtosMap, proto: ProtoSpec) => {
@@ -116,10 +116,7 @@ export default class Project implements ProjectInterface {
     }, {});
   }
 
-  _make_models_list(
-    objects: ObjectSpec[],
-    proto_map: ProtosMap
-  ): ModelInterface[] {
+  _make_models_list(objects: ObjectSpec[], proto_map: ProtosMap): ModelInterface[] {
     return objects
       .filter((obj) => obj.name !== "root")
       .map((obj) => {
@@ -158,13 +155,10 @@ export default class Project implements ProjectInterface {
   _make_objects_map(objects: ModelInterface[]): {
     [key: string]: ModelInterface;
   } {
-    return objects.reduce(
-      (map: { [key: string]: ModelInterface }, obj: ModelInterface) => {
-        map[obj.sys_id] = obj;
-        return map;
-      },
-      {}
-    );
+    return objects.reduce((map: { [key: string]: ModelInterface }, obj: ModelInterface) => {
+      map[obj.sys_id] = obj;
+      return map;
+    }, {});
   }
 
   _extend_models() {

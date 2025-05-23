@@ -1,5 +1,10 @@
 # React SVG
 
+## Features
+
+- состояния оборудования - цветовая фильтрация, которую можно вкладывать друг в друга
+- контекстное меню
+
 ## Windows
 
 - https://www.npmjs.com/package/react-winbox
