@@ -75,9 +75,19 @@ function Modal({ info, handleClose, modals_map }: ModalProps) {
       <div style={{ padding: "1rem" }}>
         {/* <ObjectFrame obj={info.obj} /> */}
 
-        {modalConstructor ? modalConstructor(info.obj) : <div>not found</div>}
+        {modalConstructor ? modalConstructor(info.obj) : <NotFoundGModal obj={info.obj} />}
         {/* {mmap[info.obj.proto_name](info.obj)} */}
       </div>
     </WinBox>
+  );
+}
+
+function NotFoundGModal({ obj }: { obj: ModelInterface }) {
+  return (
+    <div>
+      <p>
+        Бланк настроек для <strong>{obj.sname}</strong> - не найден
+      </p>
+    </div>
   );
 }

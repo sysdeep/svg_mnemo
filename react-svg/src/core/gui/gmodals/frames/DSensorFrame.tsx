@@ -1,6 +1,6 @@
 import { Attrs } from "../../../models/DSensorModel";
 import ModelInterface from "../../../models/ModelInterface";
-import { format_on_off, format_yes_no, prepare_attrs } from "./components/attrs_extractor";
+import { format_yes_no, prepare_attrs } from "./components/attrs_extractor";
 import AttrsTable from "./components/AttrsTable";
 import { NeedControl, prepare_controls } from "./components/controls_helper";
 import ControlsTable from "./components/ControlsTable";
@@ -31,8 +31,6 @@ export default function DSensor({ model }: Props) {
 
       {/* TODO: controls */}
       <ControlsTable model={model} attrs={table_controls} />
-      {/* block */}
-      {/* control */}
     </div>
   );
 }
