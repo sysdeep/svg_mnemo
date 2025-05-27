@@ -8,8 +8,8 @@ import MainColorizeFilters from "../../core/views/common/MainColorizeFilters";
 import BarHud from "./bar_hud/BarHud";
 import upload_system_composer from "./composers/upload_system_composer";
 import UploadSystem from "./nui/upload_system/UploadSystem";
-import ObjErrorsModal from "../../core/nui/components/obj_errors_modal/ObjErrorsModal";
-import DSensor from "../../core/gui/gmodals/gframes/DSensorFrame";
+// import ObjErrorsModal from "../../core/nui/components/obj_errors_modal/ObjErrorsModal";
+import DSensor from "../../core/gui/gmodals/frames/DSensorFrame";
 
 export default function SpbUPLMnemo() {
   const max_width = 1280;
@@ -31,6 +31,7 @@ export default function SpbUPLMnemo() {
 
   return (
     <div>
+      {/* test DSensor GFrame */}
       <DSensor
         model={project.must_node(
           "raw_materials_warehouse_control_system.inertUploadSystem.powerSupplyArea.powerSupply_1"

@@ -6,6 +6,7 @@ import ContextMenuHeader from "../../components/context_menu/ContextMenuHeader";
 import ContextMenuDivider from "../../components/context_menu/ContextMenuDivider";
 import ContextMenuAction from "../../components/context_menu/ContextMenuAction";
 import SettingsIcon from "./icons/SettingsIcon";
+import useGModalsStore from "../../../projects/spb_upl/gmodals/gmodals_store";
 
 type Props = {
   model: ModelInterface;
@@ -18,6 +19,7 @@ type Props = {
 
 export default function ObjectContextMenu({ model, top, left, active, children, add_items = [] }: Props) {
   const { open_modal } = useObjectsModalsStore();
+  const { open_modal: open_gmodal } = useGModalsStore();
 
   return (
     <>
@@ -35,6 +37,10 @@ export default function ObjectContextMenu({ model, top, left, active, children, 
         {add_items}
 
         <ContextMenuDivider />
+
+        <ContextMenuAction onClick={() => open_gmodal(model, left, top)}>
+          <SettingsIcon /> Свойства GModal
+        </ContextMenuAction>
 
         <ContextMenuAction onClick={() => open_modal(model, left, top)}>
           <SettingsIcon /> Свойства

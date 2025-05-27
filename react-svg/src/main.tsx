@@ -16,6 +16,8 @@ import "./bootstrap_tree.css";
 import ObjectsModalManager from "./projects/spb_upl/ObjectsModalManager.tsx";
 import App from "./apps/app/App.tsx";
 import ProjectInterface from "./core/project/project_interface.ts";
+import GModalsManager from "./projects/spb_upl/gmodals/GModalsManager.tsx";
+import GModalsMap from "./projects/spb_upl/modules/gmodals/gmodals_map.tsx";
 
 async function prepare_project(): Promise<ProjectInterface> {
   const resp = await fetch("/project.json");
@@ -62,6 +64,7 @@ function MainApp() {
       <StrictMode>
         <App />
         <ObjectsModalManager />
+        <GModalsManager modals_map={GModalsMap} />
       </StrictMode>
     </ProjectContext.Provider>
   );
