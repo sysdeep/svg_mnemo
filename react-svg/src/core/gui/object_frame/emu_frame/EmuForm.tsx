@@ -5,11 +5,6 @@ type Props = {
   obj: ModelInterface;
 };
 
-// type Presend = {
-//   attr_id: number;
-//   value: any;
-// };
-
 type EmuAttr = {
   attr_id: number;
   name: string;
@@ -65,10 +60,16 @@ export default function EmuForm({ obj }: Props) {
   const on_to_model = (e: any, attr_id: number) => {
     e.preventDefault();
     let found = presend.find((item) => item.attr_id === attr_id);
-    console.log(attr_id, found);
-
     if (found) {
       obj.set_attr_value(found.attr_id, found.new_value);
+    }
+  };
+
+  const on_to_server = (e: any, attr_id: number) => {
+    e.preventDefault();
+    let found = presend.find((item) => item.attr_id === attr_id);
+    if (found) {
+      obj.send_attr(found.attr_id, found.new_value);
     }
   };
 
@@ -79,8 +80,8 @@ export default function EmuForm({ obj }: Props) {
           <tr>
             <th>id</th>
             <th>name</th>
-            <th>value</th>
-            <th>send</th>
+            <th>тек. значение</th>
+            <th>новое значение</th>
             <th>to model</th>
             <th>to server</th>
           </tr>
@@ -89,28 +90,25 @@ export default function EmuForm({ obj }: Props) {
           {presend.map((attr, i) => {
             return (
               <tr key={i}>
-                <td>{attr.attr_id}</td>
-                <td>{attr.name}</td>
-                <td>
-                  {attr.value} - {attr.new_value}
-                </td>
+                <td className="align-middle">{attr.attr_id}</td>
+                <td className="align-middle">{attr.name}</td>
+                <td className="align-middle">{attr.value}</td>
                 <td>
                   <input
                     type="text"
+                    className="form-control form-control-sm"
                     onChange={(e) => on_input(e, attr.attr_id)}
-                    value={attr.new_value}
-                  ></input>
+                    value={attr.new_value}></input>
                 </td>
                 <td>
-                  <button
-                    className="btn btn-primary btn-sm"
-                    onClick={(e) => on_to_model(e, attr.attr_id)}
-                  >
+                  <button className="btn btn-primary btn-sm" onClick={(e) => on_to_model(e, attr.attr_id)}>
                     send
                   </button>
                 </td>
                 <td>
-                  <button className="btn btn-primary btn-sm">send</button>
+                  <button className="btn btn-primary btn-sm" onClick={(e) => on_to_server(e, attr.attr_id)}>
+                    send
+                  </button>
                 </td>
               </tr>
             );

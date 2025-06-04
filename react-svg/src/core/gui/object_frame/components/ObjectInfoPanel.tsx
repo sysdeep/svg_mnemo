@@ -26,7 +26,7 @@ export default function ObjectInfoPanel({ obj }: Props) {
             <td>TODO</td>
           </tr>
           <tr>
-            <td>proto</td>
+            <td>прототип</td>
             <td>{obj.proto_name}</td>
 
             <td>sys_id</td>

@@ -9,6 +9,9 @@ export default interface ModelInterface {
   name: string;
   sname: string;
 
+  // TODO: obj_id
+  // TODO: plc_id
+
   tree_level: number;
   tree_lk: number;
   tree_rk: number;

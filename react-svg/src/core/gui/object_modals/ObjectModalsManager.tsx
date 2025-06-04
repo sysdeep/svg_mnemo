@@ -33,8 +33,8 @@ export default function ObjectModalsManager() {
             id={info.obj.sys_id}
             onClose={(force) => handleClose(force, info.obj)}
             title={info.obj.sname}
-            width={600}
-            height={700}
+            width={800}
+            height={800}
             // x={info.x}
             // y={info.y}
             x="center"
