@@ -8,10 +8,10 @@ type ControlCB = (value: any) => void;
 
 const controls_map = {
   [ControlType.switch]: (m: ControlsTableRowModel, cb: ControlCB) => (
-    <ControlSwitch name={m.name} description="TODO" value={m.value} attr_id={m.attr_id} onChange={cb} />
+    <ControlSwitch name={m.name} description="TODO" value={m.value} attr_id={m.attr_id} onChange={cb} key={m.attr_id} />
   ),
   [ControlType.text]: (m: ControlsTableRowModel, cb: ControlCB) => (
-    <ControlText name={m.name} description="TODO" value={m.value} attr_id={m.attr_id} onChange={cb} />
+    <ControlText name={m.name} description="TODO" value={m.value} attr_id={m.attr_id} onChange={cb} key={m.attr_id} />
   ),
 };
 

@@ -1,10 +1,10 @@
 import WinBox from "react-winbox";
-import ModelInterface from "../../core/models/ModelInterface";
-import useObjectsModalsStore from "../../stores/objects_modals_store";
-import ObjectFrame from "../../core/gui/object_frame/ObjectFrame";
+import ModelInterface from "../../models/ModelInterface";
+import ObjectFrame from "../object_frame/ObjectFrame";
+import useObjectModalsStore from "./object_modals_store";
 
-export default function ObjectsModalManager() {
-  const { modals, close_modal } = useObjectsModalsStore();
+export default function ObjectModalsManager() {
+  const { modals, close_modal } = useObjectModalsStore();
 
   // TODO: тут какая то проблема с закрытием
   // при закрытии первого, событие приходит к последующему но с флагом force=true

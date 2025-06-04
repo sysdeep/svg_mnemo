@@ -1,5 +1,6 @@
 import { Attrs } from "../../../models/BunkerModel";
 import ModelInterface from "../../../models/ModelInterface";
+import useObjectModalsStore from "../../object_modals/object_modals_store";
 import { ControlType, NeedControl, prepare_controls } from "./components/controls_helper";
 import ControlsTable from "./components/ControlsTable";
 
@@ -15,15 +16,22 @@ export default function BunkerFrame({ model }: Props) {
   ];
   const table_controls = prepare_controls(model, need_controls);
 
+  const { open_modal } = useObjectModalsStore();
+
   return (
     <div>
       {/* TODO: title */}
-      <h6>{model.sname}</h6>
+      <h5>{model.sname}</h5>
 
       {/* <AttrsTable model={model} attrs={table_attrs} /> */}
 
       {/* TODO: controls */}
       <ControlsTable model={model} attrs={table_controls} />
+
+      {/* std obj modal */}
+      <a href="#" onClick={() => open_modal(model, 0, 0)}>
+        obj modal
+      </a>
     </div>
   );
 }

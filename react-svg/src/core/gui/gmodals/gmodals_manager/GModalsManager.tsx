@@ -1,6 +1,6 @@
 import WinBox from "react-winbox";
 import useGModalsStore, { type ObjectModal } from "./gmodals_store";
-import ModelInterface from "../../../core/models/ModelInterface";
+import ModelInterface from "../../../models/ModelInterface";
 import { ReactElement } from "react";
 
 type Props = {

@@ -38,7 +38,7 @@ export default function ControlText({ name, value, onChange }: Props) {
       </td>
 
       {/* units */}
-      <dt></dt>
+      <td></td>
 
       {/* apply */}
       <td>

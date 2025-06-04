@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import ModelInterface from "../core/models/ModelInterface";
+import ModelInterface from "../../models/ModelInterface";
 
 type ObjectModal = {
   obj: ModelInterface;
@@ -16,7 +16,7 @@ interface StoreState {
 /**
  * хранилище объектов для отображения модалов объектов
  */
-const useObjectsModalsStore = create<StoreState>((set) => ({
+const useObjectModalsStore = create<StoreState>((set) => ({
   modals: [] as ObjectModal[],
   open_modal: (obj: ModelInterface, x: number, y: number) =>
     set((state) => ({
@@ -36,4 +36,4 @@ function create_modal(obj: ModelInterface, x: number, y: number): ObjectModal {
   };
 }
 
-export default useObjectsModalsStore;
+export default useObjectModalsStore;

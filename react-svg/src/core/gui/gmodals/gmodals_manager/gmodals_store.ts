@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import ModelInterface from "../../../core/models/ModelInterface";
+import ModelInterface from "../../../models/ModelInterface";
 
 export type ObjectModal = {
   obj: ModelInterface;

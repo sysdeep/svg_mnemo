@@ -36,6 +36,8 @@ export default function ControlSwitch({ name, value, onChange }: Props) {
           </label> */}
         </div>
       </td>
+      {/* units */}
+      <td></td>
       <td></td>
     </tr>
   );
