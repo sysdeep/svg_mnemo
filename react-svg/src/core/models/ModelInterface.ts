@@ -26,6 +26,8 @@ export default interface ModelInterface {
   get_attr_value(attr_id: number): any;
   get_attrs(): Attr<any>[];
 
+  send_attr(attr_id: number, value: any): void;
+
   connect_changed(handler: AttrChangeEventHandler): void;
   disconnect_changed(handler: AttrChangeEventHandler): void;
 }

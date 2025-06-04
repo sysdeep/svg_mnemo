@@ -158,6 +158,9 @@ export default class BaseModel implements ModelInterface, AttrModelInterface {
     return proto;
   }
 
+  /**
+   * приходящее от сервера значение атрибута
+   */
   set_attr_value(attr_id: number, value: any) {
     console.log(`set attr value: ${attr_id} - ${value}`);
     const attr = this.attrs_map[attr_id];
@@ -175,6 +178,14 @@ export default class BaseModel implements ModelInterface, AttrModelInterface {
 
   get_attrs(): Attr<any>[] {
     return Object.values(this.attrs_map);
+  }
+
+  /**
+   * уходящее на сервер значение атрибута
+   */
+  send_attr(attr_id: number, value: any) {
+    // TODO: отсылать на сервер
+    this.set_attr_value(attr_id, value);
   }
 
   // private ------------------------------------------------------------------

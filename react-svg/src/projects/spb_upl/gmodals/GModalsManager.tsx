@@ -86,7 +86,11 @@ function NotFoundGModal({ obj }: { obj: ModelInterface }) {
   return (
     <div>
       <p>
-        Бланк настроек для <strong>{obj.sname}</strong> - не найден
+        Бланк настроек для{" "}
+        <strong>
+          {obj.proto_name} - {obj.sname}
+        </strong>{" "}
+        - не найден
       </p>
     </div>
   );

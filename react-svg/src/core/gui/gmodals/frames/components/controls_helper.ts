@@ -1,8 +1,19 @@
 import ModelInterface from "../../../../models/ModelInterface";
 import { ControlsTableRowModel } from "./ControlsTable";
 
+/**
+ * типы контролов
+ */
+export const ControlType = {
+  switch: 0,
+  text: 1,
+  int: 2,
+  int_float: 3,
+};
+
 export type NeedControl = {
   attr_id: number;
+  control_type: number;
 };
 
 export function prepare_controls(model: ModelInterface, need_controls: NeedControl[]): ControlsTableRowModel[] {
@@ -20,6 +31,7 @@ export function prepare_controls(model: ModelInterface, need_controls: NeedContr
       name: model_attr.name,
       description: model_attr.name, // TODO
       value: model_attr.value,
+      control_type: need_attr.control_type,
       //   value: formatter(model_attr.get_value()),
       //   formatter: formatter,
     };

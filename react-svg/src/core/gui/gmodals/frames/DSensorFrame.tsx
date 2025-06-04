@@ -2,7 +2,7 @@ import { Attrs } from "../../../models/DSensorModel";
 import ModelInterface from "../../../models/ModelInterface";
 import { format_yes_no, prepare_attrs } from "./components/attrs_extractor";
 import AttrsTable from "./components/AttrsTable";
-import { NeedControl, prepare_controls } from "./components/controls_helper";
+import { ControlType, NeedControl, prepare_controls } from "./components/controls_helper";
 import ControlsTable from "./components/ControlsTable";
 
 type Props = {
@@ -19,7 +19,10 @@ export default function DSensor({ model }: Props) {
 
   const table_attrs = prepare_attrs(model, need_attrs);
 
-  const need_controls: NeedControl[] = [{ attr_id: Attrs.block }, { attr_id: Attrs.control }];
+  const need_controls: NeedControl[] = [
+    { attr_id: Attrs.block, control_type: ControlType.switch },
+    { attr_id: Attrs.control, control_type: ControlType.switch },
+  ];
   const table_controls = prepare_controls(model, need_controls);
 
   return (
