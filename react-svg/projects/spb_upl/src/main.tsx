@@ -8,10 +8,10 @@ import "winbox/dist/css/winbox.min.css"; // required
 import "winbox/dist/css/themes/modern.min.css"; // optional
 import "@fontsource/ubuntu/400.css"; // Defaults to weight 400
 
-// self -----------------------------------------------------------------------
-import "./index.css";
-import { ProjectContext } from "./ProjectContext.ts";
-import "./bootstrap_tree.css";
+import "./core/css/bootstrap_tree.css";
+import "./core/css/main.css";
+
+import { ProjectContext } from "./core/project/project_context.ts";
 import ObjectsModalManager from "./core/gui/object_modals/ObjectModalsManager.tsx";
 import App from "./apps/app/App.tsx";
 import ProjectInterface from "./core/project/project_interface.ts";

@@ -1,6 +1,5 @@
-import { useContext } from "react";
 import { BlueGray } from "../../core/nui/lib/palette";
-import { ProjectContext } from "../../ProjectContext";
+import { useProjectContext } from "../../core/project/project_context";
 import MainGradient from "../../core/views/common/MainGradient";
 import BunkerGradients from "../../core/views/bunker/BunkerGradients";
 import LampGradients from "../../core/views/lamp/LampGradients";
@@ -14,7 +13,7 @@ export default function Mnemo() {
   const max_width = 1280;
   const max_height = 960;
 
-  const project = useContext(ProjectContext);
+  const project = useProjectContext();
 
   if (!project) {
     return <h2>No Project</h2>;

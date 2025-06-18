@@ -1,6 +1,5 @@
-import { useContext } from "react";
 import ModelInterface from "../../../../core/models/ModelInterface";
-import { ProjectContext } from "../../../../ProjectContext";
+import { useProjectContext } from "../../../project/project_context";
 import TreeNode from "./TreeNode";
 
 type Props = {
@@ -8,7 +7,7 @@ type Props = {
 };
 
 export default function ProjectTree({ on_selected }: Props) {
-  const project = useContext(ProjectContext);
+  const project = useProjectContext();
 
   if (!project) {
     return <h3>No project</h3>;

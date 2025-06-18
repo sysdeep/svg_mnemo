@@ -11,22 +11,11 @@ console.log(Math.random() < 0.8); //80% probability of getting true
 console.log(Math.random() < 0.9); //90% probability of getting true
 */
 
-/*
-Выводы
-- можно подключаться к шине, причём в конечных элементах
-- чтобы избежать каскадного рендеринга, в контроллерах нельзя менять стейт, там только композиция
-- dev-tools нагло врёт что дочерний компонент отрендерился))
-*/
-
 export default function App() {
-  // const pro = useContext(ProjectContext);
-
   return (
     <>
       <MainNavBar />
 
-      {/* <code>{JSON.stringify(pro)}</code> */}
-      {/* <ProjectLoader /> */}
       <Mnemo />
 
       <ProjectModal />
