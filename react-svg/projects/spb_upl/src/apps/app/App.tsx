@@ -1,6 +1,6 @@
 import ProjectModal from "../../core/gui/project_modal/ProjectModal";
-import SpbUPLMnemo from "../../projects/spb_upl/SpbUPLMnemo";
 import MainNavBar from "./MainNavBar";
+import Mnemo from "./Mnemo";
 
 /*
 // Example
@@ -27,7 +27,7 @@ export default function App() {
 
       {/* <code>{JSON.stringify(pro)}</code> */}
       {/* <ProjectLoader /> */}
-      <SpbUPLMnemo />
+      <Mnemo />
 
       <ProjectModal />
     </>

@@ -1,6 +1,5 @@
-import { models_map } from "../../projects/spb_upl/all_models";
-import { GenericModelProtoName } from "../models/GenericModel";
 import ModelInterface from "../models/ModelInterface";
+import { create_object, ProtoClassMap } from "./objects_factory";
 import ProjectInterface from "./project_interface";
 import { LinkSpec, ObjectSpec, ProjectSpec, ProtoSpec } from "./project_spec";
 
@@ -24,17 +23,13 @@ export default class Project implements ProjectInterface {
 
   // TODO: plcs
 
-  constructor(
-    // name: string,
-    // description: string,
-    // protos_map: { [key: string]: ProtoSpec },
-    // objects_list: ModelInterface[]
-    project_spec: ProjectSpec
-  ) {
+  constructor(project_spec: ProjectSpec, proto_class_map: ProtoClassMap) {
     this.name = project_spec.body.name;
     this.description = project_spec.body.description;
     this.protos_map = this._make_protos_map(project_spec.protos);
-    this.objects_map = this._make_objects_map(this._make_models_list(project_spec.body.objects, this.protos_map));
+    this.objects_map = this._make_objects_map(
+      this._make_models_list(project_spec.body.objects, this.protos_map, proto_class_map)
+    );
     this.links = [...project_spec.body.links];
 
     this.top_nodes = {};
@@ -116,7 +111,7 @@ export default class Project implements ProjectInterface {
     }, {});
   }
 
-  _make_models_list(objects: ObjectSpec[], proto_map: ProtosMap): ModelInterface[] {
+  _make_models_list(objects: ObjectSpec[], proto_map: ProtosMap, proto_class_map: ProtoClassMap): ModelInterface[] {
     return objects
       .filter((obj) => obj.name !== "root")
       .map((obj) => {
@@ -124,33 +119,33 @@ export default class Project implements ProjectInterface {
         if (proto === undefined) {
           throw new Error("no proto by proto_code: " + obj.proto_code);
         }
-        return this._make_model(obj, proto);
+        return create_object(this, obj, proto, proto_class_map);
       });
   }
 
-  _make_model(obj: ObjectSpec, proto: ProtoSpec): ModelInterface {
-    // // attrs
-    // const attrs = proto.attrs.map((proto_attr) => {
-    //   const obj_value = obj.attrs_values
-    //     ? obj.attrs_values[String(proto_attr.attr_id)]
-    //     : undefined;
-    //   return this._make_attr(proto_attr, obj_value);
-    // });
+  // _make_model(obj: ObjectSpec, proto: ProtoSpec, protos_map: ProtosMap): ModelInterface {
+  //   // // attrs
+  //   // const attrs = proto.attrs.map((proto_attr) => {
+  //   //   const obj_value = obj.attrs_values
+  //   //     ? obj.attrs_values[String(proto_attr.attr_id)]
+  //   //     : undefined;
+  //   //   return this._make_attr(proto_attr, obj_value);
+  //   // });
 
-    // fill values
-    // TODO
+  //   // fill values
+  //   // TODO
 
-    // create model
-    let ModelCls = models_map[proto.name];
+  //   // create model
+  //   let ModelCls = protos_map[proto.name];
 
-    if (!ModelCls) {
-      // throw new Error("no class for proto: " + proto.name);
-      // console.log("undefined proto name - use generic");
-      ModelCls = models_map[GenericModelProtoName];
-    }
+  //   if (!ModelCls) {
+  //     // throw new Error("no class for proto: " + proto.name);
+  //     // console.log("undefined proto name - use generic");
+  //     ModelCls = protos_map[GenericModelProtoName];
+  //   }
 
-    return new ModelCls(this, proto, obj);
-  }
+  //   return new ModelCls(this, proto, obj);
+  // }
 
   _make_objects_map(objects: ModelInterface[]): {
     [key: string]: ModelInterface;

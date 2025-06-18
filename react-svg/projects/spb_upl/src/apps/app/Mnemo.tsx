@@ -10,7 +10,7 @@ import upload_system_composer from "./composers/upload_system_composer";
 import UploadSystem from "./nui/upload_system/UploadSystem";
 // import ObjErrorsModal from "../../core/nui/components/obj_errors_modal/ObjErrorsModal";
 
-export default function SpbUPLMnemo() {
+export default function Mnemo() {
   const max_width = 1280;
   const max_height = 960;
 

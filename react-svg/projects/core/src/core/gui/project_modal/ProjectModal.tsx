@@ -1,8 +1,9 @@
 import { useContext } from "react";
 import WinBox from "react-winbox";
 import ProjectFrame from "./ProjectFrame";
-import { ProjectContext } from "../../../ProjectContext";
+// import { ProjectContext } from "../../../ProjectContext";
 import useProjectModal from "./useProjectModal";
+import { ProjectContext } from "../../../ProjectContext";
 
 export default function ProjectModal() {
   const project = useContext(ProjectContext);

@@ -11,13 +11,13 @@ import "@fontsource/ubuntu/400.css"; // Defaults to weight 400
 // self -----------------------------------------------------------------------
 import "./index.css";
 import { ProjectContext } from "./ProjectContext.ts";
-import { make_project } from "./projects/spb_upl/loader.ts";
 import "./bootstrap_tree.css";
 import ObjectsModalManager from "./core/gui/object_modals/ObjectModalsManager.tsx";
 import App from "./apps/app/App.tsx";
 import ProjectInterface from "./core/project/project_interface.ts";
 import GModalsManager from "./core/gui/gmodals/gmodals_manager/GModalsManager.tsx";
-import GModalsMap from "./projects/spb_upl/modules/gmodals/gmodals_map.tsx";
+import GModalsMap from "./apps/app/modules/gmodals/gmodals_map.tsx";
+import { make_project } from "./apps/app/modules/project/project_constructor.ts";
 
 async function prepare_project(): Promise<ProjectInterface> {
   const resp = await fetch("/project.json");
