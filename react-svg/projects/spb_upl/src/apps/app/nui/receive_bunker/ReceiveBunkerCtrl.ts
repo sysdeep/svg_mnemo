@@ -1,20 +1,15 @@
 import BunkerProto from "@src/core/nui/units/bunker/BunkerProto";
 import ModelInterface from "../../../../core/models/ModelInterface";
+import { BunkerStorageCtrl } from "../bunker_storage/BunkerStorageCtrl";
+import DSensorProto from "@src/core/nui/units/dsensor/DSensorProto";
 
 export default class ReceiveBunkerCtrl extends BunkerProto {
-  // vibro_trays: BunkerVibroTrayCtrl[];
-  // auto_mode_sensor: DSensorProto | null;
-  // ready_sensor: DSensorProto | null;
+  storage: BunkerStorageCtrl;
+  level_meters: DSensorProto[];
 
-  constructor(
-    model: ModelInterface
-    // vibro_trays: BunkerVibroTrayCtrl[],
-    // auto_mode_sensor: DSensorProto | null,
-    // ready_sensor: DSensorProto | null
-  ) {
+  constructor(model: ModelInterface, storage: BunkerStorageCtrl, level_meters: DSensorProto[]) {
     super(model);
-    // this.vibro_trays = vibro_trays;
-    // this.auto_mode_sensor = auto_mode_sensor;
-    // this.ready_sensor = ready_sensor;
+    this.storage = storage;
+    this.level_meters = level_meters;
   }
 }

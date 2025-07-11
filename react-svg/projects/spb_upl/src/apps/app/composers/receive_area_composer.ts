@@ -8,12 +8,14 @@ export default function receive_area_composer(node: ModelInterface): ReceiveArea
   // bunkers
   const bunkers = node
     .must_node("bunkers")
-    .get_childrens()
+    .get_childrens(false)
     .map((m) => receive_bunker_composer(m));
   // TODO: other
 
   // distributor
-  let distributor_node = node.get_childrens().find((m) => m.proto_name === NwayMotorizedDustributionHopperProtoName);
+  let distributor_node = node
+    .get_childrens(false)
+    .find((m) => m.proto_name === NwayMotorizedDustributionHopperProtoName);
   if (!distributor_node) {
     throw new Error("distribution node not found, parent: " + node.name);
   }

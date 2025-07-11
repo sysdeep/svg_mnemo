@@ -49,6 +49,10 @@ export default class Project implements ProjectInterface {
     return this.objects_map[sys_id] || null;
   }
 
+  get_links(): LinkSpec[] {
+    return [...this.links];
+  }
+
   // node interface -----------------------------------------------------------
   append_top_node(node: ModelInterface) {
     this.top_nodes[node.name] = node.sys_id;
@@ -161,7 +165,7 @@ export default class Project implements ProjectInterface {
 
     const tnode = (parent: ModelInterface, node: ModelInterface) => {
       parent.append_top_node(node);
-      let node_childrens = node.get_childrens();
+      let node_childrens = node.get_childrens(false);
       node_childrens.forEach((child) => {
         tnode(node, child);
       });
@@ -173,7 +177,7 @@ export default class Project implements ProjectInterface {
 
     root_models.forEach((model) => {
       this.append_top_node(model);
-      let node_childrens = model.get_childrens();
+      let node_childrens = model.get_childrens(false);
       // console.log(model, node_childrens);
       node_childrens.forEach((child) => {
         tnode(model, child);

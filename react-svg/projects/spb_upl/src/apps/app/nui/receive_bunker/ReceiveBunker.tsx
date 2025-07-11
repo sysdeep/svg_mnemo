@@ -1,6 +1,8 @@
 import BunkerView from "@src/core/nui/units/bunker/BunkerView";
 import ReceiveBunkerCtrl from "./ReceiveBunkerCtrl";
 import BunkerGeometry from "@src/core/views/bunker/bunker_geometry";
+import BunkerStorage from "../bunker_storage/BunkerStorage";
+import DSensorNormalView from "@src/core/nui/units/dsensor/DSensorNormalView";
 
 type Props = {
   x: number;
@@ -26,10 +28,28 @@ export default function ReceiveBunker({ x, y, ctrl }: Props) {
   //   return ctrl.vibro_trays.slice(start, end);
   // });
 
+  // # level meters
+  //       self._level_meters = []
+
+  //       x = 2
+  //       y = 22
+  //       for _ in self._compose.level_meters:
+  //           lm = SensorNormal(size=10, parent=self)
+  //           lm.setPos(x, y)
+  //           y += lm.boundingRect().height() + 4
+  //           self._level_meters.append(lm)
+
   return (
     <g>
       <BunkerView x={x} y={y} ctrl={ctrl} geometry={bunker_geometry} />
 
+      {/* storage */}
+      <BunkerStorage x={x} y={y} width={bunker_max_width} height={30} ctrl={ctrl.storage} />
+
+      {/* level meters */}
+      {ctrl.level_meters.map((lm_ctrl, i) => {
+        return <DSensorNormalView x={x + 4} y={y + 24 + 16 * i} ctrl={lm_ctrl} size={10} key={i} />;
+      })}
       {/* {ctrl.auto_mode_sensor && <DSensorNormalView ctrl={ctrl.auto_mode_sensor} x={x + 2} y={y + 2} />} */}
 
       {/* {ctrl.ready_sensor && <DSensorNormalView ctrl={ctrl.ready_sensor} x={x + 2 + 16} y={y + 2} />} */}

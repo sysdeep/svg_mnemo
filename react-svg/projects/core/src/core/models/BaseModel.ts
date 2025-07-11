@@ -123,8 +123,8 @@ export default class BaseModel implements ModelInterface, AttrModelInterface {
     return !!attr;
   }
 
-  get_childrens(): ModelInterface[] {
-    const childrens = this.project.get_objects().filter((obj) => {
+  get_childrens(use_links: boolean = false): ModelInterface[] {
+    const tree_childrens = this.project.get_objects().filter((obj) => {
       return obj.tree_lk > this.tree_lk && obj.tree_rk < this.tree_rk && obj.tree_level - 1 === this.tree_level;
     });
 
@@ -137,13 +137,19 @@ export default class BaseModel implements ModelInterface, AttrModelInterface {
     //         for litem in self.parent.links:
     //             if litem["from"] == self.sys_id:
     //                 childrens.append(self.parent.objects[litem["to"]])
+    let links_childrens: ModelInterface[] = [];
+    if (use_links) {
+      let links = this.project.get_links().filter((l) => l.from === this.sys_id);
+      links_childrens = links.map((l) => this.project.get_object(l.to)).filter((m) => m !== null);
+    }
 
+    // TODO
     //     if back_links:
     //         for litem in self.parent.links:
     //             if litem["to"] == self.sys_id:
     //                 childrens.append(self.parent.objects[litem["from"]])
 
-    return childrens;
+    return [...tree_childrens, ...links_childrens];
   }
 
   append_top_node(node: ModelInterface) {

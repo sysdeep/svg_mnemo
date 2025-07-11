@@ -21,6 +21,8 @@ import {
   NwayMotorizedDustributionHopper,
   NwayMotorizedDustributionHopperProtoName,
 } from "@src/core/models/NwayMotorizedDustributionHopper";
+import { FBunkerStorageCommon, FBunkerStorageCommonProtoName } from "@src/core/models/FBunkerStorageCommon";
+import { FBunkerStorage, FBunkerStorageProtoName } from "@src/core/models/FBunkerStorage";
 
 export interface ModelInterfaceConstructor {
   new (project: ProjectInterface, proto_spec: ProtoSpec, object_spec: ObjectSpec): ModelInterface;
@@ -37,12 +39,14 @@ export const models_map: ProtoClassMap = {
   [BeltTransporterModelProtoName]: BeltTransporterModel,
   [BunkerModelProtoName]: BunkerModel,
   [DSensorModelProtoName]: DSensorModel,
+  [FBunkerStorageCommonProtoName]: FBunkerStorageCommon,
+  [FBunkerStorageProtoName]: FBunkerStorage,
   [GenericModelProtoName]: GenericModel,
   [GenericMotorModelProtoName]: GenericMotorModel,
   [InertUploadSystemProtoName]: InertUploadSystem,
+  [NwayMotorizedDustributionHopperProtoName]: NwayMotorizedDustributionHopper,
   [SimpleVibroTrayModelProtoName]: SimpleVibroTrayModel,
   [WH_LineModelProtoName]: WH_LineModel,
-  [NwayMotorizedDustributionHopperProtoName]: NwayMotorizedDustributionHopper,
   // [MainSupplyModelProtoName]: MainSupplyModel,
   // [PowerSupplyControllerProtoName]: PowerSupplyController,
 };

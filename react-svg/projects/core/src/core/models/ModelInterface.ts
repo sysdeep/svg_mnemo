@@ -18,7 +18,7 @@ export default interface ModelInterface {
 
   get_node(node_path: string): ModelInterface | null;
   must_node(node_path: string): ModelInterface;
-  get_childrens(): ModelInterface[];
+  get_childrens(use_links?: boolean): ModelInterface[];
 
   append_top_node(node: ModelInterface): void;
 
