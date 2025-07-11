@@ -10,7 +10,8 @@ import UploadSystem from "./nui/upload_system/UploadSystem";
 // import ObjErrorsModal from "../../core/nui/components/obj_errors_modal/ObjErrorsModal";
 
 export default function Mnemo() {
-  const max_width = 1280;
+  // const max_width = 1280;
+  const max_width = 1900;
   const max_height = 960;
 
   const project = useProjectContext();
@@ -51,7 +52,7 @@ export default function Mnemo() {
         {/* top bar */}
         <BarHud x={0} y={0} width={max_width} />
 
-        <UploadSystem x={0} y={80} max_width={max_width} ctrl={upload_system_ctrl} />
+        <UploadSystem x={0} y={80} max_width={max_width} max_height={max_height} ctrl={upload_system_ctrl} />
 
         {/* debug obj modal */}
         {/* <ObjErrorsModal x={30} y={200} /> */}

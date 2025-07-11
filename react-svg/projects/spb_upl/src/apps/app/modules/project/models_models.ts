@@ -1,3 +1,4 @@
+import { AbstractModel, AbstractModelProtoName } from "@src/core/models/AbstractModel";
 import {
   AbstractActionObjModel,
   AbstractActionObjModelProtoName,
@@ -16,6 +17,10 @@ import { WH_LineModel, WH_LineModelProtoName } from "../../../../core/models/WH_
 import ProjectInterface from "../../../../core/project/project_interface";
 import { ObjectSpec, ProtoSpec } from "../../../../core/project/project_spec";
 import { ProtoClassMap } from "@src/core/project/objects_factory";
+import {
+  NwayMotorizedDustributionHopper,
+  NwayMotorizedDustributionHopperProtoName,
+} from "@src/core/models/NwayMotorizedDustributionHopper";
 
 export interface ModelInterfaceConstructor {
   new (project: ProjectInterface, proto_spec: ProtoSpec, object_spec: ObjectSpec): ModelInterface;
@@ -25,19 +30,21 @@ export interface ModelInterfaceConstructor {
  * карта всех классов моделей используемых в проекте
  */
 export const models_map: ProtoClassMap = {
-  [GenericModelProtoName]: GenericModel,
-  [DSensorModelProtoName]: DSensorModel,
+  [AbstractActionObjModelProtoName]: AbstractActionObjModel,
+  [AbstractArrayModelProtoName]: AbstractArrayModel,
+  [AbstractModelProtoName]: AbstractModel,
   [AbstractObjectModelProtoName]: AbstractObjectModel,
   [BeltTransporterModelProtoName]: BeltTransporterModel,
-  [AbstractActionObjModelProtoName]: AbstractActionObjModel,
-  [GenericMotorModelProtoName]: GenericMotorModel,
-  [AbstractArrayModelProtoName]: AbstractArrayModel,
-  [WH_LineModelProtoName]: WH_LineModel,
   [BunkerModelProtoName]: BunkerModel,
+  [DSensorModelProtoName]: DSensorModel,
+  [GenericModelProtoName]: GenericModel,
+  [GenericMotorModelProtoName]: GenericMotorModel,
+  [InertUploadSystemProtoName]: InertUploadSystem,
   [SimpleVibroTrayModelProtoName]: SimpleVibroTrayModel,
+  [WH_LineModelProtoName]: WH_LineModel,
+  [NwayMotorizedDustributionHopperProtoName]: NwayMotorizedDustributionHopper,
   // [MainSupplyModelProtoName]: MainSupplyModel,
   // [PowerSupplyControllerProtoName]: PowerSupplyController,
-  [InertUploadSystemProtoName]: InertUploadSystem,
 };
 
 /**
