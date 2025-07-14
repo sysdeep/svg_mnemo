@@ -23,6 +23,9 @@ import {
 } from "@src/core/models/NwayMotorizedDustributionHopper";
 import { FBunkerStorageCommon, FBunkerStorageCommonProtoName } from "@src/core/models/FBunkerStorageCommon";
 import { FBunkerStorage, FBunkerStorageProtoName } from "@src/core/models/FBunkerStorage";
+import { Bell, BellProtoName } from "@src/core/models/Bell";
+import { Stroboscope, StroboscopeProtoName } from "@src/core/models/Stroboscope";
+import { FreqConvertor_ELHART_EMD, FreqConvertor_ELHART_EMDProtoName } from "@src/core/models/FreqConvertor_ELHART_EMD";
 
 export interface ModelInterfaceConstructor {
   new (project: ProjectInterface, proto_spec: ProtoSpec, object_spec: ObjectSpec): ModelInterface;
@@ -36,16 +39,19 @@ export const models_map: ProtoClassMap = {
   [AbstractArrayModelProtoName]: AbstractArrayModel,
   [AbstractModelProtoName]: AbstractModel,
   [AbstractObjectModelProtoName]: AbstractObjectModel,
+  [BellProtoName]: Bell,
   [BeltTransporterModelProtoName]: BeltTransporterModel,
   [BunkerModelProtoName]: BunkerModel,
   [DSensorModelProtoName]: DSensorModel,
   [FBunkerStorageCommonProtoName]: FBunkerStorageCommon,
   [FBunkerStorageProtoName]: FBunkerStorage,
+  [FreqConvertor_ELHART_EMDProtoName]: FreqConvertor_ELHART_EMD,
   [GenericModelProtoName]: GenericModel,
   [GenericMotorModelProtoName]: GenericMotorModel,
   [InertUploadSystemProtoName]: InertUploadSystem,
   [NwayMotorizedDustributionHopperProtoName]: NwayMotorizedDustributionHopper,
   [SimpleVibroTrayModelProtoName]: SimpleVibroTrayModel,
+  [StroboscopeProtoName]: Stroboscope,
   [WH_LineModelProtoName]: WH_LineModel,
   // [MainSupplyModelProtoName]: MainSupplyModel,
   // [PowerSupplyControllerProtoName]: PowerSupplyController,

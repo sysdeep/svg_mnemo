@@ -3,6 +3,7 @@ import ModelInterface from "../../../core/models/ModelInterface";
 import ReceiveAreaCtrl from "../nui/receive_area/ReceiveAreaCtrl";
 import receive_bunker_composer from "./receive_bunker_composer";
 import receive_distributor_composer from "./receive_distributor_composer";
+import bell_composer from "./bell_composer";
 
 export default function receive_area_composer(node: ModelInterface): ReceiveAreaCtrl {
   // bunkers
@@ -10,7 +11,6 @@ export default function receive_area_composer(node: ModelInterface): ReceiveArea
     .must_node("bunkers")
     .get_childrens(false)
     .map((m) => receive_bunker_composer(m));
-  // TODO: other
 
   // distributor
   let distributor_node = node
@@ -21,5 +21,11 @@ export default function receive_area_composer(node: ModelInterface): ReceiveArea
   }
   const distributor = receive_distributor_composer(distributor_node);
 
-  return new ReceiveAreaCtrl(node, bunkers, distributor);
+  // bell
+  const bell_node = node.get_node("bell");
+  const bell = bell_node ? bell_composer(bell_node) : null;
+
+  // TODO: other
+
+  return new ReceiveAreaCtrl(node, bunkers, distributor, bell);
 }

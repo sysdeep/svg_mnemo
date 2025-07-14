@@ -1,3 +1,4 @@
+import Bell from "../bell/Bell";
 import ReceiveBunker, { bunker_max_height, bunker_max_width } from "../receive_bunker/ReceiveBunker";
 import ReceiveDistributor, { receive_distributor_max_width } from "../receive_distributor/ReceiveDistributor";
 import ReceiveAreaCtrl from "./ReceiveAreaCtrl";
@@ -18,6 +19,9 @@ export default function ReceiveArea({ x, y, ctrl }: Props) {
     <g>
       {/* self */}
       <ReceiveAreaView x={x} y={y} width={bunkers_area_max_width} height={bunkers_area_max_height} ctrl={ctrl} />
+
+      {/* bell */}
+      {ctrl.bell && <Bell x={x + 4} y={y + 4} ctrl={ctrl.bell} />}
 
       {/* distributor */}
       <ReceiveDistributor
