@@ -18,6 +18,7 @@ import ProjectInterface from "./core/project/project_interface.ts";
 import GModalsManager from "./core/gui/gmodals/gmodals_manager/GModalsManager.tsx";
 import GModalsMap from "./apps/app/modules/gmodals/gmodals_map.tsx";
 import { make_project } from "./apps/app/modules/project/project_constructor.ts";
+import { WSClient } from "./core/transport/ws_client.ts";
 
 async function prepare_project(): Promise<ProjectInterface> {
   const resp = await fetch("/project.json");
@@ -50,6 +51,11 @@ function MainApp() {
   useEffect(() => {
     if (!project) {
       prepare_project().then((project) => {
+        const _client = new WSClient("ws://localhost:8808/app_ws");
+        _client.connect_odata(project);
+
+        _client.start();
+
         setProject(project);
       });
     }

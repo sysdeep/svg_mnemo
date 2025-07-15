@@ -1,6 +1,8 @@
 import ModelInterface from "../models/ModelInterface";
+import { IHandlerOdata, ServerHandler } from "../transport/handler_odata";
+import { PackageOdata } from "../transport/package_odata";
 import { create_object, ProtoClassMap } from "./objects_factory";
-import ProjectInterface from "./project_interface";
+import ProjectInterface, { AttrPayload } from "./project_interface";
 import { LinkSpec, ObjectSpec, ProjectSpec, ProtoSpec } from "./project_spec";
 
 type ProtosMap = { [key: string]: ProtoSpec };
@@ -10,12 +12,13 @@ type ProtosMap = { [key: string]: ProtoSpec };
 //   to: string;
 // };
 
-export default class Project implements ProjectInterface {
+export default class Project implements ProjectInterface, IHandlerOdata {
   name: string;
   description: string;
   protos_map: ProtosMap;
   objects_map: { [key: string]: ModelInterface };
   links: LinkSpec[];
+  server_sender: ServerHandler | null = null;
 
   // TODO: подумать, может вынести в отдельный объект типа root_node
   private top_nodes: { [key: string]: string };
@@ -105,6 +108,34 @@ export default class Project implements ProjectInterface {
     }
 
     return node;
+  }
+
+  send_package(sys_id: string, attrs: AttrPayload[]) {
+    if (!this.server_sender) {
+      throw new Error("unable send!!!");
+    }
+
+    const msg: PackageOdata = {
+      sys_id: sys_id,
+      attrs: attrs.map((a) => ({ attr_id: a.attr_id, value: a.value })),
+    };
+    this.server_sender(msg);
+  }
+
+  // ihandler interface -------------------------------------------------------
+  set_odata(data: PackageOdata) {
+    // console.log(data);
+
+    const obj = this.objects_map[data.sys_id];
+    if (obj) {
+      for (let attr_data of data.attrs) {
+        obj.set_attr_value(attr_data.attr_id, attr_data.value);
+      }
+    }
+  }
+
+  connect_odata(cb: ServerHandler) {
+    this.server_sender = cb;
   }
 
   // private ------------------------------------------------------------------

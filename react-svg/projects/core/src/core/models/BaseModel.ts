@@ -191,7 +191,9 @@ export default class BaseModel implements ModelInterface, AttrModelInterface {
    */
   send_attr(attr_id: number, value: any) {
     // TODO: отсылать на сервер
-    this.set_attr_value(attr_id, value);
+    // this.set_attr_value(attr_id, value);
+
+    this.project.send_package(this.sys_id, [{ attr_id: attr_id, value: value }]);
   }
 
   // private ------------------------------------------------------------------
