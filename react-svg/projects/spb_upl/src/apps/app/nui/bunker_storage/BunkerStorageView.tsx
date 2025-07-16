@@ -35,10 +35,11 @@ export default function BunkerStorageView({ x, y, width, height, ctrl }: Props) 
       {/* material item */}
       <line x1={x} y1={material_item_y} x2={x + width} y2={material_item_y} stroke="brown" strokeWidth={2} />
 
+      {/* TODO */}
       {/* material name */}
-      <text x={x + width / 2} y={y + 14} fill={Yellow.p200} textAnchor="middle">
+      {/* <text x={x + width / 2} y={y + 14} fill={Yellow.p200} textAnchor="middle">
         name
-      </text>
+      </text> */}
 
       {/* curr weight */}
       <text x={x + width - 4} y={y + height} fill={Yellow.p200} textAnchor="end">
