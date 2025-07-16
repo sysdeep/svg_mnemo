@@ -7,6 +7,7 @@ import MainColorizeFilters from "../../core/views/common/MainColorizeFilters";
 import BarHud from "./bar_hud/BarHud";
 import upload_system_composer from "./composers/upload_system_composer";
 import UploadSystem from "./nui/upload_system/UploadSystem";
+import WSIndicator from "./ws_indicator/WSIndicator";
 // import ObjErrorsModal from "../../core/nui/components/obj_errors_modal/ObjErrorsModal";
 
 export default function Mnemo() {
@@ -51,6 +52,8 @@ export default function Mnemo() {
 
         {/* top bar */}
         <BarHud x={0} y={0} width={max_width} />
+
+        <WSIndicator project={project} />
 
         <UploadSystem x={0} y={80} max_width={max_width} max_height={max_height} ctrl={upload_system_ctrl} />
 

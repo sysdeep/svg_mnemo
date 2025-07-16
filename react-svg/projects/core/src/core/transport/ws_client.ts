@@ -1,11 +1,14 @@
 import { IHandlerOdata } from "./handler_odata";
 import { PackageOdata } from "./package_odata";
+import { WSClientInterface, WSEvent, WSEventHandler } from "./ws_client_interface";
 
-export class WSClient {
+export class WSClient implements WSClientInterface {
   private _connection_string: string;
   _socket: WebSocket | null = null;
   _handler_odata: IHandlerOdata | null = null;
   _example_message_event_handler: Function | null = null;
+
+  events_handlers: { [key: number]: WSEventHandler[] } = {};
 
   constructor(url: string) {
     this._connection_string = url;
@@ -17,11 +20,20 @@ export class WSClient {
     this._socket.onopen = () => {
       console.log("ws opened");
       // this._simple_send();
+      let handlers = this.events_handlers[WSEvent.opened] || [];
+      for (let h of handlers) {
+        h();
+      }
     };
 
     this._socket.onclose = () => {
       console.log("ws closed");
       this._socket = null;
+
+      let handlers = this.events_handlers[WSEvent.closed] || [];
+      for (let h of handlers) {
+        h();
+      }
     };
 
     this._socket.onmessage = (e: any) => {
@@ -33,8 +45,51 @@ export class WSClient {
 
   connect_odata(handler: IHandlerOdata) {
     this._handler_odata = handler;
-    handler.connect_odata((payload: PackageOdata) => this._on_obj_data_from_project(payload));
+    handler.set_client(this);
+    // handler.connect_odata((payload: PackageOdata) => this._on_obj_data_from_project(payload));
   }
+
+  // ws client interface ------------------------------------------------------
+  get_connection_status(): boolean {
+    return Boolean(this._socket);
+  }
+
+  connect() {
+    console.log("try connect");
+    if (this._socket) {
+      console.log("already connected, pass");
+      return;
+    }
+
+    this.start();
+  }
+
+  disconnect(): void {
+    if (!this._socket) {
+      return;
+    }
+
+    this._socket.close();
+  }
+
+  send(payload: PackageOdata): void {
+    this._on_obj_data_from_project(payload);
+  }
+
+  connect_events(ev: number, handler: WSEventHandler): void {
+    let handlers = this.events_handlers[ev];
+    if (!handlers) {
+      this.events_handlers[ev] = [];
+    }
+
+    this.events_handlers[ev].push(handler);
+  }
+
+  disconnect_events(ev: number, handler: WSEventHandler): void {
+    this.events_handlers[ev] = this.events_handlers[ev].filter((h) => h !== handler);
+  }
+
+  // self ---------------------------------------------------------------------
 
   // TODO: remove
   // connect_message_event(handler: Function) {

@@ -1,6 +1,7 @@
 import ModelInterface from "../models/ModelInterface";
-import { IHandlerOdata, ServerHandler } from "../transport/handler_odata";
+import { IHandlerOdata } from "../transport/handler_odata";
 import { PackageOdata } from "../transport/package_odata";
+import { WSClientInterface } from "../transport/ws_client_interface";
 import { create_object, ProtoClassMap } from "./objects_factory";
 import ProjectInterface, { AttrPayload } from "./project_interface";
 import { LinkSpec, ObjectSpec, ProjectSpec, ProtoSpec } from "./project_spec";
@@ -18,7 +19,9 @@ export default class Project implements ProjectInterface, IHandlerOdata {
   protos_map: ProtosMap;
   objects_map: { [key: string]: ModelInterface };
   links: LinkSpec[];
-  server_sender: ServerHandler | null = null;
+
+  // server_sender: ServerHandler | null = null;
+  client: WSClientInterface | null = null;
 
   // TODO: подумать, может вынести в отдельный объект типа root_node
   private top_nodes: { [key: string]: string };
@@ -111,7 +114,7 @@ export default class Project implements ProjectInterface, IHandlerOdata {
   }
 
   send_package(sys_id: string, attrs: AttrPayload[]) {
-    if (!this.server_sender) {
+    if (!this.client) {
       throw new Error("unable send!!!");
     }
 
@@ -119,7 +122,7 @@ export default class Project implements ProjectInterface, IHandlerOdata {
       sys_id: sys_id,
       attrs: attrs.map((a) => ({ attr_id: a.attr_id, value: a.value })),
     };
-    this.server_sender(msg);
+    this.client.send(msg);
   }
 
   // ihandler interface -------------------------------------------------------
@@ -134,8 +137,16 @@ export default class Project implements ProjectInterface, IHandlerOdata {
     }
   }
 
-  connect_odata(cb: ServerHandler) {
-    this.server_sender = cb;
+  // connect_odata(cb: ServerHandler) {
+  //   this.server_sender = cb;
+  // }
+
+  set_client(client: WSClientInterface): void {
+    this.client = client;
+  }
+
+  get_client(): WSClientInterface | null {
+    return this.client;
   }
 
   // private ------------------------------------------------------------------
